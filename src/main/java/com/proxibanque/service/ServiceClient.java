@@ -23,7 +23,7 @@ public class ServiceClient implements IServiceClient  {
 	@Override
 	public void merge(Client client) throws Exception {
 		// TODO Auto-generated method stub
-		daoClient.merge(client);;
+		daoClient.merge(client);
 	}
 
 	@Override

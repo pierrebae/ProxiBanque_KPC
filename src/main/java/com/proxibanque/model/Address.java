@@ -2,8 +2,6 @@ package com.proxibanque.model;
 
 import javax.persistence.Embeddable;
 
-import org.springframework.stereotype.Component;
-
 
 @Embeddable
 public class Address {
