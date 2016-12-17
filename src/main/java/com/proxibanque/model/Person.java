@@ -6,9 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+
+@MappedSuperclass
 public class Person {
 
 	@Id

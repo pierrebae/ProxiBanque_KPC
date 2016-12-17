@@ -1,7 +1,13 @@
 package com.proxibanque.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +15,14 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Client extends Person {
 
-//	private CurrentAccount currentAccount;
-//	private SavingsAccount savingsAccount;
+	
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "CurrentAccount_id", unique = true)
+	private CurrentAccount currentAccount;
+	
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "SavingsAccount_id", unique = true)
+	private SavingsAccount savingsAccount;
 
 	@Autowired
 	@Embedded
