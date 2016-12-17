@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.proxibanque.dao.DaoAccount;
 import com.proxibanque.dao.DaoClient;
+import com.proxibanque.dao.IDaoClient;
 import com.proxibanque.model.Address;
 import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
@@ -32,7 +33,7 @@ public class persistenceTests {
 
 	
 	@Autowired
-	DaoClient daoClient;
+	IDaoClient daoClient;
 //    OrdersDao orderDao;
 	
 //	@Autowired
@@ -53,14 +54,18 @@ public class persistenceTests {
 	
 	@Test
 	@Transactional
-	public void testSaveOrderWithItems() throws Exception {
-		//Address address = new Address(52, "streetName", "postalCode", "city");
+	public void testSaveClientWithAddress() throws Exception {
+		Address address = new Address("52", "streetName", "postalCode", "city");
 		Client client = new Client();
-		client.getAddress().setCity("Paris");
+		client.setAddress(address);
+		//client.getAddress().setCity("Paris");
 		entityManager.persist(client);
 		entityManager.flush();
-		assertNotNull(client.getId());
+		assertNotNull(client.getAddress());
 	}
+	
+	
+	
 
 		
 
