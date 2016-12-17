@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
-@Entity
+
 public class Manager extends Person {
 
 	private List<Counsellor> counsellors;

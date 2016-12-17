@@ -2,7 +2,7 @@ package com.proxibanque.model;
 
 import javax.persistence.Entity;
 
-@Entity
+
 public class SavingsAccount extends BankAccount {
 
 	private Client client;
