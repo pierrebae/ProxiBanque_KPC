@@ -1,9 +1,20 @@
 package com.proxibanque.model;
 
+import java.util.List;
+
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 public class Counsellor extends Person {
 
 	private String login;
 	private String password;
+	
+	@OneToMany(mappedBy="counsellor")
+	@Cascade({ CascadeType.PERSIST })
+	private List<Client> listClients;
 
 	public Counsellor(String firstName, String lastName, String login, String password) {
 		super(firstName, lastName);
@@ -19,6 +30,16 @@ public class Counsellor extends Person {
 
 	public Counsellor() {
 		super();
+	}
+	
+	
+
+	public List<Client> getListClients() {
+		return listClients;
+	}
+
+	public void setListClients(List<Client> listClients) {
+		this.listClients = listClients;
 	}
 
 	public String getLogin() {

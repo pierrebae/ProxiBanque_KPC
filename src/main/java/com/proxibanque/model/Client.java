@@ -1,9 +1,16 @@
 package com.proxibanque.model;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Client extends Person {
 
 	private String email;
 	private Address address;
+	
+	@ManyToOne
+	@JoinColumn(name = "counsellor_id")
+	private Counsellor counsellor;
 
 	public Client(String firstName, String lastName, String email, Address address) {
 		super(firstName, lastName);
@@ -15,10 +22,20 @@ public class Client extends Person {
 		super();
 	}
 
-	public Client(String email, Address address) {
+	public Client(String email, Address address, Counsellor counsellor) {
 		super();
 		this.email = email;
 		this.address = address;
+		this.counsellor = counsellor;
+	}
+
+	
+	public Counsellor getCounsellor() {
+		return counsellor;
+	}
+
+	public void setCounsellor(Counsellor counsellor) {
+		this.counsellor = counsellor;
 	}
 
 	public String getEmail() {
