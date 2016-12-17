@@ -7,8 +7,10 @@
 	<persistence-unit name="persistenceUnit"
 		transaction-type="RESOURCE_LOCAL">
 
+
 <!-- 		<class>com.proxibanque.model.Client</class> -->
 <!-- 		<class>com.proxibanque.model.Person</class> -->
+
 
 
 <!-- 		<exclude-unlisted-classes>true</exclude-unlisted-classes> -->

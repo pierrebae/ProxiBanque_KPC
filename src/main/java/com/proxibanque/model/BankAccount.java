@@ -26,6 +26,7 @@ public class BankAccount {
 		this.accountType = accountType;
 	}
 
+	
 	public long getAccountNumber() {
 		return accountNumber;
 	}

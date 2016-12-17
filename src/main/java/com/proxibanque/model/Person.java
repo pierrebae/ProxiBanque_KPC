@@ -29,6 +29,10 @@ public class Person {
 		this.lastName = lastName;
 	}
 	
+	public long getId() {
+		return id;
+	}
+
 	//getters, setters
 	public String getFirstName() {
 		return firstName;

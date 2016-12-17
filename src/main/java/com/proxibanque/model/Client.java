@@ -54,10 +54,13 @@ public class Client extends Person {
 		this.address = address;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Client [email=" + email + ", address=" + address + "]";
 	}
 
+=======
+>>>>>>> origin/master
 	
 }
