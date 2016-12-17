@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Embeddable
 public class Address {
 

@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Client extends Person {
 
 	private String email;
