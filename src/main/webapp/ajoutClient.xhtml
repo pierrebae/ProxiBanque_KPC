@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel value="Nom" for="nom" />
+			<p:inputText id="nom" value="#{clientController.client.lastName}" />
+			<p:outputLabel value="Prénom" for="prenom" />
+
+			<p:outputLabel value="Nom" for="nom" />
+			<p:inputText id="prenom" value="#{clientController.client.firstName}" />
+
+			<p:outputLabel value="streetNumber" for="streetNumber" />
+			<p:inputText id="streetNumber"
+				value="#{clientController.client.address.streetNumber}" />
+			<p:outputLabel value="Nom" for="nom" />
+
+			<p:outputLabel value="streetName" for="streetName" />
+			<p:inputText id="streetName"
+				value="#{clientController.client.address.streetName}" />
+			
+			<p:outputLabel value="postalCode" for="postalCode" />
+			<p:inputText id="postalCode"
+				value="#{clientController.client.address.postalCode}" />
+			
+			<p:outputLabel value="city" for="city" />
+			<p:inputText id="city"
+				value="#{clientController.client.address.city}" />
+			String streetNumber, String streetName, String postalCode, String city
+			
+			<h:commandButton value="Submit"
+				action="#{clientController.saveClient}" />
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

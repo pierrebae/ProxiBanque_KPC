@@ -7,10 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Embeddable
 @Component
-
 public class Address {
 
-	private int streetNumber;
+	private String streetNumber;
 	private String streetName;
 	private String postalCode;
 	private String city;
@@ -19,7 +18,7 @@ public class Address {
 		super();
 	}
 
-	public Address(int streetNumber, String streetName, String postalCode, String city) {
+	public Address(String streetNumber, String streetName, String postalCode, String city) {
 		super();
 		this.streetNumber = streetNumber;
 		this.streetName = streetName;
@@ -27,11 +26,11 @@ public class Address {
 		this.city = city;
 	}
 
-	public int getStreetNumber() {
+	public String getStreetNumber() {
 		return streetNumber;
 	}
 
-	public void setStreetNumber(int streetNumber) {
+	public void setStreetNumber(String streetNumber) {
 		this.streetNumber = streetNumber;
 	}
 

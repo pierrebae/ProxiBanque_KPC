@@ -46,7 +46,7 @@
 
    <!-- Welcome Page -->
    <welcome-file-list>
-     <welcome-file>/home.xhtml</welcome-file>
+     <welcome-file>/ajoutClient.xhtml</welcome-file>
    </welcome-file-list>
 
    <!-- JSF Servlet is defined to container -->

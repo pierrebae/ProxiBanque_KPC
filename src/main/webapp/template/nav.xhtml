@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<!-- 	<p:growl id="msgs" showDetail="true" /> -->
+
+
+	<h:form id="menu">
+		<p:growl autoUpdate="true" />
+
+		<p:panelMenu>
+			<p:submenu label="Service Client">
+				<p:menuitem value="Liste de Clients " action="listClients"
+					icon="fa fa-group fa-fw" />
+				<p:menuitem value="Ajouter Client" action="ajoutClient"
+					icon="fa fa-user-plus fa-fw" />
+				<p:menuitem value="Suprimer Client" action="deleteClient"
+					icon="fa fa-user-times fa-fw" />
+				<p:menuitem value="Modifier Client" action="updateClient"
+					icon="fa fa-user-plus fa-fw" />
+
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Service Bancaire">
+
+				<p:menuitem value="Afficher Comptes Bancaires" action="listAccount"
+					icon="fa fa-money fa-fw" />
+				<p:menuitem value="Suprimer Compte" action="deleteAccount"
+					icon="fa fa-user-times fa-fw" />
+				<p:menuitem value="Ajouter compte" action="addAccount"
+					icon="fa fa-user-plus fa-fw" />
+				<p:menuitem value="Virement compte à compte" action="bankTransfer"
+					icon="fa fa-credit-card fa-fw" />
+				<p:menuitem value="Audit" icon="fa fa-calculator fa-fw" />
+
+			</p:submenu>
+
+
+		</p:panelMenu>
+	</h:form>
+	<p:sticky target="menu" />
+</ui:composition>

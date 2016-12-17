@@ -15,11 +15,11 @@ public class MainTest {
 
 		
 		IServiceClient serviceClient=new ServiceClient();
-
-		Address ad1=new Address(5,"Rue de la soif","3304","Ville");
+		Address ad1=new Address("5","Rue de la soif","3304","Ville");
 		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
 
-		
+		System.out.println(c1);
+		System.out.println(ad1);
 		serviceClient.persist(c1);
 		List<Client> clients= serviceClient.findAll();
 		

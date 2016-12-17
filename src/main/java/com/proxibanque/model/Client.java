@@ -13,9 +13,14 @@ public class Client extends Person {
 
 	private String email;
 	
-	@Autowired
+//	@Autowired
 	@Embedded
-	private Address address;
+	private Address address=new Address();
+		
+	public Client(String firstName, String lastName) {
+		super(firstName, lastName);
+		// TODO Auto-generated constructor stub
+	}
 
 	public Client(String firstName, String lastName, String email, Address address) {
 		super(firstName, lastName);
@@ -49,4 +54,10 @@ public class Client extends Person {
 		this.address = address;
 	}
 
+	@Override
+	public String toString() {
+		return "Client [email=" + email + ", address=" + address + "]";
+	}
+
+	
 }
