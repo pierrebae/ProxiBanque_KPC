@@ -1,5 +1,5 @@
 package com.proxibanque.model;
 
-public class CurrentAccount {
+public class CurrentAccount extends BankAccount {
 
 }
