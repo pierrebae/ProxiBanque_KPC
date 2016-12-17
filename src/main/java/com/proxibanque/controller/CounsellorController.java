@@ -22,6 +22,7 @@ public class CounsellorController {
 	private List<Counsellor> counsellors;
 	private long idCounsellor;
 	
+	
 	public void loadCounsellors() throws Exception {
 		counsellors = counsellorService.findAll();
 	}
@@ -31,8 +32,25 @@ public class CounsellorController {
 		return "home";
 	}
 	
+	
 	public Counsellor getCounsellor() {
 		return counsellor;
+	}
+
+	public List<Counsellor> getCounsellors() {
+		return counsellors;
+	}
+
+	public void setCounsellors(List<Counsellor> counsellors) {
+		this.counsellors = counsellors;
+	}
+
+	public long getIdCounsellor() {
+		return idCounsellor;
+	}
+
+	public void setIdCounsellor(long idCounsellor) {
+		this.idCounsellor = idCounsellor;
 	}
 	
 	
