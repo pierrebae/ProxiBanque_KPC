@@ -17,8 +17,13 @@ public class MainTest {
 		
 		IServiceClient serviceClient=new ServiceClient();
 		
+<<<<<<< HEAD
 		Address ad1=new Address(5,"Rue de la soif","3304","Ville");
 		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
+=======
+////		Address ad1=new Address();
+//		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
+>>>>>>> origin/master
 		
 		serviceClient.persist(c1);
 		List<Client> clients= serviceClient.findAll();

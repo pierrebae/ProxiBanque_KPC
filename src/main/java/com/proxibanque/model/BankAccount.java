@@ -1,7 +1,15 @@
 package com.proxibanque.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class BankAccount {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long accountNumber;
 	private double balance;
 	private String creationDate;
