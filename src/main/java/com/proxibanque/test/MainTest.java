@@ -15,6 +15,10 @@ public class MainTest {
 
 		
 		IServiceClient serviceClient=new ServiceClient();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 		Address ad1=new Address(5,"Rue de la soif","3304","Ville");
 		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
 
