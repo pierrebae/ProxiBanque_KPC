@@ -10,9 +10,21 @@
 
 	<h:html>
 	<h:head>
+
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=ISO-8859-1" />
-		<h:outputStylesheet library="css" name="/style.css" />
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+
+		<!-- Optional theme -->
+		<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"></link>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<title>Insert title here</title>
 	</h:head>
 
@@ -28,7 +40,7 @@
 				<!-- 				</ui:insert>> -->
 				<!-- 			</p:layoutUnit> -->
 
-				<p:layoutUnit position="south" size="50"  gutter="0"
+				<p:layoutUnit position="south" size="50" gutter="0"
 					resizable="false">
 					<div class="footer">
 						<ui:insert name="footer">
@@ -37,8 +49,8 @@
 					</div>
 				</p:layoutUnit>
 
-				<p:layoutUnit position="west" size="300" header="Menu de Navigation" style="text-align: center;"
-					resizable="false" gutter="0">
+				<p:layoutUnit position="west" size="300" header="Menu de Navigation"
+					style="text-align: center;" resizable="false" gutter="0">
 					<ui:insert name="nav">
 						<ui:include src="/template/nav.xhtml" />
 					</ui:insert>
@@ -48,7 +60,7 @@
 				<p:layoutUnit position="center" gutter="0">
 					<p:layout>
 
-						<p:layoutUnit position="north" size="100" gutter="0" id="header" >
+						<p:layoutUnit position="north" size="100" gutter="0" id="header">
 
 							<ui:include src="/template/header.xhtml" />
 
