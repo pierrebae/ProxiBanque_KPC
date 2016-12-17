@@ -11,12 +11,15 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Client extends Person {
 
-	private String email;
+	private CurrentAccount currentAccount;
+	private SavingsAccount savingsAccount;
 	
-//	@Autowired
+	private String email;
+
+	// @Autowired
 	@Embedded
-	private Address address=new Address();
-		
+	private Address address = new Address();
+
 	public Client(String firstName, String lastName) {
 		super(firstName, lastName);
 		// TODO Auto-generated constructor stub
@@ -54,13 +57,9 @@ public class Client extends Person {
 		this.address = address;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Client [email=" + email + ", address=" + address + "]";
 	}
 
-=======
->>>>>>> origin/master
-	
 }

@@ -11,14 +11,14 @@ import com.proxibanque.dao.IDaoClient;
 import com.proxibanque.model.Client;
 
 @Component
-public class ServiceClient implements IServiceClient  {
+public class ServiceClient implements IServiceClient {
 
 	@Autowired
 	private IDaoClient daoClient;
-	
+
 	@Override
 	public void persist(Client client) throws Exception {
-		
+
 		daoClient.persist(client);
 	}
 
@@ -46,8 +46,4 @@ public class ServiceClient implements IServiceClient  {
 		return daoClient.findAll();
 	}
 
-	
-	
-	
-	
 }
