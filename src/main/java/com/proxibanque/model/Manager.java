@@ -2,6 +2,9 @@ package com.proxibanque.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Manager extends Person {
 
 	private List<Counsellor> counsellors;
@@ -21,6 +24,11 @@ public class Manager extends Person {
 
 	public void setCounsellors(List<Counsellor> listCounsellors) {
 		this.counsellors = counsellors;
+	}
+
+	@Override
+	public String toString() {
+		return "Manager [counsellors=" + counsellors + "]";
 	}
 
 	

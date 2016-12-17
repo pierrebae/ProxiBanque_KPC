@@ -1,5 +1,8 @@
 package com.proxibanque.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class BankAccount {
 
 	private long accountNumber;

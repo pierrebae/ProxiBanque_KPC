@@ -14,8 +14,8 @@ public class MainTest {
 		
 		IServiceClient serviceClient=new ServiceClient();
 		
-//		Address ad1=new Address();
-		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
+////		Address ad1=new Address();
+//		Client c1=new Client("John","Doe","john.doe@aol.fr",ad1);
 		
 	}
 
