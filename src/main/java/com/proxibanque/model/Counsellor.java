@@ -14,9 +14,8 @@ public class Counsellor extends Person {
 	private String login;
 	private String password;
 	
-	@OneToMany(mappedBy="counsellor")
-	@Cascade({ CascadeType.PERSIST })
-	private List<Client> listClients;
+	
+	private List<Client> clients;
 
 	public Counsellor(String firstName, String lastName, String login, String password) {
 		super(firstName, lastName);
@@ -37,11 +36,11 @@ public class Counsellor extends Person {
 	
 
 	public List<Client> getListClients() {
-		return listClients;
+		return clients;
 	}
 
 	public void setListClients(List<Client> listClients) {
-		this.listClients = listClients;
+		this.clients = clients;
 	}
 
 	public String getLogin() {
