@@ -1,9 +1,13 @@
 package com.proxibanque.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
+import org.springframework.stereotype.Component;
 
 @Embeddable
+@Component
+
 public class Address {
 
 	private int streetNumber;

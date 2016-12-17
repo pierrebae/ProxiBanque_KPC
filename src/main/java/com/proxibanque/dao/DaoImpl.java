@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javassist.bytecode.SignatureAttribute.TypeVariable;
 
 public class DaoImpl<E> implements IDao<E> {
+	
 	@PersistenceContext(unitName = "persistenceUnit")
 	protected EntityManager entityManager;
 

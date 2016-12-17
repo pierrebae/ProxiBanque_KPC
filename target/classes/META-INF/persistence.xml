@@ -7,8 +7,10 @@
 	<persistence-unit name="persistenceUnit"
 		transaction-type="RESOURCE_LOCAL">
 
-<!-- 		<class>org.formation.model.Item</class> -->
-<!-- 		<class>org.formation.model.Order</class> -->
+<!-- 		<class>com.proxibanque.model.Client</class> -->
+<!-- 		<class>com.proxibanque.model.Person</class> -->
+
+
 <!-- 		<exclude-unlisted-classes>true</exclude-unlisted-classes> -->
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

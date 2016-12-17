@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CascadeType;
 
-@Entity
+
 public class Counsellor extends Person {
 
 	private String login;
