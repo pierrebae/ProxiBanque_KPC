@@ -16,15 +16,14 @@
 		<h:panelGrid columns="2" cellpadding="5">
 			<p:outputLabel value="Nom" for="nom" />
 			<p:inputText id="nom" value="#{clientController.client.lastName}" />
+			
 			<p:outputLabel value="Prénom" for="prenom" />
-
-			<p:outputLabel value="Nom" for="nom" />
 			<p:inputText id="prenom" value="#{clientController.client.firstName}" />
 
 			<p:outputLabel value="streetNumber" for="streetNumber" />
 			<p:inputText id="streetNumber"
 				value="#{clientController.client.address.streetNumber}" />
-			<p:outputLabel value="Nom" for="nom" />
+			
 
 			<p:outputLabel value="streetName" for="streetName" />
 			<p:inputText id="streetName"
@@ -37,7 +36,7 @@
 			<p:outputLabel value="city" for="city" />
 			<p:inputText id="city"
 				value="#{clientController.client.address.city}" />
-			String streetNumber, String streetName, String postalCode, String city
+			
 			
 			<h:commandButton value="Submit"
 				action="#{clientController.saveClient}" />

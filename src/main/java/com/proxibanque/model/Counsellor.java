@@ -6,15 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.stereotype.Component;
 
-
+@Component
+@Entity
 public class Counsellor extends Person {
 
 	private String login;
 	private String password;
 	
-
+	@OneToMany(mappedBy="counsellor")
+	@Cascade({ CascadeType.PERSIST })
 	private List<Client> clients;
 
 	public Counsellor(String firstName, String lastName, String login, String password) {

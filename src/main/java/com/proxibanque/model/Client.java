@@ -3,9 +3,8 @@ package com.proxibanque.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,9 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Client extends Person {
 
+	@ManyToOne
+	@JoinColumn(name = "counsellor_id")
+	private Counsellor counsellor;
 	
 	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "CurrentAccount_id", unique = true)

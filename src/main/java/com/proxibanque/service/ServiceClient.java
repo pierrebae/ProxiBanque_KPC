@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import com.proxibanque.dao.DaoClient;
+
 import com.proxibanque.dao.IDaoClient;
 import com.proxibanque.model.Client;
 
