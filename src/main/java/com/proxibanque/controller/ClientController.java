@@ -1,21 +1,10 @@
 package com.proxibanque.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceClient;
 
@@ -33,14 +22,16 @@ import com.proxibanque.service.ServiceClient;
 @ViewScoped
 public class ClientController {
 	
-
-	
-	private Client client=new Client();
-	private List<Client> clients = new ArrayList<>();
 	@Autowired
 	private ServiceClient clientService;
+	@Autowired
+	private Client client;
+	private List<Client> clients;
 	private long idCli;
 
+	
+
+	
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();

@@ -2,21 +2,27 @@ package com.proxibanque.model;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@Component
 @Entity
 public class Client extends Person {
 
 	private String email;
 	
-//	@Autowired
+	@Autowired
 	@Embedded
-	private Address address=new Address();
+	private Address address;
 		
+	
+	
+	
+	public Client(Address address) {
+		super();
+		this.address = address;
+	}
+
 	public Client(String firstName, String lastName) {
 		super(firstName, lastName);
 		// TODO Auto-generated constructor stub
@@ -54,13 +60,12 @@ public class Client extends Person {
 		this.address = address;
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public String toString() {
 		return "Client [email=" + email + ", address=" + address + "]";
 	}
 
-=======
->>>>>>> origin/master
+
 	
 }
