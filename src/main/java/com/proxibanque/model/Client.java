@@ -9,28 +9,19 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Client extends Person {
 
-	private CurrentAccount currentAccount;
-	private SavingsAccount savingsAccount;
-	
-<<<<<<< HEAD
+//	private CurrentAccount currentAccount;
+//	private SavingsAccount savingsAccount;
+
 	@Autowired
 	@Embedded
 	private Address address;
-		
-	
-	
-	
+
+	private String email;
+
 	public Client(Address address) {
 		super();
 		this.address = address;
 	}
-=======
-	private String email;
-
-	// @Autowired
-	@Embedded
-	private Address address = new Address();
->>>>>>> d8f85ab92b663c00d7592e108583aad823734321
 
 	public Client(String firstName, String lastName) {
 		super(firstName, lastName);
@@ -69,18 +60,4 @@ public class Client extends Person {
 		this.address = address;
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d8f85ab92b663c00d7592e108583aad823734321
-	@Override
-	public String toString() {
-		return "Client [email=" + email + ", address=" + address + "]";
-	}
-
-<<<<<<< HEAD
-
-	
-=======
->>>>>>> d8f85ab92b663c00d7592e108583aad823734321
 }
