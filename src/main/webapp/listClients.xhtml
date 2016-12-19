@@ -37,6 +37,7 @@
 					<h:outputText value="#{tempClient.lastName}" />
 				</p:column>
 
+
 				<p:column headerText="Prénom" sortBy="#{tempClient.firstName}">
 					<h:outputText value="#{tempClient.firstName}" />
 				</p:column>
@@ -68,23 +69,23 @@
 				<!-- boutons -->
 
 
-<!--  				<p:column headerText="Mise à jour" style="width:8%">  -->
-<!-- 					<p:commandLink update=":formClients:display"  -->
-<!-- 						oncomplete="PF('detailsDlg').show()"  -->
-<!--  						image="ui-icon ui-icon-search" title="Details"> -->
-<!-- 						<f:setPropertyActionListener value="#{client}" -->
-<!-- 							target="#{clientController.selectedClient}" /> -->
-<!-- 						<h:outputText styleClass="ui-icon ui-icon-search" /> -->
-<!-- 					</p:commandLink> -->
-<!-- 				</p:column> -->
+				<p:column headerText="Mise à jour" style="width:8%">
+					<p:commandLink update=":formClients:display"
+						oncomplete="PF('detailsDlg').show()"
+						image="ui-icon ui-icon-search" title="Details">
+						<f:setPropertyActionListener value="#{tempClient}"
+							target="#{clientController.selectedClient}" />
+						<h:outputText styleClass="fa fa-edit medium" />
+					</p:commandLink>
+				</p:column>
 
 
-								<p:column headerText="Mise à jour">
+				<!-- 								<p:column headerText="Mise à jour"> -->
 
-									<h:commandLink id="i" value="" styleClass="fa fa-edit medium"
-										action="#{clientController.loadClient(tempClient)}" />
+				<!-- 									<h:commandLink id="i" value="" styleClass="fa fa-edit medium" -->
+				<!-- 										action="#{clientController.loadClient(tempClient)}" /> -->
 
-								</p:column>
+				<!-- 								</p:column> -->
 
 				<p:column headerText="Effacer" style="width:8%">
 
@@ -94,39 +95,7 @@
 				</p:column>
 
 
-				<!-- popup update -->
 
-				<p:dialog header="Update" widgetVar="detailsDlg" resizable="false"
-					width="750" height="400" showEffect="clip" hideEffect="clip"
-					modal="true">
-
-					<h:panelGrid id="display" columns="2" cellpadding="4"
-						style="margin:0 auto;">
-						<h:outputText value="Last Name" for="lastName"
-							style="padding-left: 30px; padding-right: 30px;" />
-						<p:inputText id="lastName"
-							value="#{clientController.selectedClient.lastName}"
-							label="lastName" />
-
-						<h:outputText value="First Name" for="firstName"
-							style="padding-left: 30px; padding-right: 30px;" />
-						<p:inputText id="firstName"
-							value="#{clientController.selectedClient.firstName}"
-							label="firstName" />
-					</h:panelGrid>
-
-					<p:outputPanel layout="block" style="text-align:center">
-						<br />
-						<br />
-						<p:commandButton value="Update"
-							update=":formClients:tempClients, :formClients:messages"
-							actionListener="#{clientController.updateClient}"
-							oncomplete="PF('detailsDlg').hide()" />
-						<p:commandButton value="Cancel" onclick="PF('detailsDlg').hide()"
-							type="button" />
-					</p:outputPanel>
-
-				</p:dialog>
 
 
 				<!-- fiche client -->
@@ -219,7 +188,46 @@
 						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
 					</p:panelGrid>
 				</p:rowExpansion>
+
 			</p:dataTable>
+
+
+			<!-- popup update -->
+
+			<p:dialog header="Update" widgetVar="detailsDlg" resizable="false"
+				width="750" height="400" showEffect="clip" hideEffect="clip"
+				modal="true">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4"
+					style="margin:0 auto;">
+					<h:outputText value="Last Name" for="lastName"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="lastName"
+						value="#{clientController.selectedClient.lastName}"
+						label="lastName" />
+
+					<h:outputText value="First Name" for="firstName"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="firstName"
+						value="#{clientController.selectedClient.firstName}"
+						label="firstName" />
+				</h:panelGrid>
+
+				<p:outputPanel layout="block" style="text-align:center">
+					<br />
+					<br />
+					<p:commandButton value="Update"
+						update=":formClients:tempClients, :formClients:messages"
+						actionListener="#{clientController.updateClient}"
+						oncomplete="PF('detailsDlg').hide()" />
+					<p:commandButton value="Cancel" onclick="PF('detailsDlg').hide()"
+						type="button" />
+				</p:outputPanel>
+
+			</p:dialog>
+
+
+
 
 		</h:form>
 

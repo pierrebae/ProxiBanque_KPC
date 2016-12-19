@@ -81,15 +81,15 @@ public class ClientController implements Serializable {
 
 	}
 
-	public String loadClient(Client client) throws Exception {
+	public void loadClient(Client client) throws Exception {
 
-		Client clientMemory = clientService.findById(client.getId());
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("client", clientMemory);
-
-		return "updateClient";
+//		Client clientMemory = clientService.findById(client.getId());
+//		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//
+//		Map<String, Object> requestMap = externalContext.getRequestMap();
+//		requestMap.put("client", clientMemory);
+//
+//		return "listClient";
 	}
 
 	public String saveClient() throws Exception {
