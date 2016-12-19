@@ -1,6 +1,5 @@
 package com.proxibanque.controller;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,6 @@ import com.proxibanque.service.ServiceClient;
 @ViewScoped
 public class ClientController implements Serializable {
 
-
 	/**
 	 * 
 	 */
@@ -38,20 +36,17 @@ public class ClientController implements Serializable {
 
 	@Autowired
 	private ServiceClient clientService;
-	
+
 	private Client client;
 	private List<Client> clients;
 	private List<Client> selectedClients;
 	private long idCli;
 
-	
-	
 	@PostConstruct
-    public void init() {
+	public void init() {
 		refreshList();
-    }
-	
-	
+	}
+
 	public void refreshList() {
 		this.client = new Client();
 		this.clients = new ArrayList<Client>();
@@ -64,18 +59,12 @@ public class ClientController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();
 
 	}
-	
-
-	
 
 	public String saveClient() throws Exception {
 		clientService.persist(this.client);
@@ -85,28 +74,26 @@ public class ClientController implements Serializable {
 	}
 
 	public String removeClient(Client client) throws Exception {
-	
+
 		clientService.remove(client.getId());
-	
+
 		refreshList();
 		return "listClients";
 	}
 
 	public String removeClients() throws Exception {
-	
+
 		selectedClients = getSelectedClients();
-	
+
 		if (getSelectedClients() != null) {
 			for (Client client : selectedClients) {
 				clientService.remove(client.getId());
+				refreshList();
 			}
 			return "listClients";
-		} else
+		} else {
 			return "";
-	
-
-		refreshList();
-		return "listClients";
+		}
 
 	}
 
@@ -141,7 +128,6 @@ public class ClientController implements Serializable {
 	public void setSelectedClients(List<Client> selectedClients) {
 		this.selectedClients = selectedClients;
 	}
-
 
 	public void onRowSelect(SelectEvent event) {
 		FacesMessage msg = new FacesMessage("Client Selected", ((Client) event.getObject()).getLastName());
