@@ -22,28 +22,29 @@
 	color: #e1ffff
 }
 
+
+
+
 #right-wrapper {
 	height: 100%;
 	/* 	 	position: fixed;  */
 }
 
-#footer {
-	text-align: center;
-	background-color: blue;
-	clear: both;
-	height: 100%;
-}
 
 .addAccount{
-	margin: 0 auto 0 auto ! important;
-/* 	height: 75%; */
+/* 	margin: 0 auto ! important; */
 	padding: 100px ! important;
-/* 	position: center; */
-/* 	padding: 50px; */
-/* 	width: 75% !important; */
-/* 	border: 3px solid red;S */
-	
+	float: left;
+	margin: 20% 30%;
+	border: 3px solid red;
 }
+
+.formulaire{
+	border: 2px solid blue;
+}
+
+
+
 #content {
 	
 	background-color: grey;
