@@ -1,14 +1,19 @@
 package com.proxibanque.model;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+
 
 
 @Entity
@@ -18,14 +23,17 @@ public class Client extends Person {
 	@JoinColumn(name = "counsellor_id")
 	private Counsellor counsellor;
 	
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "CurrentAccount_id", unique = true)
-	private CurrentAccount currentAccount;
-	
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "SavingsAccount_id", unique = true)
-	private SavingsAccount savingsAccount;
+//	@OneToOne(cascade = { CascadeType.ALL })
+//	@JoinColumn(name = "CurrentAccount_id", unique = true)
+//	private CurrentAccount currentAccount;
+//	
+//	@OneToOne(cascade = { CascadeType.ALL })
+//	@JoinColumn(name = "SavingsAccount_id", unique = true)
+//	private SavingsAccount savingsAccount;
 
+	@OneToMany(mappedBy="client")
+	@Cascade({CascadeType.ALL})
+	private List<BankAccount> bankAccount;
 	
 	@Embedded
 	private Address address=new Address();
@@ -98,21 +106,21 @@ public class Client extends Person {
 		this.counsellor = counsellor;
 	}
 
-	public CurrentAccount getCurrentAccount() {
-		return currentAccount;
-	}
-
-	public void setCurrentAccount(CurrentAccount currentAccount) {
-		this.currentAccount = currentAccount;
-	}
-
-	public SavingsAccount getSavingsAccount() {
-		return savingsAccount;
-	}
-
-	public void setSavingsAccount(SavingsAccount savingsAccount) {
-		this.savingsAccount = savingsAccount;
-	}
+//	public CurrentAccount getCurrentAccount() {
+//		return currentAccount;
+//	}
+//
+//	public void setCurrentAccount(CurrentAccount currentAccount) {
+//		this.currentAccount = currentAccount;
+//	}
+//
+//	public SavingsAccount getSavingsAccount() {
+//		return savingsAccount;
+//	}
+//
+//	public void setSavingsAccount(SavingsAccount savingsAccount) {
+//		this.savingsAccount = savingsAccount;
+//	}
 	
 
 }

@@ -11,10 +11,13 @@
 		<!-- <div class="container-fluid"> -->
 		<div class="addAccount">
 			<h:form>
-				<h:panelGrid columns="2" cellpadding="5" class="addAccount">
+				<h:panelGrid columns="3" cellpadding="5" class="addAccount">
 					<p:outputLabel value="Solde" for="balance" />
 					<p:inputText id="balance"
-						value="#{accountController.bankAccount.balance}" />
+						value="#{accountController.bankAccount.balance}" label="currency">
+						<f:convertNumber type="currency" currencySymbol="$"/>
+					</p:inputText>
+					<p:message for="balance"></p:message>
 
 
 					<p:outputLabel value="Account Type" for="accountType" />
@@ -26,9 +29,9 @@
 							itemValue="CURRENT_ACCOUNT" />
 					</p:selectOneMenu>
 
-					<p:button value="Submit" action="#{accountController.saveAccount}" />
 
 				</h:panelGrid>
+				<p:commandButton value="Submit" action="#{accountController.saveAccount}" />
 			</h:form>
 
 		</div>

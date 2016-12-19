@@ -34,14 +34,14 @@ public class AccountController {
 	private List<BankAccount> banckAccounts;
 	private String simpleDate;
 	
+	
+	
 	public void loadAccount() throws Exception {
 		banckAccounts = serviceAccount.findAll();
 	}
 	
 	public String saveAccount() throws Exception {
-		if (bankAccount.getAccountType().equals(bankAccount.getAccountType().SAVINGS_ACCOUNT)) {
-			
-		}
+		 
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
 		
