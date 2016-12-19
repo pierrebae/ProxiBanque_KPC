@@ -14,6 +14,7 @@ import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceClient;
 
@@ -38,6 +39,7 @@ public class ClientController implements Serializable {
 	private ServiceClient clientService;
 
 	private Client client;
+	private BankAccount bankAccount;
 	private List<Client> clients;
 	private List<Client> selectedClients;
 	private long idCli;
@@ -50,6 +52,7 @@ public class ClientController implements Serializable {
 	public void refreshList() {
 
 		this.client = new Client();
+		this.bankAccount=new BankAccount();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -74,6 +77,17 @@ public class ClientController implements Serializable {
 		return "listClients";
 	}
 
+	public String saveClient2() throws Exception {
+		List <BankAccount> listAccount =client.getBankAccount();
+		listAccount.add(bankAccount);
+		client.setBankAccount(listAccount);
+		
+		clientService.persist(this.client);
+
+		refreshList();
+		return "listClients";
+	}
+	
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
@@ -138,6 +152,14 @@ public class ClientController implements Serializable {
 	public void onRowUnselect(UnselectEvent event) {
 		FacesMessage msg = new FacesMessage("Client Unselected", ((Client) event.getObject()).getLastName());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 
 }
