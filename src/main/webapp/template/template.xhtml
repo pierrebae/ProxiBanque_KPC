@@ -39,6 +39,10 @@
 
 				<div class="ui-g-12 ui-md-3 ">
 					<div id="sidebar-wrapper">
+						<div class="img">
+							<img src="resources/images/Logomakr_3ZX3Hj.png" height="80px"
+								width="330px" />
+						</div>
 						<ui:insert name="nav">
 							<ui:include src="/template/nav.xhtml" />
 						</ui:insert>
@@ -48,14 +52,14 @@
 				<div class="ui-g-12 ui-md-9 ui-g-nopad">
 					<div id="right-wrapper">
 						<div class="ui-g-12 ">
-
 							<ui:include src="/template/header.xhtml" />
 						</div>
 
 						<div class="ui-g-12 ui-g-nopad">
-							<div class="container-fluid" id="content"  style="min-height: 800px">
+							<div class="container-fluid" id="content"
+								style="min-height: 800px">
 
-								<ui:insert name="content" >
+								<ui:insert name="content">
 									<ui:include src="/template/content.xhtml" />
 								</ui:insert>
 
@@ -64,9 +68,7 @@
 
 						<div class="ui-g-12 ">
 							<div id="footer">
-								<ui:insert name="footer">
-									<ui:include src="/template/footer.xhtml" />
-								</ui:insert>
+								<ui:include src="/template/footer.xhtml" />
 							</div>
 						</div>
 					</div>
