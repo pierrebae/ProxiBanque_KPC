@@ -6,57 +6,58 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-	<h:head>
-		<meta http-equiv="Content-Type"
-			content="text/html; charset=ISO-8859-1" />
-		<title>Insert title here</title>
-	</h:head>
+
+
 	<ui:define name="content">
-		<h:body>
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Nom" for="nom" />
+				<p:inputText id="nom" value="#{clientController.client.lastName}" />
 
-			<h:form>
-				<h:panelGrid columns="2" cellpadding="5">
-					<p:outputLabel value="Nom" for="nom" />
-					<p:inputText id="nom" value="#{clientController.client.lastName}" />
+				<p:outputLabel value="Prénom" for="prenom" />
+				<p:inputText id="prenom"
+					value="#{clientController.client.firstName}" />
 
-					<p:outputLabel value="Prénom" for="prenom" />
-					<p:inputText id="prenom"
-						value="#{clientController.client.firstName}" />
-
-					<p:outputLabel value="streetNumber" for="streetNumber" />
-					<p:inputText id="streetNumber"
-						value="#{clientController.client.address.streetNumber}" />
+				<p:outputLabel value="streetNumber" for="streetNumber" />
+				<p:inputText id="streetNumber"
+					value="#{clientController.client.address.streetNumber}" />
 
 
-					<p:outputLabel value="streetName" for="streetName" />
-					<p:inputText id="streetName"
-						value="#{clientController.client.address.streetName}" />
+				<p:outputLabel value="streetName" for="streetName" />
+				<p:inputText id="streetName"
+					value="#{clientController.client.address.streetName}" />
 
-					<p:outputLabel value="postalCode" for="postalCode" />
-					<p:inputText id="postalCode"
-						value="#{clientController.client.address.postalCode}" />
+				<p:outputLabel value="postalCode" for="postalCode" />
+				<p:inputText id="postalCode"
+					value="#{clientController.client.address.postalCode}" />
 
-					<p:outputLabel value="city" for="city" />
-					<p:inputText id="city"
-						value="#{clientController.client.address.city}" />
-					
-					
-					<h:outputLabel for="soldeInput" value="Solde : *" />
-					<p:inputText id="soldeInput" value="#{clientController.bankAccount.balance}"
-						label="soldeInput" required="true" />
+				<p:outputLabel value="city" for="city" />
+				<p:inputText id="city"
+					value="#{clientController.client.address.city}" />
 
-					<p:outputLabel for="selectType" value="Type : *" />
-					<p:selectOneMenu id="selectType" value="#{clientController.bankAccount.accountType}">
-						<f:selectItem itemLabel="Compte Courant" itemValue="CURRENT_ACCOUNT" />
-						<f:selectItem itemLabel="Compte Epargne" itemValue="SAVINGS_ACCOUNT" />
-					</p:selectOneMenu>
 
-				
+				<h:outputLabel for="soldeInput" value="Solde : *" />
+				<p:inputText id="soldeInput"
+					value="#{clientController.bankAccount.balance}" label="soldeInput"
+					required="true" />
 
-				</h:panelGrid>
-					<p:commandButton value="Submit"
-						action="#{clientController.saveClient2}" />
-			</h:form>
-		</h:body>
+				<p:outputLabel for="selectType" value="Type : *" />
+				<p:selectOneMenu id="selectType"
+					value="#{clientController.bankAccount.accountType}">
+					<f:selectItem itemLabel="Compte Courant"
+						itemValue="CURRENT_ACCOUNT" />
+					<f:selectItem itemLabel="Compte Epargne"
+						itemValue="SAVINGS_ACCOUNT" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="Submit"
+					action="#{clientController.saveClient2}" />
+
+
+			</h:panelGrid>
+
+		</h:form>
+
 	</ui:define>
+
 </ui:composition>

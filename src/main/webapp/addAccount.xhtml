@@ -6,37 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-<<<<<<< HEAD
-	<ui:define name="content">
 
-		<!-- <div class="container-fluid"> -->
-
-		<div class="addAccount">
-			<h:form>
-				<h:panelGrid columns="3" cellpadding="5" class="addAccount">
-					<p:outputLabel value="Solde" for="balance" />
-					<p:inputText id="balance"
-						value="#{accountController.bankAccount.balance}" label="currency">
-						<f:convertNumber type="currency" currencySymbol="$" />
-					</p:inputText>
-					<p:message for="balance"></p:message>
-
-
-
-					<p:outputLabel value="Account Type" for="accountType" />
-					<p:selectOneMenu id="accountType"
-						value="#{accountController.bankAccount.accountType}">
-						<f:selectItem itemLabel="Savings Account"
-							itemValue="SAVINGS_ACCOUNT" />
-						<f:selectItem itemLabel="Current Account"
-							itemValue="CURRENT_ACCOUNT" />
-					</p:selectOneMenu>
-
-				</h:panelGrid>
-				<p:commandButton value="Submit" 
-					action="#{accountController.saveAccount()}" />
-			</h:form>
-=======
 		<ui:define name="content">
 
 			<!-- <div class="container-fluid"> -->
@@ -69,7 +39,7 @@
 					<p:commandButton value="Submit"
 						action="#{accountController.saveAccount}" />
 				</h:form>
->>>>>>> origin/master
+
 			</div>
 		</ui:define>
 </ui:composition>
