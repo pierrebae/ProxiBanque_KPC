@@ -3,12 +3,17 @@ package com.proxibanque.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.xml.ws.Service;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +45,7 @@ public class ClientController implements Serializable {
 	private Client client;
 	private List<Client> clients;
 	private List<Client> selectedClients;
+	private Client selectedClient;
 	private long idCli;
 
 	@PostConstruct
@@ -50,6 +56,7 @@ public class ClientController implements Serializable {
 	public void refreshList() {
 
 		this.client = new Client();
+		this.selectedClient = new Client();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -67,6 +74,17 @@ public class ClientController implements Serializable {
 
 	}
 
+	public String loadClient(Client client) throws Exception {
+
+		Client clientMemory = clientService.findById(client.getId());
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		requestMap.put("client", clientMemory);
+
+		return "updateClient";
+	}
+
 	public String saveClient() throws Exception {
 		clientService.persist(this.client);
 
@@ -80,6 +98,31 @@ public class ClientController implements Serializable {
 
 		refreshList();
 		return "listClients";
+	}
+
+	public void updateClient() {
+		try {
+			clientService.merge(this.selectedClient);
+			refreshList();
+			notificationSuccess("update order");
+		} catch (Exception e) {
+			notificationError(e, "update order");
+		}
+
+	}
+
+	public void notificationSuccess(String operation) {
+		Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Operation " + operation + " success");
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Success");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void notificationError(Exception e, String operation) {
+		Logger.getLogger(this.getClass().getName()).log(Level.ERROR, "Operation " + operation + " Error ", e);
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Une erreur est survenue");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String removeClients() throws Exception {
@@ -112,6 +155,14 @@ public class ClientController implements Serializable {
 
 	public void setClients(List<Client> clients) {
 		this.clients = clients;
+	}
+
+	public Client getSelectedClient() {
+		return selectedClient;
+	}
+
+	public void setSelectedClient(Client selectedClient) {
+		this.selectedClient = selectedClient;
 	}
 
 	public long getIdCli() {
