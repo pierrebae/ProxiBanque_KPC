@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 100%;
+}
+
+which along with your
+
+td i {
+    text-align:center;
+}
