@@ -1,5 +1,6 @@
 package com.proxibanque.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +8,16 @@ import org.springframework.stereotype.Component;
 
 
 import com.proxibanque.dao.IDaoClient;
+import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 
 @Component
-public class ServiceClient implements IServiceClient {
+public class ServiceClient implements IServiceClient,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IDaoClient daoClient;
 
@@ -43,6 +49,18 @@ public class ServiceClient implements IServiceClient {
 	public List<Client> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return daoClient.findAll();
+	}
+
+	@Override
+	public void persist(Client client, BankAccount bankAccount) throws Exception {
+
+		List <BankAccount> bankAccounts=client.getBankAccounts();
+		bankAccounts.add(bankAccount);
+		bankAccount.setClient(client);
+//		client.setBankAccounts(bankAccounts);
+		daoClient.persist(client);
+		
+		
 	}
 
 }

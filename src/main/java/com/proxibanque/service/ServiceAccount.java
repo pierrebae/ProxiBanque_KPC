@@ -1,5 +1,6 @@
 package com.proxibanque.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,12 @@ import com.proxibanque.dao.IDaoAccount;
 import com.proxibanque.model.BankAccount;
 
 @Component
-public class ServiceAccount implements IServiceAccount {
+public class ServiceAccount implements IServiceAccount , Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IDaoAccount daoAccount;
 

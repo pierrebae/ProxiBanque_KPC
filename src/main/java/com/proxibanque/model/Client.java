@@ -1,5 +1,7 @@
 package com.proxibanque.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +19,12 @@ import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-public class Client extends Person {
+public class Client extends Person implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
 	@JoinColumn(name = "counsellor_id")
@@ -31,9 +38,12 @@ public class Client extends Person {
 //	@JoinColumn(name = "SavingsAccount_id", unique = true)
 //	private SavingsAccount savingsAccount;
 
-	@OneToMany(mappedBy="client")
+//	@ManyToOne (mappedBy="client")
+	
+//	@Cascade({CascadeType.ALL})
+	@OneToMany (mappedBy="client")
 	@Cascade({CascadeType.ALL})
-	private List<BankAccount> bankAccount;
+	private List<BankAccount> bankAccounts =new ArrayList<BankAccount>();
 	
 	@Embedded
 	private Address address=new Address();
@@ -45,7 +55,6 @@ public class Client extends Person {
 	public Client() {
 		super();
 	}
-
 
 	public Client(String firstName, String lastName) {
 		super(firstName, lastName);
@@ -107,13 +116,13 @@ public class Client extends Person {
 	}
 
 
-	public List<BankAccount> getBankAccount() {
-		return bankAccount;
+	public List<BankAccount> getBankAccounts() {
+		return bankAccounts;
 	}
 
 
-	public void setBankAccount(List<BankAccount> bankAccount) {
-		this.bankAccount = bankAccount;
+	public void setBankAccounts(List<BankAccount> bankAccount) {
+		this.bankAccounts = bankAccount;
 	}
 
 	

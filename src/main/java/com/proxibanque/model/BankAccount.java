@@ -1,5 +1,6 @@
 package com.proxibanque.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.ManagedBean;
@@ -12,13 +13,18 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class BankAccount {
+public class BankAccount implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long accountNumber;
@@ -27,8 +33,8 @@ public class BankAccount {
 	private Date dateLastModification = new Date();
 	private AccountType accountType;
 	
-	@ManyToOne
-	@JoinColumn(name="client_id")
+	@ManyToOne 
+	@JoinColumn (name="client_id")
 	private Client client;
 
 	public BankAccount() {
@@ -82,4 +88,14 @@ public class BankAccount {
 		this.dateLastModification = dateLastModification;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	
+	
 }

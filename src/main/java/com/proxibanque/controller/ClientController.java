@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -60,11 +61,9 @@ public class ClientController implements Serializable {
 	public void refreshList() {
 
 		this.client = new Client();
-<<<<<<< HEAD
-		this.bankAccount=new BankAccount();
-=======
+		this.bankAccount = new BankAccount();
 		this.selectedClient = new Client();
->>>>>>> origin/master
+
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -101,16 +100,15 @@ public class ClientController implements Serializable {
 	}
 
 	public String saveClient2() throws Exception {
-		List <BankAccount> listAccount =client.getBankAccount();
-		listAccount.add(bankAccount);
-		client.setBankAccount(listAccount);
-		
-		clientService.persist(this.client);
+		clientService.persist(this.client, this.bankAccount);
+//		listAccount.add(bankAccount);
+//		client.setBankAccount(listAccount);
+
 
 		refreshList();
 		return "listClients";
 	}
-	
+
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
@@ -147,13 +145,12 @@ public class ClientController implements Serializable {
 	public void onCancel(RowEditEvent event) {
 		refreshList();
 	}
-	
+
 	public void reset() {
 		refreshList();
-        RequestContext.getCurrentInstance().reset("formClients:panel");  
+		RequestContext.getCurrentInstance().reset("formClients:panel");
 	}
-	
-	
+
 	public String removeClients() throws Exception {
 
 		selectedClients = getSelectedClients();
