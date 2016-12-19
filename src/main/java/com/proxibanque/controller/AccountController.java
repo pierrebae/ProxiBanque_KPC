@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.proxibanque.model.AccountType;
 import com.proxibanque.model.BankAccount;
 import com.proxibanque.service.ServiceAccount;
 
