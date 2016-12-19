@@ -1,5 +1,7 @@
 package com.proxibanque.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class BankAccount {
 	private long accountNumber;
 	private double balance;
 	private String creationDate;
+	private Date dateLastModification = new Date();
 	private AccountType accountType;
 
 	public BankAccount() {
@@ -62,6 +65,14 @@ public class BankAccount {
 
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
+	}
+
+	public Date getDateLastModification() {
+		return dateLastModification;
+	}
+
+	public void setDateLastModification(Date dateLastModification) {
+		this.dateLastModification = dateLastModification;
 	}
 
 }

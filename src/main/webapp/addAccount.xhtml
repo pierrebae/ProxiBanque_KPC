@@ -12,29 +12,28 @@
 <h:body>
 
 	<h:form>
-		<h:panelGrid columns="2" cellpadding="5">
+		<h:panelGrid columns="3" cellpadding="5">
 			<p:outputLabel value="Balance" for="balance" />
 			<p:inputText id="balance"
-				value="#{accountController.bankAccount.balance}" />
-
-			<p:outputLabel value="Creation Date" for="creationDate" />
-			<p:inputText id="creationDate"
-				value="#{accountController.bankAccount.creationDate}" />
+				value="#{accountController.bankAccount.balance}">
+				<f:convertNumber type="currency" currencySymbol="$" />
+			</p:inputText>
+			<p:message for="balance" />
 
 			<p:outputLabel value="Account Type" for="accountType" />
 			<p:selectOneMenu id="accountType"
 				value="#{accountController.bankAccount.accountType}">
 				<f:selectItem itemLabel="Savings Account"
-					itemValue="SAVINGS_ACCOUNT" />
-					<f:selectItem itemLabel="Current Account"
+					itemValue="SAVINGS_ACCOUNT"/>
+				<f:selectItem itemLabel="Current Account"
 					itemValue="CURRENT_ACCOUNT" />
 			</p:selectOneMenu>
 
+		</h:panelGrid>
 
-			<h:commandButton value="Submit"
+		<h:commandButton value="Submit"
 				action="#{accountController.saveAccount}" />
 
-		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>
