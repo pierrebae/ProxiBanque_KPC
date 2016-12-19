@@ -48,6 +48,7 @@ public class ClientController implements Serializable {
 	}
 
 	public void refreshList() {
+
 		this.client = new Client();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();

@@ -6,34 +6,43 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-		<ui:define name="content">
+	<ui:define name="content">
+<!-- 		<f:metadata> -->
+<!-- 			<f:event type="preRenderView" -->
+<!-- 				listener="#{accountController.loadAccount()}" /> -->
+<!-- 		</f:metadata> -->
 
-		<f:metadata>
-			<f:event type="preRenderView"
-				listener="#{accountController.loadComptes()}" />
-		</f:metadata>
 		<h:form>
 
-			<p:dataTable value="#{accountController.comptes}" var="compte"
+			<p:dataTable value="#{accountController.bankAccounts}" var="compte"
 				sortMode="multiple">
 
-				<p:column headerText="Numéro de compte" sortBy="#{compte.numCompte}">
+				<p:column headerText="Numéro de compte"
+					sortBy="#{compte.accountNumber}">
 
-					<h:outputText value="#{compte.numCompte}" />
+					<h:outputText value="#{compte.accountNumber}" />
 				</p:column>
 
-				<p:column headerText="Type de compte" sortBy="#{compte.type}">
+				<p:column headerText="Type de compte" sortBy="#{compte.accountType}">
 					<!-- the column header -->
 
 					<!--  the value for each row -->
-					<h:outputText value="#{compte.type}" />
+					<h:outputText value="#{compte.accountType}" />
 				</p:column>
 
-				<p:column headerText="Solde" sortBy="#{compte.solde}">
+				<p:column headerText="Solde" sortBy="#{compte.balance}">
 					<!-- the column header -->
 
 					<!--  the value for each row -->
-					<h:outputText value="#{compte.solde}" />
+					<h:outputText value="#{compte.balance}" />
+				</p:column>
+
+				<p:column headerText="Date de Création"
+					sortBy="#{compte.creationDate}">
+					<!-- the column header -->
+
+					<!--  the value for each row -->
+					<h:outputText value="#{compte.creationDate}" />
 				</p:column>
 
 			</p:dataTable>

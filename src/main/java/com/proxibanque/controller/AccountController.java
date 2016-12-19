@@ -1,9 +1,12 @@
 package com.proxibanque.controller;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,28 +27,50 @@ import com.proxibanque.service.ServiceAccount;
 
 @Component("accountController")
 @ViewScoped
-public class AccountController {
+public class AccountController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ServiceAccount serviceAccount;
-	@Autowired
+	
 	private BankAccount bankAccount;
-	private List<BankAccount> banckAccounts;
+	private List<BankAccount> bankAccounts;
+	private List<BankAccount> selectedBankAccounts;
 	private String simpleDate;
 	
+	@PostConstruct
+	public void init() {
+		refreshList();
+	}
 	
+	public void refreshList() {
+		this.bankAccount = new BankAccount();
+		this.bankAccounts = new ArrayList<BankAccount>();
+		this.selectedBankAccounts = new ArrayList<BankAccount>();
+		try {
+			this.bankAccounts.addAll(serviceAccount.findAll());
+			this.selectedBankAccounts.addAll(bankAccounts);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public void loadAccount() throws Exception {
-		banckAccounts = serviceAccount.findAll();
+		bankAccounts = serviceAccount.findAll();
 	}
 	
 	public String saveAccount() throws Exception {
 		 
 		simpleDate = date();
-		bankAccount.setCreationDate(simpleDate);
-		
+		bankAccount.setCreationDate(simpleDate);	
 		serviceAccount.persist(bankAccount);
-		return "home";
+		refreshList();
+		return "listAccount";
 	}
 	
 	public BankAccount getBankAccount() {
@@ -63,4 +88,23 @@ public class AccountController {
 		simpleDate = dateFormat.format(creationDate);
 		return simpleDate;
 	}
+
+	public List<BankAccount> getBankAccounts() {
+		return bankAccounts;
+	}
+
+	public void setBankAccounts(List<BankAccount> bankAccounts) {
+		this.bankAccounts = bankAccounts;
+	}
+
+	public List<BankAccount> getSelectedBankAccounts() {
+		return selectedBankAccounts;
+	}
+
+	public void setSelectedBankAccounts(List<BankAccount> selectedBankAccounts) {
+		this.selectedBankAccounts = selectedBankAccounts;
+	}
+	
+	
+	
 }
