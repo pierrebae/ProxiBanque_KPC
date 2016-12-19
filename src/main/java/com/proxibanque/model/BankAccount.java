@@ -25,9 +25,8 @@ public class BankAccount {
 		super();
 	}
 
-	public BankAccount(long accountNumber, double balance, String creationDate, AccountType accountType) {
+	public BankAccount(double balance, String creationDate, AccountType accountType) {
 		super();
-		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.creationDate = creationDate;
 		this.accountType = accountType;
