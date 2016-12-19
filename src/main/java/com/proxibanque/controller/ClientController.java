@@ -1,9 +1,6 @@
 package com.proxibanque.controller;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +29,13 @@ import com.proxibanque.service.ServiceClient;
 @Component("clientController")
 @ViewScoped
 public class ClientController implements Serializable {
-<<<<<<< HEAD
-	
-=======
+
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
->>>>>>> origin/master
+
 	@Autowired
 	private ServiceClient clientService;
 	
@@ -84,7 +79,8 @@ public class ClientController implements Serializable {
 
 	public String saveClient() throws Exception {
 		clientService.persist(this.client);
-<<<<<<< HEAD
+
+		refreshList();
 		return "listClients";
 	}
 
@@ -92,6 +88,7 @@ public class ClientController implements Serializable {
 	
 		clientService.remove(client.getId());
 	
+		refreshList();
 		return "listClients";
 	}
 
@@ -107,10 +104,10 @@ public class ClientController implements Serializable {
 		} else
 			return "";
 	
-=======
+
 		refreshList();
 		return "listClients";
->>>>>>> origin/master
+
 	}
 
 	public Client getClient() {
@@ -145,62 +142,7 @@ public class ClientController implements Serializable {
 		this.selectedClients = selectedClients;
 	}
 
-<<<<<<< HEAD
-	//
-//	public String saveCompte(CompteBancaire account) {
-//
-//		Client client = clientService.getClientById(idCli);
-//
-//		if ((TypeCompte.COMPTECOURANT.equals(account.getType())) && (client.getCc() == null)) {
-//			CompteCourant compteCourant = new CompteCourant(account.getSolde(), account.getType());
-//			client.setCc(compteCourant);
-//			clientService.updateClient(client);
-//			return "addAccount";
-//
-//		} else if ((TypeCompte.COMPTEEPARGNE.equals(account.getType())) && (client.getCe() == null)) {
-//			CompteEpargne compteEpargne = new CompteEpargne(account.getSolde(), account.getType());
-//			client.setCe(compteEpargne);
-//			clientService.updateClient(client);
-//			return "addAccount";
-//		} else {
-//			return "";
-//		}
-//	}
-//
-=======
-	public String removeClient(Client client) throws Exception {
 
-		clientService.remove(client.getId());
-
-		return "listClients";
-	}
-
-	//
-	// public String saveCompte(CompteBancaire account) {
-	//
-	// Client client = clientService.getClientById(idCli);
-	//
-	// if ((TypeCompte.COMPTECOURANT.equals(account.getType())) &&
-	// (client.getCc() == null)) {
-	// CompteCourant compteCourant = new CompteCourant(account.getSolde(),
-	// account.getType());
-	// client.setCc(compteCourant);
-	// clientService.updateClient(client);
-	// return "addAccount";
-	//
-	// } else if ((TypeCompte.COMPTEEPARGNE.equals(account.getType())) &&
-	// (client.getCe() == null)) {
-	// CompteEpargne compteEpargne = new CompteEpargne(account.getSolde(),
-	// account.getType());
-	// client.setCe(compteEpargne);
-	// clientService.updateClient(client);
-	// return "addAccount";
-	// } else {
-	// return "";
-	// }
-	// }
-	//
->>>>>>> origin/master
 	public void onRowSelect(SelectEvent event) {
 		FacesMessage msg = new FacesMessage("Client Selected", ((Client) event.getObject()).getLastName());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
