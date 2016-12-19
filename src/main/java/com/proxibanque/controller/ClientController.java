@@ -1,6 +1,7 @@
 package com.proxibanque.controller;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,14 +29,14 @@ import com.proxibanque.service.ServiceClient;
 
 @Component("clientController")
 @ViewScoped
-public class ClientController {
+public class ClientController implements Serializable {
 	
 	@Autowired
 	private ServiceClient clientService;
 	@Autowired
 	private Client client;
 	private List<Client> clients;
-	private ArrayList<Client> selectedClients;
+	private List<Client> selectedClients;
 	private long idCli;
 
 	
@@ -46,10 +47,34 @@ public class ClientController {
 		clients = clientService.findAll();
 		
 	}
+	
+
+	
 
 	public String saveClient() throws Exception {
 		clientService.persist(this.client);
-		return "home";
+		return "listClients";
+	}
+
+	public String removeClient(Client client) throws Exception {
+	
+		clientService.remove(client.getId());
+	
+		return "listClients";
+	}
+
+	public String removeClients() throws Exception {
+	
+		selectedClients = getSelectedClients();
+	
+		if (getSelectedClients() != null) {
+			for (Client client : selectedClients) {
+				clientService.remove(client.getId());
+			}
+			return "listClients";
+		} else
+			return "";
+	
 	}
 
 	public Client getClient() {
@@ -82,21 +107,15 @@ public class ClientController {
 	
 	
 
-	public ArrayList<Client> getSelectedClients() {
+	public List<Client> getSelectedClients() {
 		return selectedClients;
 	}
 
-	public void setSelectedClients(ArrayList<Client> selectedClients) {
+	public void setSelectedClients(List<Client> selectedClients) {
 		this.selectedClients = selectedClients;
 	}
 
-	public String removeClient(Client client) throws Exception {
-
-		clientService.remove(client.getId());
-
-		return "listClients";
-	}
-//
+	//
 //	public String saveCompte(CompteBancaire account) {
 //
 //		Client client = clientService.getClientById(idCli);
@@ -125,20 +144,6 @@ public class ClientController {
 	public void onRowUnselect(UnselectEvent event) {
 		FacesMessage msg = new FacesMessage("Client Unselected", ((Client) event.getObject()).getLastName());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public String removeClients() throws Exception {
-
-		selectedClients = getSelectedClients();
-
-		if (getSelectedClients() != null) {
-			for (Client client : selectedClients) {
-				clientService.remove(client.getId());
-			}
-			return "listClients";
-		} else
-			return "";
-
 	}
 
 }
