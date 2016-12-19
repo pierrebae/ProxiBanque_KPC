@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Entity
 public class Client extends Person {
 
@@ -26,17 +26,18 @@ public class Client extends Person {
 	@JoinColumn(name = "SavingsAccount_id", unique = true)
 	private SavingsAccount savingsAccount;
 
-	@Autowired
+	
 	@Embedded
-	private Address address;
+	private Address address=new Address();
 	
 	private String telephone;
 	private String email;
 
-	public Client(Address address) {
+	
+	public Client() {
 		super();
-		this.address = address;
 	}
+
 
 	public Client(String firstName, String lastName) {
 		super(firstName, lastName);
@@ -55,9 +56,7 @@ public class Client extends Person {
 		this.address = address;
 	}
 	
-	public Client() {
-		super();
-	}
+	
 
 	public Client(String email, String telephone, Address address) {
 		super();

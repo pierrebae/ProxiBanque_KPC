@@ -1,5 +1,6 @@
 @CHARSET "ISO-8859-1";
 
+<<<<<<< HEAD
 
 
  body {
@@ -13,20 +14,31 @@
  height: 100%;
  }
 #sidebar-wrapper {
+=======
+body {
+	overflow-x: hidden;
+>>>>>>> origin/master
 	
+}
+
+#wrapper {
+	margin: 0 auto;
+	height: 100%;
+}
+
+#sidebar-wrapper {
 	overflow: hidden;
 	background-color: #2e353d;
-/* 	position: absolute; */
+	/* 	position: absolute; */
 	top: 0px;
 	z-index: 1;
 	height: 100%;
 	color: #e1ffff
 }
 
-#right-wrapper{
+#right-wrapper {
 	height: 100%;
-/* 	 	position: fixed;  */
-	
+	/* 	 	position: fixed;  */
 }
 
 #footer {
@@ -36,19 +48,29 @@
 	height: 100%;
 }
 
+.addAccount{
+	margin: 0 auto ! important;
+/* 	position: center; */
+/* 	padding: 50px; */
+/* 	width: 75% !important; */
+/* 	border: 3px solid red;S */
+	
+}
 #content {
+	
 	background-color: grey;
 	height: 100%;
+	width: 100%;
 }
 
 #header {
 	font-variant: small-caps;
 	text-align: center;
-	
 }
 
+
+
 #wrapper-content-header {
-	
 	
 }
 
