@@ -90,11 +90,11 @@ public class ClientController implements Serializable {
 				clientService.remove(client.getId());
 				refreshList();
 			}
+
 			return "listClients";
 		} else {
 			return "";
 		}
-
 	}
 
 	public Client getClient() {

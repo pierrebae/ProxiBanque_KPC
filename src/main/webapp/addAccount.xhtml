@@ -9,11 +9,23 @@
 	<ui:define name="content">
 
 		<!-- <div class="container-fluid"> -->
+<<<<<<< HEAD
 		<h:form id="addAccount">
 			<h:panelGrid columns="2" cellpadding="5" class="addAccount">
 				<p:outputLabel value="Solde" for="balance" />
 				<p:inputText id="balance"
 					value="#{accountController.bankAccount.balance}" />
+=======
+		<div class="addAccount">
+			<h:form>
+				<h:panelGrid columns="3" cellpadding="5" class="addAccount">
+					<p:outputLabel value="Solde" for="balance" />
+					<p:inputText id="balance"
+						value="#{accountController.bankAccount.balance}" label="currency">
+						<f:convertNumber type="currency" currencySymbol="$"/>
+					</p:inputText>
+					<p:message for="balance"></p:message>
+>>>>>>> origin/master
 
 
 				<p:outputLabel value="Account Type" for="accountType" />
@@ -25,11 +37,18 @@
 						itemValue="CURRENT_ACCOUNT" />
 				</p:selectOneMenu>
 
+<<<<<<< HEAD
 				<p:commandButton value="Submit" oncomplet="#{accountController.saveAccount}" />
 			</h:panelGrid>
 
 		</h:form>
 
+=======
+
+				</h:panelGrid>
+				<p:commandButton value="Submit" action="#{accountController.saveAccount}" />
+			</h:form>
+>>>>>>> origin/master
 
 
 

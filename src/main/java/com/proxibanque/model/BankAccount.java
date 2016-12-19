@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,10 @@ public class BankAccount {
 	private String creationDate;
 	private Date dateLastModification = new Date();
 	private AccountType accountType;
+	
+	@ManyToOne
+	@JoinColumn(name="client_id")
+	private Client client;
 
 	public BankAccount() {
 		super();

@@ -3,30 +3,29 @@ package com.proxibanque.model;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class CurrentAccount extends BankAccount {
 	
-	@OneToOne(mappedBy="currentAccount")
-	private Client client;
+//	@OneToOne(mappedBy="currentAccount")
+//	private Client client;
 
-	
 	
 	public CurrentAccount() {
 		super();
 	}
 
-	public CurrentAccount(double balance, String creationDate, AccountType accountType, Client client) {
-		super(balance, creationDate, accountType);
-		this.client = client;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
+//	public CurrentAccount(double balance, String creationDate, AccountType accountType, Client client) {
+//		super(balance, creationDate, accountType);
+//		this.client = client;
+//	}
+//
+//	public Client getClient() {
+//		return client;
+//	}
+//
+//	public void setClient(Client client) {
+//		this.client = client;
+//	}
 	
 	
 }
