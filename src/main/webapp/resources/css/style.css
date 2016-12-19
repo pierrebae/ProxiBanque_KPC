@@ -1,0 +1,56 @@
+@CHARSET "ISO-8859-1";
+
+ body {
+    overflow-x: hidden;
+    text-align: center;
+ }
+ 
+ 
+ #wrapper {
+ margin:0 auto;
+ height: 100%;
+ }
+#sidebar-wrapper {
+	
+	overflow: hidden;
+	background-color: #2e353d;
+/* 	position: absolute; */
+	top: 0px;
+	z-index: 1;
+	height: 100%;
+	color: #e1ffff
+}
+
+#right-wrapper{
+	height: 100%;
+/* 	 	position: fixed;  */
+	
+}
+
+#footer {
+	text-align: center;
+	background-color: blue;
+	clear: both;
+	height: 100%;
+}
+
+#content {
+	background-color: grey;
+	height: 100%;
+}
+
+#header {
+	font-variant: small-caps;
+	text-align: center;
+	
+}
+
+#wrapper-content-header {
+	
+	
+}
+
+/* .remove-all-margin-padding { */
+/* 	margin: 0 ! important; */
+/* 	padding: 0 ! important; */
+/* } */

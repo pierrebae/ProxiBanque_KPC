@@ -13,7 +13,7 @@
 
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=ISO-8859-1" />
-
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
@@ -25,63 +25,58 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<h:outputStylesheet library="css" name="/style.css" />
+
 		<title>Insert title here</title>
 	</h:head>
 
 	<h:body>
 
-		<div class="wrapper">
-			<p:layout fullPage="true">
+		<!-- 				<div class="container remove-all-margin-padding"> -->
+		<div id="wrapper">
+			<div class="ui-g ">
 
-				<!-- 			<p:layoutUnit position="north" size="100" header="Header" -->
-				<!-- 				resizable="true" > -->
-				<!-- 				<ui:insert name="header"> -->
-				<!-- 					<ui:include src="/template/header.xhtml" /> -->
-				<!-- 				</ui:insert>> -->
-				<!-- 			</p:layoutUnit> -->
-
-				<p:layoutUnit position="south" size="50" gutter="0"
-					resizable="false">
-					<div class="footer">
-						<ui:insert name="footer">
-							<ui:include src="/template/footer.xhtml" />
+				<div class="ui-g-12 ui-md-3 ">
+					<div id="sidebar-wrapper">
+						<ui:insert name="nav">
+							<ui:include src="/template/nav.xhtml" />
 						</ui:insert>
 					</div>
-				</p:layoutUnit>
+				</div>
 
-				<p:layoutUnit position="west" size="300" header="Menu de Navigation"
-					style="text-align: center;" resizable="false" gutter="0">
-					<ui:insert name="nav">
-						<ui:include src="/template/nav.xhtml" />
-					</ui:insert>
-
-				</p:layoutUnit>
-
-				<p:layoutUnit position="center" gutter="0">
-					<p:layout>
-
-						<p:layoutUnit position="north" size="100" gutter="0" id="header">
+				<div class="ui-g-12 ui-md-9 ui-g-nopad">
+					<div id="right-wrapper">
+						<div class="ui-g-12 ">
 
 							<ui:include src="/template/header.xhtml" />
+						</div>
+
+						<div class="ui-g-12 ui-g-nopad">
+								<div class="container-fluid content"  id="content" style="min-height:800px">
+								<ui:insert name="content">
+									<ui:include src="/template/content.xhtml" />
+								</ui:insert>
+							</div>
+						</div>
+
+						<div class="ui-g-12 ">
+							<div id="footer">
+								<ui:insert name="footer">
+									<ui:include src="/template/footer.xhtml" />
+								</ui:insert>
+							</div>
+						</div>
+					</div>
+
+				</div>
 
 
-						</p:layoutUnit>
 
 
+			</div>
 
-						<p:layoutUnit position="center" gutter="0">
-							<ui:insert name="content">
-								<ui:include src="/template/content.xhtml" />
-							</ui:insert>
-						</p:layoutUnit>
-
-
-
-					</p:layout>
-				</p:layoutUnit>
-			</p:layout>
 		</div>
-
+		<!-- 				</div> -->
 	</h:body>
 	</h:html>
 </f:view>
