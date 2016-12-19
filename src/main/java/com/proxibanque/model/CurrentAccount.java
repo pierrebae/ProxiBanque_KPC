@@ -15,8 +15,8 @@ public class CurrentAccount extends BankAccount {
 		super();
 	}
 
-	public CurrentAccount(long accountNumber, double balance, String creationDate, AccountType accountType, Client client) {
-		super(accountNumber, balance, creationDate, accountType);
+	public CurrentAccount(double balance, String creationDate, AccountType accountType, Client client) {
+		super(balance, creationDate, accountType);
 		this.client = client;
 	}
 
