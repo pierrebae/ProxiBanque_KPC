@@ -8,32 +8,32 @@
 
 	<ui:define name="content">
 
-<div class="container-fluid">
-<!-- <div class="addAccount"> -->
-		<h:form >
-			<h:panelGrid columns="2" cellpadding="5"  class="addAccount">
-				<p:outputLabel value="Solde" for="balance" />
-				<p:inputText id="balance"
-					value="#{accountController.bankAccount.balance}" />
+		<!-- <div class="container-fluid"> -->
+		<div class="addAccount">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="5" class="addAccount">
+					<p:outputLabel value="Solde" for="balance" />
+					<p:inputText id="balance"
+						value="#{accountController.bankAccount.balance}" />
 
 
-				<p:outputLabel value="Account Type" for="accountType" />
-				<p:selectOneMenu id="accountType"
-					value="#{accountController.bankAccount.accountType}">
-					<f:selectItem itemLabel="Savings Account"
-						itemValue="SAVINGS_ACCOUNT" />
-					<f:selectItem itemLabel="Current Account"
-						itemValue="CURRENT_ACCOUNT" />
-				</p:selectOneMenu>
+					<p:outputLabel value="Account Type" for="accountType" />
+					<p:selectOneMenu id="accountType"
+						value="#{accountController.bankAccount.accountType}">
+						<f:selectItem itemLabel="Savings Account"
+							itemValue="SAVINGS_ACCOUNT" />
+						<f:selectItem itemLabel="Current Account"
+							itemValue="CURRENT_ACCOUNT" />
+					</p:selectOneMenu>
 
+					<p:button value="Submit" action="#{accountController.saveAccount}" />
 
-				<p:button value="Submit" action="#{accountController.saveAccount}"  />
+				</h:panelGrid>
+			</h:form>
 
-			</h:panelGrid>
-		</h:form>
-
-</div>
+		</div>
 
 
 	</ui:define>
 </ui:composition>
+
