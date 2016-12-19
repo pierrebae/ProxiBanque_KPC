@@ -14,6 +14,8 @@ import javax.xml.ws.Service;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,6 +127,16 @@ public class ClientController implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
+	public void onCancel(RowEditEvent event) {
+		refreshList();
+	}
+	
+	public void reset() {
+		refreshList();
+        RequestContext.getCurrentInstance().reset("formClients:panel");  
+	}
+	
+	
 	public String removeClients() throws Exception {
 
 		selectedClients = getSelectedClients();

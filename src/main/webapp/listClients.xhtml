@@ -26,7 +26,7 @@
 				emptyMessage="Il n'existe pas de client avec ce nom-là"
 				filteredValue="#{clientController.selectedClients}">
 
-<!-- colonnes affichage -->
+				<!-- colonnes affichage -->
 
 				<p:column style="width:32px">
 					<p:rowToggler />
@@ -49,26 +49,29 @@
 					<h:outputText value="#{tempClient.email}" />
 				</p:column>
 
-				<p:column headerText="N° Compte Courant"
-					sortBy="#{tempClient.compteCourant}">
-					<h:outputText value="#{tempClient.currentAccount}" />
-				</p:column>
+				<!-- 				<p:column headerText="N° Compte Courant" -->
+				<!-- 					rendered="#{tempClient.bankAccount.accountType}==0}" -->
+				<!-- 					sortBy="#{tempClient.bankAccount}"> -->
+				<!-- 					<h:outputText value="#{tempClient.bankAccount}" /> -->
+				<!-- 				</p:column> -->
 
-				<p:column headerText="N° Compte Epargne"
-					sortBy="#{tempClient.compteEpargne}">
-					<h:outputText value="#{tempClient.savingsAccount}" />
-				</p:column>
+				<!-- 				<p:column headerText="N° Compte Epargne" -->
+				<!-- 					rendered="#{tempClient.bankAccount.accountType}==1}" -->
+				<!-- 					sortBy="#{tempClient.bankAccount}"> -->
+				<!-- 					<h:outputText value="#{tempClient.bankAccount}" /> -->
+				<!-- 				</p:column> -->
 
 				<p:column headerText="Date Création" sortBy="">
 					<h:outputText value="" />
 				</p:column>
 
-<!-- boutons -->
+				<!-- boutons -->
 
-				<p:column headerText="Mise à jour" style="width:8%">
-					<p:commandLink update=":formClients:display"
-						oncomplete="PF('detailsDlg').show()"
-						image="ui-icon ui-icon-search" title="Details">
+
+ 				<p:column headerText="Mise à jour" style="width:8%"> 
+					<p:commandLink update=":formClients:display" 
+						oncomplete="PF('detailsDlg').show()" 
+ 						image="ui-icon ui-icon-search" title="Details">
 						<f:setPropertyActionListener value="#{client}"
 							target="#{clientController.selectedClient}" />
 						<h:outputText styleClass="ui-icon ui-icon-search" />
@@ -76,12 +79,12 @@
 				</p:column>
 
 
-				<!-- 				<p:column headerText="Mise à jour"> -->
+<!-- 								<p:column headerText="Mise à jour"> -->
 
-				<!-- 					<h:commandLink id="i" value="" styleClass="fa fa-edit medium" -->
-				<!-- 						action="#{clientController.loadClient(tempClient)}" /> -->
+<!-- 									<h:commandLink id="i" value="" styleClass="fa fa-edit medium" -->
+<!-- 										action="#{clientController.loadClient(tempClient)}" /> -->
 
-				<!-- 				</p:column> -->
+<!-- 								</p:column> -->
 
 				<p:column headerText="Effacer" style="width:8%">
 
@@ -91,7 +94,7 @@
 				</p:column>
 
 
-<!-- popup update -->
+				<!-- popup update -->
 
 				<p:dialog header="Update" widgetVar="detailsDlg" resizable="false"
 					width="750" height="400" showEffect="clip" hideEffect="clip"
@@ -99,21 +102,17 @@
 
 					<h:panelGrid id="display" columns="2" cellpadding="4"
 						style="margin:0 auto;">
-
 						<h:outputText value="Last Name" for="lastName"
 							style="padding-left: 30px; padding-right: 30px;" />
-
 						<p:inputText id="lastName"
 							value="#{clientController.selectedClient.lastName}"
 							label="lastName" />
 
 						<h:outputText value="First Name" for="firstName"
 							style="padding-left: 30px; padding-right: 30px;" />
-
 						<p:inputText id="firstName"
 							value="#{clientController.selectedClient.firstName}"
 							label="firstName" />
-
 					</h:panelGrid>
 
 					<p:outputPanel layout="block" style="text-align:center">
@@ -130,7 +129,7 @@
 				</p:dialog>
 
 
-<!-- fiche client -->
+				<!-- fiche client -->
 
 
 				<p:rowExpansion>
@@ -173,48 +172,51 @@
 						<h:outputText value="" />
 						<h:outputText value="" />
 
-						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.accountNumber} >0" />
-						<h:outputText value="Numéro compte courant : "
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.accountNumber} >0"
-							style="color:black" />
-						<h:outputText value="#{tempClient.bankAccount.accountNumber}"
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.accountNumber} >0" />
+						<h:outputText value="halp"
+							rendered=" #{ not empty client.bankAccount} " />
 
 						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" />
-						<h:outputText value="Date création : " style="color:black"
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" />
-						<h:outputText value="#{tempClient.bankAccount.creationDate}"
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" />
+							rendered="#{client.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{client.bankAccount.accountNumber} >0" />
+						<!-- 						<h:outputText value="Numéro compte courant : " -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{tempClient.bankAccount.accountNumber} >0" -->
+						<!-- 							style="color:black" /> -->
+						<!-- 						<h:outputText value="#{tempClient.bankAccount.accountNumber}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{tempClient.bankAccount.accountNumber} >0" /> -->
 
-						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" />
-						<h:outputText value="Solde : " style="color:black"
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" />
-						<h:outputText value="#{tempClient.bankAccount.balance}"
-							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" />
+						<!-- 						<h:outputText value="" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
+						<!-- 						<h:outputText value="Date création : " style="color:black" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
+						<!-- 						<h:outputText value="#{tempClient.bankAccount.creationDate}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
 
-						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" />
-						<h:outputText value="Numéro compte épargne : " style="color:black"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" />
-						<h:outputText value="#{tempClient.savingsAccount.accountNumber}"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" />
+						<!-- 						<h:outputText value="" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
+						<!-- 						<h:outputText value="Solde : " style="color:black" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
+						<!-- 						<h:outputText value="#{tempClient.bankAccount.balance}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
 
-						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" />
-						<h:outputText value="Date création : " style="color:black"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" />
-						<h:outputText value="#{tempClient.savingsAccount.creationDate}"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" />
+						<!-- 						<h:outputText value="" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
+						<!-- 						<h:outputText value="Numéro compte épargne : " style="color:black" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
+						<!-- 						<h:outputText value="#{tempClient.savingsAccount.accountNumber}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
 
-						<h:outputText value=""
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" />
-						<h:outputText value="Solde : " style="color:black"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" />
-						<h:outputText value="#{tempClient.savingsAccount.balance}"
-							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" />
+						<!-- 						<h:outputText value="" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
+						<!-- 						<h:outputText value="Date création : " style="color:black" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
+						<!-- 						<h:outputText value="#{tempClient.savingsAccount.creationDate}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
+
+						<!-- 						<h:outputText value="" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
+						<!-- 						<h:outputText value="Solde : " style="color:black" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
+						<!-- 						<h:outputText value="#{tempClient.savingsAccount.balance}" -->
+						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
 					</p:panelGrid>
 				</p:rowExpansion>
 			</p:dataTable>
