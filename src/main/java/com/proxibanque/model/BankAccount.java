@@ -2,6 +2,8 @@ package com.proxibanque.model;
 
 import java.util.Date;
 
+import javax.annotation.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

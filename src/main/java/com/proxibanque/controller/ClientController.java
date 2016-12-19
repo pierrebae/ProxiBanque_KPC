@@ -3,17 +3,25 @@ package com.proxibanque.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.xml.ws.Service;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceClient;
 
@@ -38,8 +46,10 @@ public class ClientController implements Serializable {
 	private ServiceClient clientService;
 
 	private Client client;
+	private BankAccount bankAccount;
 	private List<Client> clients;
 	private List<Client> selectedClients;
+	private Client selectedClient;
 	private long idCli;
 
 	@PostConstruct
@@ -50,6 +60,11 @@ public class ClientController implements Serializable {
 	public void refreshList() {
 
 		this.client = new Client();
+<<<<<<< HEAD
+		this.bankAccount=new BankAccount();
+=======
+		this.selectedClient = new Client();
+>>>>>>> origin/master
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -67,6 +82,17 @@ public class ClientController implements Serializable {
 
 	}
 
+	public String loadClient(Client client) throws Exception {
+
+		Client clientMemory = clientService.findById(client.getId());
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		requestMap.put("client", clientMemory);
+
+		return "updateClient";
+	}
+
 	public String saveClient() throws Exception {
 		clientService.persist(this.client);
 
@@ -74,6 +100,17 @@ public class ClientController implements Serializable {
 		return "listClients";
 	}
 
+	public String saveClient2() throws Exception {
+		List <BankAccount> listAccount =client.getBankAccount();
+		listAccount.add(bankAccount);
+		client.setBankAccount(listAccount);
+		
+		clientService.persist(this.client);
+
+		refreshList();
+		return "listClients";
+	}
+	
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
@@ -82,6 +119,41 @@ public class ClientController implements Serializable {
 		return "listClients";
 	}
 
+	public void updateClient() {
+		try {
+			clientService.merge(this.selectedClient);
+			refreshList();
+			notificationSuccess("update order");
+		} catch (Exception e) {
+			notificationError(e, "update order");
+		}
+
+	}
+
+	public void notificationSuccess(String operation) {
+		Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Operation " + operation + " success");
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Success");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void notificationError(Exception e, String operation) {
+		Logger.getLogger(this.getClass().getName()).log(Level.ERROR, "Operation " + operation + " Error ", e);
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Une erreur est survenue");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onCancel(RowEditEvent event) {
+		refreshList();
+	}
+	
+	public void reset() {
+		refreshList();
+        RequestContext.getCurrentInstance().reset("formClients:panel");  
+	}
+	
+	
 	public String removeClients() throws Exception {
 
 		selectedClients = getSelectedClients();
@@ -114,6 +186,14 @@ public class ClientController implements Serializable {
 		this.clients = clients;
 	}
 
+	public Client getSelectedClient() {
+		return selectedClient;
+	}
+
+	public void setSelectedClient(Client selectedClient) {
+		this.selectedClient = selectedClient;
+	}
+
 	public long getIdCli() {
 		return idCli;
 	}
@@ -138,6 +218,14 @@ public class ClientController implements Serializable {
 	public void onRowUnselect(UnselectEvent event) {
 		FacesMessage msg = new FacesMessage("Client Unselected", ((Client) event.getObject()).getLastName());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 
 }

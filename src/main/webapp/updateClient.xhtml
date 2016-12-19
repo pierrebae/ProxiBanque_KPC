@@ -13,34 +13,40 @@
 
 
 
-
+ update client
+ #{client.id}
+#{client.firstName}
 		
 		
 		
-<!-- 		<h:form id="form"> -->
-<!--     <p:panel id="panel" header="Form" style="margin-bottom:10px;"> -->
-<!--         <p:messages id="messages" /> -->
-<!--         <h:panelGrid columns="3" cellpadding="5"> -->
-<!--             <p:outputLabel for="text1" value="Nom :" /> -->
-<!--             <p:inputText id="text1" value="#{clientController.client.lastName}" required="true" label="firstName"> -->
-<!--                 <f:validateLength minimum="2" /> -->
-<!--             </p:inputText> -->
-<!--             <p:message for="text1" /> -->
+		<h:form id="form">
+    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+        <p:messages id="messages" />
+        <h:panelGrid columns="3" cellpadding="5">
+           
+            <p:outputLabel for="text1" value="Nom :" />
+            <p:inputText id="text1" value="#{clientController.client.lastName}" required="true" label="firstName">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="text1" />
  
-<!--             <p:outputLabel for="text2" value="Text 2:" /> -->
-<!--             <p:inputText id="text2" value="#{resetInputView.text2}" required="true" label="Surname"/> -->
-<!--             <p:message for="text2" /> -->
-<!--         </h:panelGrid> -->
-<!--     </p:panel> -->
  
-<!--     <p:toolbar> -->
-<!--         <f:facet name="left"> -->
-<!--             <p:commandButton value="Submit" update="panel" actionListener="#{resetInputView.save}" style="margin-right:20px;" /> -->
-<!--         </f:facet> -->
+ 
+            <p:outputLabel for="text2" value="Prénom :" />
+            <p:inputText id="text2" value="#{clientController.client.firstName}" required="true" label="lastName"/>
+            <p:message for="text2" />
+        </h:panelGrid>
+    </p:panel>
+ 
+    <p:toolbar>
+        <f:facet name="left">
+            <p:commandButton value="Submit" update="panel" actionListener="#{clientController.updateClient(client)}" style="margin-right:20px;" ajax="false" />
+<!--             <p:commandButton value="Submit" id="submit" actionListener="#{clientController.updateClient(client)}" ajax="false" /> -->
+        </f:facet>
  
        
-<!--     </p:toolbar> -->
-<!-- </h:form> -->
+    </p:toolbar>
+</h:form>
 
 
 

@@ -106,6 +106,18 @@ public class Client extends Person {
 		this.counsellor = counsellor;
 	}
 
+
+	public List<BankAccount> getBankAccount() {
+		return bankAccount;
+	}
+
+
+	public void setBankAccount(List<BankAccount> bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	
+	
 //	public CurrentAccount getCurrentAccount() {
 //		return currentAccount;
 //	}
