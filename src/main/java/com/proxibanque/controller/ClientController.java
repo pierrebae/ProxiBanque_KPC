@@ -1,10 +1,18 @@
 package com.proxibanque.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceClient;
 
@@ -27,6 +35,7 @@ public class ClientController {
 	@Autowired
 	private Client client;
 	private List<Client> clients;
+	private ArrayList<Client> selectedClients;
 	private long idCli;
 
 	
@@ -35,6 +44,7 @@ public class ClientController {
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();
+		
 	}
 
 	public String saveClient() throws Exception {
@@ -50,12 +60,42 @@ public class ClientController {
 		this.client = client;
 	}
 
-//	public String removeClient(Client client) {
-//
-//		clientService.remove(client.getId());
-//
-//		return "listClients";
-//	}
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	public long getIdCli() {
+		return idCli;
+	}
+
+	public void setIdCli(long idCli) {
+		this.idCli = idCli;
+	}
+	
+	
+	
+	
+	
+	
+
+	public ArrayList<Client> getSelectedClients() {
+		return selectedClients;
+	}
+
+	public void setSelectedClients(ArrayList<Client> selectedClients) {
+		this.selectedClients = selectedClients;
+	}
+
+	public String removeClient(Client client) throws Exception {
+
+		clientService.remove(client.getId());
+
+		return "listClients";
+	}
 //
 //	public String saveCompte(CompteBancaire account) {
 //
@@ -77,52 +117,28 @@ public class ClientController {
 //		}
 //	}
 //
-//	public void onRowSelect(SelectEvent event) {
-//		FacesMessage msg = new FacesMessage("Client Selected", ((Client) event.getObject()).getNom());
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//	public void onRowUnselect(UnselectEvent event) {
-//		FacesMessage msg = new FacesMessage("Client Unselected", ((Client) event.getObject()).getNom());
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//	public String removeClients() {
-//
-//		selectedClients = getSelectedClients();
-//
-//		if (getSelectedClients() != null) {
-//			for (Client client : selectedClients) {
-//				clientService.remove(client.getId());
-//			}
-//			return "listClients";
-//		} else
-//			return "";
-//
-//	}
-//
-//	public List<Client> getSelectedClients() {
-//		return selectedClients;
-//	}
-//
-//	public void setSelectedClients(List<Client> selectedClients) {
-//		this.selectedClients = selectedClients;
-//	}
-//
-//	public List<Client> getClients() {
-//		return clients;
-//	}
-//
-//	public void setClients(List<Client> clients) {
-//		this.clients = clients;
-//	}
-//
-//	public long getIdCli() {
-//		return idCli;
-//	}
-//
-//	public void setIdCli(long idCli) {
-//		this.idCli = idCli;
-//	}
+	public void onRowSelect(SelectEvent event) {
+		FacesMessage msg = new FacesMessage("Client Selected", ((Client) event.getObject()).getLastName());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		FacesMessage msg = new FacesMessage("Client Unselected", ((Client) event.getObject()).getLastName());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String removeClients() throws Exception {
+
+		selectedClients = getSelectedClients();
+
+		if (getSelectedClients() != null) {
+			for (Client client : selectedClients) {
+				clientService.remove(client.getId());
+			}
+			return "listClients";
+		} else
+			return "";
+
+	}
 
 }

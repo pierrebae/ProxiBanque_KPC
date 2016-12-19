@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{clientController.loadClients()}" />
+		</f:metadata>
+
+		<h:form>
+			<p:growl id="messages" showDetail="true" life="3000" />
+			<p:dataTable value="#{clientController.clients}" var="tempClient"
+				styleClass="et_datatable" editable="true" paginator="true" rows="10"
+				currentPageReportTemplate=" {startRecord}-{endRecord} de {totalRecords}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single"
+				rowKey="#{tempClient.id}"
+				filteredValue="#{clientController.selectedClients}">
+
+
+
+				<p:column headerText="Nom" sortBy="#{tempClient.nom}"
+					filterBy="#{tempClient.nom}" filterMatchMode="contains">>
+					<h:outputText value="#{tempClient.lastName}" />
+				</p:column>
+
+				<p:column headerText="Prénom" sortBy="#{tempClient.prenom}">
+					<h:outputText value="#{tempClient.firstName}" />
+				</p:column>
+
+				<p:column headerText="Téléphone" sortBy="#{tempClient.telephone}">
+					<h:outputText value="#{tempClient.telephone}" />
+				</p:column>
+
+				<p:column headerText="E-mail" sortBy="#{tempClient.email}">
+					<h:outputText value="#{tempClient.email}" />
+				</p:column>
+
+				<p:column headerText="N° Compte Courant"
+					sortBy="#{tempClient.compteCourant}">
+					<h:outputText value="#{tempClient.currentAccount}" />
+				</p:column>
+
+				<p:column headerText="N° Compte Epargne"
+					sortBy="#{tempClient.compteEpargne}">
+					<h:outputText value="#{tempClient.savingsAccount}" />
+				</p:column>
+
+				<p:column headerText="Date Création" sortBy="">
+					<h:outputText value="" />
+				</p:column>
+
+				<p:column headerText="Mise à jour">
+
+					<h:commandLink id="i" value="" styleClass="fa fa-edit medium"
+						action="#{clientController.loadClient(tempClient.id)}" />
+
+				</p:column>
+				<p:column headerText="Effacer" style="width:8%">
+				
+					<h:commandLink id="a" value="" styleClass="fa fa-trash medium"
+						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce client?')) return false"
+						action="#{clientController.removeClients}" />
+				</p:column>
+
+
+
+			</p:dataTable>
+
+		</h:form>
+
+
+
+
+	</ui:define>
+
+
+
+</ui:composition>
