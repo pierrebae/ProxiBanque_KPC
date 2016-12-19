@@ -2,7 +2,7 @@
 
 body {
 	overflow-x: hidden;
-	text-align: center;
+	
 }
 
 #wrapper {
@@ -32,9 +32,19 @@ body {
 	height: 100%;
 }
 
+.addAccount{
+	margin: 0 auto ! important;
+/* 	position: center; */
+/* 	padding: 50px; */
+/* 	width: 75% !important; */
+/* 	border: 3px solid red;S */
+	
+}
 #content {
+	
 	background-color: grey;
 	height: 100%;
+	width: 100%;
 }
 
 #header {
@@ -42,9 +52,7 @@ body {
 	text-align: center;
 }
 
-.content-wrapper {
-	margin: 0 auto;
-}
+
 
 #wrapper-content-header {
 	
