@@ -1,7 +1,5 @@
 @CHARSET "ISO-8859-1";
 
-<<<<<<< HEAD
-
 
  body {
     overflow-x: hidden;
@@ -13,18 +11,7 @@
  margin:0 auto;
  height: 100%;
  }
-#sidebar-wrapper {
-=======
-body {
-	overflow-x: hidden;
->>>>>>> origin/master
-	
-}
 
-#wrapper {
-	margin: 0 auto;
-	height: 100%;
-}
 
 #sidebar-wrapper {
 	overflow: hidden;
