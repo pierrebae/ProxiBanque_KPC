@@ -37,8 +37,14 @@
 			<p:submenu label="Audit">
 			</p:submenu>
 
-			<p:submenu label="Se déconnecter">
+			<p:submenu expanded="true" label="Déconnexion">
+			<p:menuitem value="Se déconnecter" action="#{logoutController.logout}"
+					icon="fa fa-sign-out fa-fw" />
 			</p:submenu>
+			
+			
+			
+			
 		</p:panelMenu>
 	</h:form>
 	<p:sticky target="menu" />

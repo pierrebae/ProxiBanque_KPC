@@ -22,7 +22,11 @@
 //	public void myPointCut() {
 //		
 //	}
+<<<<<<< HEAD
 //	@Before("myPointCut()") 
+=======
+//	@AfterReturning("myPointCut()") 
+>>>>>>> origin/master
 //	public void makeHistory(){
 //		historyCreateClient.setOperation_name("createclient");
 //		daoHist.persist(historyCreateClient);

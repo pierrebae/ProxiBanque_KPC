@@ -247,7 +247,7 @@
 						value="#{clientController.selectedClient.address.city}"
 						label="city" />
 			
-					<p:dataTable value="#{clientController.selectedClient.bankAccounts}" var="account">
+					<p:dataTable value="#{selectedClient.bankAccounts}" var="account">
 						<p:column>
 							<h:link value="#{account.accountNumber}" outcome="account">
 								<f:param name="date" value="#{account.dateLastModification}" />

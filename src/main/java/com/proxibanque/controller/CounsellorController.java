@@ -3,6 +3,8 @@ package com.proxibanque.controller;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,23 +18,25 @@ public class CounsellorController {
 
 	@Autowired
 	private ServiceCounsellor counsellorService;
-	
+
 	@Autowired
 	private Counsellor counsellor;
 	private List<Counsellor> counsellors;
 	private long idCounsellor;
-	
+	private String login;
+	private String password;
+
+
 	
 	public void loadCounsellors() throws Exception {
 		counsellors = counsellorService.findAll();
 	}
-	
+
 	public String saveCounsellor() throws Exception {
 		counsellorService.persist(this.counsellor);
 		return "home";
 	}
-	
-	
+
 	public Counsellor getCounsellor() {
 		return counsellor;
 	}
@@ -52,7 +56,9 @@ public class CounsellorController {
 	public void setIdCounsellor(long idCounsellor) {
 		this.idCounsellor = idCounsellor;
 	}
-	
-	
-	
+
+	public String checkCounsellorLogin(Counsellor consInput) {
+		return "listClients";
+	}
+
 }

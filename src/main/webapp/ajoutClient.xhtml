@@ -13,7 +13,11 @@
 			<h:form>
 				<fieldset id="fieldset">
 					<legend>Données personnelles</legend>
+<<<<<<< HEAD
 					<h:panelGrid columns="3" cellpadding="5">
+=======
+					<h:panelGrid columns="2" cellpadding="5">
+>>>>>>> origin/master
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}"
 							required="true">
@@ -93,9 +97,12 @@
 					action="#{clientController.saveClientAndAccount}"
 					validateClient="true" />
 
-
+			
 
 			</h:form>
+
+
+
 		</div>
 	</ui:define>
 
