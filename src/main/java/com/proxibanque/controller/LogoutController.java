@@ -38,11 +38,15 @@ public class LogoutController {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		externalContext.invalidateSession();
-		externalContext.setResponseStatus(401);
-		externalContext.getResponseOutputWriter()
-				.write("<html><head><meta http-equiv='refresh' content='0;URL=http://localhost:8080/ProxiBanque_KPC/login.xhtml'></head></html>");
+		//externalContext.setResponseStatus(401);
+		//externalContext.getResponseOutputWriter()
+		//		.write("<html><head><meta http-equiv='refresh' content='0; url=http://localhost:8080/ProxiBanque_KPC/listClients.xhtml'></head></html>");
+		//externalContext.redirect("http://localhost:8080/ProxiBanque_KPC/listClients.xhtml");
 		facesContext.responseComplete();
-		return null;
+		return "/listClients?faces-redirect=true";
+		
+		
+		
 	}
 
 }

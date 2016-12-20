@@ -21,7 +21,7 @@
 
 		<p:panelMenu>
 
-			<p:submenu expanded="true" label="Conseiller">
+			<p:submenu expanded="true" label="Conseiller" rendered="#{p:ifGranted('gerant')}">
 				<p:menuitem value="Liste Conseillers" action="listCounsellors"
 					icon="fa fa-group fa-fw" />
 				<p:menuitem value="Ajouter Conseiller" action="ajoutCounsellor"
@@ -51,7 +51,7 @@
 
 			<p:separator />
 
-			<p:submenu label="Audit">
+			<p:submenu label="Audit" rendered="#{p:ifGranted('gerant')}">
 			<p:menuitem value="Statistiques"
 				action="Statistics" icon="fa fa-line-chart fa-fw" />
 			</p:submenu>
@@ -60,7 +60,7 @@
 
 			<p:submenu expanded="true" label="Déconnexion">
 				<p:menuitem value="Se déconnecter"
-					action="#{logoutController.logout}" icon="fa fa-sign-out fa-fw" />
+					action="#{logoutController.logout}" icon="fa fa-sign-out fa-fw" ajax="false"/>
 			</p:submenu>
 
 
