@@ -219,28 +219,28 @@
 				</h:panelGrid>
 
 
-				<p:dataTable value="#{clientController.selectedClient.bankAccounts}"
-					var="account" id="accounts"
-					emptyMessage="Ce client n'a pas de compte" style="width:600px">
+<!-- 				<p:dataTable value="#{clientController.selectedClient.bankAccounts}" -->
+<!-- 					var="account" id="accounts" -->
+<!-- 					emptyMessage="Ce client n'a pas de compte" style="width:600px"> -->
 
-					<p:column headerText="Numéro compte"
-						sortBy="#{account.accountNumber}">
-						<h:outputText value="#{account.accountNumber}" />
-					</p:column>
-					<p:column headerText="Type compte">
-						<c:choose>
-							<c:when test="#{account.accountType} =='CURRENT_ACCOUNT'">
-								<h:outputText value="Compte Courant"></h:outputText>
-							</c:when>
-							<c:otherwise>
-								<h:outputText value="Compte Epargne"></h:outputText>
-							</c:otherwise>
-						</c:choose>
-					</p:column>
-					<p:column headerText="Solde" sortBy="#{account.balance}">
-						<h:outputText value="#{account.balance}" />
-					</p:column>
-				</p:dataTable>
+<!-- 					<p:column headerText="Numéro compte" -->
+<!-- 						sortBy="#{account.accountNumber}"> -->
+<!-- 						<h:outputText value="#{account.accountNumber}" /> -->
+<!-- 					</p:column> -->
+<!-- 					<p:column headerText="Type compte"> -->
+<!-- 						<c:choose> -->
+<!-- 							<c:when test="#{account.accountType} =='CURRENT_ACCOUNT'"> -->
+<!-- 								<h:outputText value="Compte Courant"></h:outputText> -->
+<!-- 							</c:when> -->
+<!-- 							<c:otherwise> -->
+<!-- 								<h:outputText value="Compte Epargne"></h:outputText> -->
+<!-- 							</c:otherwise> -->
+<!-- 						</c:choose> -->
+<!-- 					</p:column> -->
+<!-- 					<p:column headerText="Solde" sortBy="#{account.balance}"> -->
+<!-- 						<h:outputText value="#{account.balance}" /> -->
+<!-- 					</p:column> -->
+<!-- 				</p:dataTable> -->
 
 
 

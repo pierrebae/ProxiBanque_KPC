@@ -274,6 +274,22 @@ public class ClientController implements Serializable {
 		this.clientsForDualSender = clientsForDualSender;
 	}
 
+	public String getSimpleDate() {
+		return simpleDate;
+	}
+
+	public void setSimpleDate(String simpleDate) {
+		this.simpleDate = simpleDate;
+	}
+
+	public Counsellor getCounsellor() {
+		return counsellor;
+	}
+
+	public void setCounsellor(Counsellor counsellor) {
+		this.counsellor = counsellor;
+	}
+
 
 
 	
