@@ -13,22 +13,20 @@
 			<h:form>
 				<fieldset id="fieldset">
 					<legend>Données personnelles</legend>
-<<<<<<< HEAD
+
 					<h:panelGrid columns="3" cellpadding="5">
-=======
-					<h:panelGrid columns="2" cellpadding="5">
->>>>>>> origin/master
+
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}"
 							required="true">
-							<f:validateRegex pattern="[a-zA-Z]{2,50}" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="nom" />
 
 						<p:outputLabel value="Prénom" for="prenom" />
 						<p:inputText id="prenom"
 							value="#{clientController.client.firstName}" required="true">
-							<f:validateRegex pattern="[a-zA-Z]{2,50}" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="prenom" />
 					</h:panelGrid>
@@ -45,33 +43,43 @@
 						<p:outputLabel value="Rue" for="streetName" />
 						<p:inputText id="streetName"
 							value="#{clientController.client.address.streetName}">
-							<!-- 							<f:validateRegex pattern="" /> -->
+							<f:validateRegex
+								pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
+<!-- 							 /^\s*\S+(?:\s+\S+){2} -->
+<!-- 							<f:validateRegex pattern="\s+\w+" /> -->
 						</p:inputText>
 						<p:message for="streetName" />
 
 						<p:outputLabel value="Code postal" for="postalCode" />
 						<p:inputText id="postalCode"
 							value="#{clientController.client.address.postalCode}" size="5">
-							<f:validateRegex pattern="^[0-9]{5,5}$" />
+							<f:validateRegex
+								pattern="^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$" />
 						</p:inputText>
 						<p:message for="postalCode" />
 
 						<p:outputLabel value="Ville" for="city" />
 						<p:inputText id="city"
 							value="#{clientController.client.address.city}">
-							<f:validateRegex pattern="[a-zA-Z]" />
+							<f:validateRegex pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝÆ._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="city" />
 					</h:panelGrid>
 
 					<label id="label">Coordonnées</label>
-					<h:panelGrid columns="2" cellpadding="5">
+					<h:panelGrid columns="3" cellpadding="5">
 						<p:outputLabel value="N° téléphone" for="telephone" />
 						<p:inputText id="telephone"
-							value="#{clientController.client.telephone}" />
-
+							value="#{clientController.client.telephone}">
+							<f:validateRegex pattern="^[0-9]{10,10}$" />
+						</p:inputText>
+						<p:message for="telephone" />
 						<p:outputLabel value="Email" for="email" />
-						<p:inputText id="email" value="#{clientController.client.email}" />
+						<p:inputText id="email" value="#{clientController.client.email}">
+							<f:validateRegex
+								pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+						</p:inputText>
+						<p:message for="email" />
 					</h:panelGrid>
 				</fieldset>
 
@@ -97,7 +105,7 @@
 					action="#{clientController.saveClientAndAccount}"
 					validateClient="true" />
 
-			
+
 
 			</h:form>
 
