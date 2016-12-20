@@ -1,7 +1,9 @@
 package com.proxibanque.controller;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +54,7 @@ public class ClientController implements Serializable {
 	private List<Client> selectedClients;
 	private Client selectedClient;
 	private long idCli;
+	private String simpleDate;
 
 	@PostConstruct
 	public void init() {
@@ -107,6 +110,8 @@ public class ClientController implements Serializable {
 	}
 
 	public String saveClientAndAccount() throws Exception {
+		simpleDate = date();
+		bankAccount.setCreationDate(simpleDate);
 		clientService.persist(this.client,this.bankAccount);	
 		refreshList();
 		return "listClients";
@@ -167,6 +172,13 @@ public class ClientController implements Serializable {
 		} else {
 			return "";
 		}
+	}
+	
+	public String date(){
+		Date creationDate = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		simpleDate = dateFormat.format(creationDate);
+		return simpleDate;
 	}
 
 	public Client getClient() {

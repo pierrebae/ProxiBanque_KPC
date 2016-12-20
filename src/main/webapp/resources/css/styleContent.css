@@ -9,3 +9,13 @@
 	margin-left: 40%;
 	padding-top: 20px;
 }
+
+#fieldset {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding: 15px;
+	padding-top:0px;
+	background-color: #c0c0c0;
+	width: 300px;
+	border-radius: 5px;
+}

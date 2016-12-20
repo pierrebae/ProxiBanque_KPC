@@ -11,51 +11,57 @@
 	<ui:define name="content">
 		<div class="addClient">
 			<h:form>
-				<h:panelGrid columns="2" cellpadding="5">
-					<p:outputLabel value="Nom" for="nom" />
-					<p:inputText id="nom" value="#{clientController.client.lastName}" />
+				<fieldset id="fieldset">
+				<legend>Données personnelles</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="Nom" for="nom" />
+						<p:inputText id="nom" value="#{clientController.client.lastName}" />
 
-					<p:outputLabel value="Prénom" for="prenom" />
-					<p:inputText id="prenom"
-						value="#{clientController.client.firstName}" />
+						<p:outputLabel value="Prénom" for="prenom" />
+						<p:inputText id="prenom"
+							value="#{clientController.client.firstName}" />
 
-					<p:outputLabel value="streetNumber" for="streetNumber" />
-					<p:inputText id="streetNumber"
-						value="#{clientController.client.address.streetNumber}" />
-
-
-					<p:outputLabel value="streetName" for="streetName" />
-					<p:inputText id="streetName"
-						value="#{clientController.client.address.streetName}" />
-
-					<p:outputLabel value="postalCode" for="postalCode" />
-					<p:inputText id="postalCode"
-						value="#{clientController.client.address.postalCode}" />
-
-					<p:outputLabel value="city" for="city" />
-					<p:inputText id="city"
-						value="#{clientController.client.address.city}" />
+						<p:outputLabel value="streetNumber" for="streetNumber" />
+						<p:inputText id="streetNumber"
+							value="#{clientController.client.address.streetNumber}" />
 
 
-					<h:outputLabel for="soldeInput" value="Solde : *" />
-					<p:inputText id="soldeInput"
-						value="#{clientController.bankAccount.balance}" label="soldeInput"
-						required="true" />
+						<p:outputLabel value="streetName" for="streetName" />
+						<p:inputText id="streetName"
+							value="#{clientController.client.address.streetName}" />
 
-					<p:outputLabel for="selectType" value="Type : *" />
-					<p:selectOneMenu id="selectType"
-						value="#{clientController.bankAccount.accountType}">
-						<f:selectItem itemLabel="Compte Courant"
-							itemValue="CURRENT_ACCOUNT" />
-						<f:selectItem itemLabel="Compte Epargne"
-							itemValue="SAVINGS_ACCOUNT" />
-					</p:selectOneMenu>
+						<p:outputLabel value="postalCode" for="postalCode" />
+						<p:inputText id="postalCode"
+							value="#{clientController.client.address.postalCode}" />
 
-					<p:commandButton value="Submit"
-						action="#{clientController.saveClientAndAccount}" />
+						<p:outputLabel value="city" for="city" />
+						<p:inputText id="city"
+							value="#{clientController.client.address.city}" />
+					</h:panelGrid>
+				</fieldset>
+
+				<fieldset id="fieldset">
+					<legend>Compte Bancaire</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="soldeInput" value="Solde : * " />
+						<p:inputText id="soldeInput"
+							value="#{clientController.bankAccount.balance}"
+							label="soldeInput" required="true" />
+
+						<p:outputLabel for="selectType" value="Type : * " />
+						<p:selectOneMenu id="selectType"
+							value="#{clientController.bankAccount.accountType}">
+							<f:selectItem itemLabel="Compte Courant"
+								itemValue="CURRENT_ACCOUNT" />
+							<f:selectItem itemLabel="Compte Epargne"
+								itemValue="SAVINGS_ACCOUNT" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</fieldset>
+				<p:commandButton value="Submit"
+					action="#{clientController.saveClientAndAccount}" />
 
 
-				</h:panelGrid>
 
 			</h:form>
 		</div>
