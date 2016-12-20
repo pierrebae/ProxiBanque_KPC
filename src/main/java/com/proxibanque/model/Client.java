@@ -124,6 +124,11 @@ public class Client extends Person implements Serializable {
 		this.bankAccounts = bankAccount;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	
 	
 //	public CurrentAccount getCurrentAccount() {

@@ -19,6 +19,7 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,14 +53,26 @@ public class ClientController implements Serializable {
 	private List<Client> selectedClients;
 	private Client selectedClient;
 	private long idCli;
+	
+	private DualListModel<Client> clientsForDualReciever;
+	private DualListModel<Client> clientsForDualSender;
 
 	@PostConstruct
-	public void init() {
+	public void init() throws Exception {
 		refreshList();
+		List<Client> clientsSourceSender = new ArrayList<Client>();
+        List<Client> clientsTargetSender = new ArrayList<Client>();
+        List<Client> clientsSourceReciever = new ArrayList<Client>();
+        List<Client> clientsTargetReciever = new ArrayList<Client>();
+		clientsSourceSender.addAll(clientService.findAll());
+		clientsSourceReciever.addAll(clientService.findAll());
+		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
+		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
+
 	}
 
 	public void refreshList() {
-
+		
 		this.client = new Client();
 		this.selectedClient = new Client();
 		this.bankAccount=new BankAccount();
@@ -227,5 +240,24 @@ public class ClientController implements Serializable {
 		this.bankAccount = bankAccount;
 	}
 
+	public DualListModel<Client> getClientsForDualReciever() {
+		return clientsForDualReciever;
+	}
+
+	public void setClientsForDualReciever(DualListModel<Client> clientsForDualReciever) {
+		this.clientsForDualReciever = clientsForDualReciever;
+	}
+
+	public DualListModel<Client> getClientsForDualSender() {
+		return clientsForDualSender;
+	}
+
+	public void setClientsForDualSender(DualListModel<Client> clientsForDualSender) {
+		this.clientsForDualSender = clientsForDualSender;
+	}
+
+
+
+	
 
 }
