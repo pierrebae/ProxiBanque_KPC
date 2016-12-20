@@ -120,6 +120,9 @@ public class Client extends Person implements Serializable {
 	}
 
 	
-	
+	public void addAccount(BankAccount bankAccount){
+		bankAccounts.add(bankAccount);
+		bankAccount.setClient(this);
+	}
 
 }

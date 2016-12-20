@@ -12,6 +12,8 @@
 		<!-- <div class="container-fluid"> -->
 		<div class="addAccount">
 			<h:form>
+
+
 				<fieldset id="fieldset">
 					<legend>Compte Bancaire</legend>
 					<h:panelGrid columns="3" cellpadding="5">
@@ -19,29 +21,49 @@
 						<p:outputLabel value="Solde : " for="balance" />
 						<p:inputText id="balance"
 							value="#{accountController.bankAccount.balance}" label="currency">
-							<f:convertNumber type="currency" currencySymbol="$" />
+							<f:convertNumber type="currency" />
 						</p:inputText>
 						<p:message for="balance"></p:message>
-
-
 
 						<p:outputLabel value="Account Type : " for="accountType" />
 						<p:selectOneMenu id="accountType"
 							value="#{accountController.bankAccount.accountType}">
-							<f:selectItem itemLabel="Savings Account"
+							<f:selectItem itemLabel="Compte Epargne"
 								itemValue="SAVINGS_ACCOUNT" />
-							<f:selectItem itemLabel="Current Account"
+							<f:selectItem itemLabel="Compte Courant"
 								itemValue="CURRENT_ACCOUNT" />
 						</p:selectOneMenu>
 
 					</h:panelGrid>
 				</fieldset>
 
+				<div class="choixClient">
+					<p:outputLabel value="Choix du Client associé :" for="choixClient" />
+					<p:dataTable id="choixClient" value="#{clientController.clients}"
+						var="client" sortMode="multiple"
+						selection="#{accountController.selectedClient}"
+						rowKey="#{client.id}">
+
+						<p:column headerText="Nom" sortBy="#{client.lastName}"
+							filterBy="#{client.lastName}">
+							<h:outputText value="#{client.lastName}" />
+						</p:column>
+
+						<p:column headerText="Prénom" sortBy="#{client.firstName}">
+							<!-- the column header -->
+
+							<!--  the value for each row -->
+							<h:outputText value="#{client.firstName}" />
+						</p:column>
+						<p:column selectionMode="single"></p:column>
+					</p:dataTable>
+				</div>
+
 				<p:commandButton value="Submit"
 					action="#{accountController.saveAccount}" />
 			</h:form>
-
 		</div>
+
 	</ui:define>
 </ui:composition>
 

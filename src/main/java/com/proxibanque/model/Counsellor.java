@@ -43,7 +43,7 @@ public class Counsellor extends Person implements Serializable {
 		super();
 	}
 	
-	void addClient(Client client){
+	public void addClient(Client client){
 		clients.add(client);
 		client.setCounsellor(this);
 	}

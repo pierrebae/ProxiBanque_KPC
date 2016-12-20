@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 
 import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
+import com.proxibanque.model.Counsellor;
 import com.proxibanque.service.ServiceClient;
 
 /**
@@ -59,6 +60,7 @@ public class ClientController implements Serializable {
 	private DualListModel<Client> clientsForDualReciever;
 	private DualListModel<Client> clientsForDualSender;
 	private String simpleDate;
+	private Counsellor counsellor;
 
 
 	@PostConstruct
@@ -124,6 +126,9 @@ public class ClientController implements Serializable {
 	}
 
 	public String saveClientAndAccount() throws Exception {
+		
+		counsellor.addClient(client);
+		
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
 		clientService.persist(this.client,this.bankAccount);	

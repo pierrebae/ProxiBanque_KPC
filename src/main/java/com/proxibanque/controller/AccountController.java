@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.proxibanque.model.BankAccount;
+import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceAccount;
 
 
@@ -42,6 +43,8 @@ public class AccountController implements Serializable {
 	private List<BankAccount> bankAccounts;
 	private List<BankAccount> selectedBankAccounts;
 	private String simpleDate;
+	private Client selectedClient;
+	private List<Client> selectedClients;
 	
 	@PostConstruct
 	public void init() {
@@ -68,7 +71,10 @@ public class AccountController implements Serializable {
 	public String saveAccount() throws Exception {
 		 
 		simpleDate = date();
-		bankAccount.setCreationDate(simpleDate);	
+		bankAccount.setCreationDate(simpleDate);
+		
+		selectedClient.addAccount(bankAccount);
+		
 		serviceAccount.persist(bankAccount);
 		refreshList();
 		return "listAccount";
@@ -104,6 +110,22 @@ public class AccountController implements Serializable {
 
 	public void setSelectedBankAccounts(List<BankAccount> selectedBankAccounts) {
 		this.selectedBankAccounts = selectedBankAccounts;
+	}
+
+	public Client getSelectedClient() {
+		return selectedClient;
+	}
+
+	public void setSelectedClient(Client selectedClient) {
+		this.selectedClient = selectedClient;
+	}
+
+	public List<Client> getSelectedClients() {
+		return selectedClients;
+	}
+
+	public void setSelectedClients(List<Client> selectedClients) {
+		this.selectedClients = selectedClients;
 	}
 	
 	

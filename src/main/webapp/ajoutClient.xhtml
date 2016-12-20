@@ -9,15 +9,15 @@
 
 
 	<ui:define name="content">
-		<div class="addClient">
+		<div class="addClient">		
 			<h:form>
+			<h:outputText value="id conseiller"></h:outputText>
+			<p:inputText id="counsellor" value="#{clientController.counsellor.id}"/>
 				<fieldset id="fieldset">
 					<legend>Données personnelles</legend>
-<<<<<<< HEAD
+
 					<h:panelGrid columns="3" cellpadding="5">
-=======
-					<h:panelGrid columns="2" cellpadding="5">
->>>>>>> origin/master
+
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}"
 							required="true">
@@ -97,7 +97,7 @@
 					action="#{clientController.saveClientAndAccount}"
 					validateClient="true" />
 
-			
+
 
 			</h:form>
 
