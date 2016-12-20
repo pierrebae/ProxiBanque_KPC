@@ -7,40 +7,41 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 
-		<ui:define name="content">
+	<ui:define name="content">
 
-			<!-- <div class="container-fluid"> -->
-			<div class="addAccount">
-				<h:form>
+		<!-- <div class="container-fluid"> -->
+		<div class="addAccount">
+			<h:form>
+				<fieldset id="fieldset">
+					<legend>Compte Bancaire</legend>
 					<h:panelGrid columns="3" cellpadding="5">
-						
-							<p:outputLabel value="Solde" for="balance" />
-							<p:inputText id="balance"
-								value="#{accountController.bankAccount.balance}"
-								label="currency">
-								<f:convertNumber type="currency" currencySymbol="$" />
-							</p:inputText>
-							<p:message for="balance"></p:message>
-						
 
-						
-							<p:outputLabel value="Account Type" for="accountType" />
-							<p:selectOneMenu id="accountType"
-								value="#{accountController.bankAccount.accountType}">
-								<f:selectItem itemLabel="Savings Account"
-									itemValue="SAVINGS_ACCOUNT" />
-								<f:selectItem itemLabel="Current Account"
-									itemValue="CURRENT_ACCOUNT" />
-							</p:selectOneMenu>
-						
+						<p:outputLabel value="Solde : " for="balance" />
+						<p:inputText id="balance"
+							value="#{accountController.bankAccount.balance}" label="currency">
+							<f:convertNumber type="currency" currencySymbol="$" />
+						</p:inputText>
+						<p:message for="balance"></p:message>
 
+
+
+						<p:outputLabel value="Account Type : " for="accountType" />
+						<p:selectOneMenu id="accountType"
+							value="#{accountController.bankAccount.accountType}">
+							<f:selectItem itemLabel="Savings Account"
+								itemValue="SAVINGS_ACCOUNT" />
+							<f:selectItem itemLabel="Current Account"
+								itemValue="CURRENT_ACCOUNT" />
+						</p:selectOneMenu>
 
 					</h:panelGrid>
-					<p:commandButton value="Submit"
-						action="#{accountController.saveAccount}" />
-				</h:form>
+				</fieldset>
 
-			</div>
-		</ui:define>
+				<p:commandButton value="Submit"
+					action="#{accountController.saveAccount}" />
+			</h:form>
+
+		</div>
+	</ui:define>
 </ui:composition>
 

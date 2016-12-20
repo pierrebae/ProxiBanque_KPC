@@ -14,7 +14,7 @@
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=ISO-8859-1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
@@ -27,61 +27,56 @@
 		<script
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<h:outputStylesheet library="css" name="/style.css" />
+		<h:outputStylesheet library="css" name="/styleHeader.css" />
+		<h:outputStylesheet library="css" name="/styleFooter.css" />
+		<h:outputStylesheet library="css" name="/styleNav.css" />
+		<h:outputStylesheet library="css" name="/styleContent.css" />
 
 		<title>Insert title here</title>
 	</h:head>
 
 	<h:body>
 
-		<!-- 				<div class="container remove-all-margin-padding"> -->
 		<div id="wrapper">
 			<div class="ui-g ">
 
 				<div class="ui-g-12 ui-md-3 ">
 					<div id="sidebar-wrapper">
 						<div class="img">
-							<img src="resources/images/Logomakr_3ZX3Hj.png" height="80px"
-								width="330px" />
+							<img src="resources/images/Logomakr_3ZX3Hj.png" height="70px"
+								width="300px" />
 						</div>
-						<ui:insert name="nav">
-							<ui:include src="/template/nav.xhtml" />
-						</ui:insert>
+						<div class="nav">
+							<ui:insert name="nav">
+								<ui:include src="/template/nav.xhtml" />
+							</ui:insert>
+						</div>
 					</div>
 				</div>
 
 				<div class="ui-g-12 ui-md-9 ui-g-nopad">
 					<div id="right-wrapper">
-						<div class="ui-g-12 ">
+						<div class="ui-g-12 header">
 							<ui:include src="/template/header.xhtml" />
 						</div>
 
 						<div class="ui-g-12 ui-g-nopad">
 							<div class="container-fluid" id="content"
 								style="min-height: 800px">
-
 								<ui:insert name="content">
-<!-- 									<ui:include src="/template/content.xhtml" /> -->
+									<ui:include src="/template/content.xhtml" />
 								</ui:insert>
-
 							</div>
 						</div>
 
-						<div class="ui-g-12 ">
-							<div id="footer">
-								<ui:include src="/template/footer.xhtml" />
-							</div>
+						<div class="ui-g-12 footer">
+							<ui:include src="/template/footer.xhtml" />
 						</div>
 					</div>
-
 				</div>
 
-
-
-
 			</div>
-
 		</div>
-		<!-- 				</div> -->
 	</h:body>
 	</h:html>
 </f:view>
