@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -40,7 +40,7 @@ public class Client extends Person implements Serializable {
 //	@ManyToOne (mappedBy="client")
 	
 //	@Cascade({CascadeType.ALL})
-	@OneToMany (mappedBy="client")
+	@OneToMany (mappedBy="client", fetch = FetchType.EAGER)
 	@Cascade({CascadeType.ALL})
 	private List<BankAccount> bankAccounts =new ArrayList<BankAccount>();
 	
