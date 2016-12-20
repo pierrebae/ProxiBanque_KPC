@@ -7,23 +7,38 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<!-- 	<p:growl id="msgs" showDetail="true" /> -->
-<!-- 	<p:graphicImage id="logo" value="resources/images/Logomakr_3ZX3Hj.png" height="80px" width="100%" /> -->
-<!-- 	<p:resizable for="logo" animate="true" ghost="true"></p:resizable> -->
+	<!-- 	<p:graphicImage id="logo" value="resources/images/Logomakr_3ZX3Hj.png" height="80px" width="100%" /> -->
+	<!-- 	<p:resizable for="logo" animate="true" ghost="true"></p:resizable> -->
+
+<!-- role management -->
+<!-- https://cagataycivici.wordpress.com/2010/03/18/primefaces-el-extensions-for-ui-authorization/ -->
+<!-- http://forum.primefaces.org/viewtopic.php?f=3&t=7755 -->
+
+
 
 	<h:form id="menu">
 		<p:growl autoUpdate="true" />
 
 		<p:panelMenu>
+
+			<p:submenu expanded="true" label="Conseiller">
+				<p:menuitem value="Liste Conseillers" action="listCounsellors"
+					icon="fa fa-group fa-fw" />
+				<p:menuitem value="Ajouter Conseiller" action="ajoutCounsellor"
+					icon="fa fa-user-plus fa-fw" />
+			</p:submenu>
+
+			<p:separator />
+
 			<p:submenu expanded="true" label="Client">
 				<p:menuitem value="Liste Clients" action="listClients"
 					icon="fa fa-group fa-fw" />
 				<p:menuitem value="Ajouter Client" action="ajoutClient"
 					icon="fa fa-user-plus fa-fw" />
-
-
 			</p:submenu>
 
 			<p:separator />
+
 			<p:submenu expanded="true" label="Comptes">
 
 				<p:menuitem value="Liste Comptes" action="listAccount"
@@ -32,13 +47,25 @@
 					icon="fa fa-user-plus fa-fw" />
 				<p:menuitem value="Virement" action="bankTransfer"
 					icon="fa fa-credit-card fa-fw" />
-
 			</p:submenu>
+
+			<p:separator />
+
 			<p:submenu label="Audit">
+			<p:menuitem value="Statistiques"
+				action="Statistics" icon="fa fa-line-chart fa-fw" />
+			</p:submenu>
+			
+			<p:separator />
+
+			<p:submenu expanded="true" label="Déconnexion">
+				<p:menuitem value="Se déconnecter"
+					action="#{logoutController.logout}" icon="fa fa-sign-out fa-fw" />
 			</p:submenu>
 
-			<p:submenu label="Se déconnecter">
-			</p:submenu>
+
+
+
 		</p:panelMenu>
 	</h:form>
 	<p:sticky target="menu" />

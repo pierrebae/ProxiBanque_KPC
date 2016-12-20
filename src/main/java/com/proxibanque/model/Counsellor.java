@@ -1,23 +1,29 @@
 package com.proxibanque.model;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.springframework.stereotype.Component;
 
-@Component
+
+
+
+
 @Entity
-public class Counsellor extends Person {
+public class Counsellor extends Person implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String login;
 	private String password;
 	
-	@OneToMany(mappedBy="counsellor")
+	@OneToMany(mappedBy="counsellor", fetch = FetchType.EAGER)
 	@Cascade({ CascadeType.PERSIST })
 	private List<Client> clients;
 
@@ -37,13 +43,18 @@ public class Counsellor extends Person {
 		super();
 	}
 	
+	void addClient(Client client){
+		clients.add(client);
+		client.setCounsellor(this);
+	}
+
 	
 
-	public List<Client> getListClients() {
+	public List<Client> getClients() {
 		return clients;
 	}
 
-	public void setListClients(List<Client> listClients) {
+	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
 

@@ -4,14 +4,14 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 
 
 	<ui:define name="content">
-
-
 
 		<h:form id="formClients">
 
@@ -50,17 +50,7 @@
 					<h:outputText value="#{tempClient.email}" />
 				</p:column>
 
-				<!-- 				<p:column headerText="N° Compte Courant" -->
-				<!-- 					rendered="#{tempClient.bankAccount.accountType}==0}" -->
-				<!-- 					sortBy="#{tempClient.bankAccount}"> -->
-				<!-- 					<h:outputText value="#{tempClient.bankAccount}" /> -->
-				<!-- 				</p:column> -->
 
-				<!-- 				<p:column headerText="N° Compte Epargne" -->
-				<!-- 					rendered="#{tempClient.bankAccount.accountType}==1}" -->
-				<!-- 					sortBy="#{tempClient.bankAccount}"> -->
-				<!-- 					<h:outputText value="#{tempClient.bankAccount}" /> -->
-				<!-- 				</p:column> -->
 
 				<p:column headerText="Date Création" sortBy="">
 					<h:outputText value="" />
@@ -140,53 +130,33 @@
 							style="color:black;  font-weight: bold;" />
 						<h:outputText value="" />
 						<h:outputText value="" />
-
-						<h:outputText value="halp"
-							rendered=" #{ not empty client.bankAccount} " />
-
-						<h:outputText value=""
-							rendered="#{client.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{client.bankAccount.accountNumber} >0" />
-						<!-- 						<h:outputText value="Numéro compte courant : " -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{tempClient.bankAccount.accountNumber} >0" -->
-						<!-- 							style="color:black" /> -->
-						<!-- 						<h:outputText value="#{tempClient.bankAccount.accountNumber}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType eq 'CURRENT_ACCOUNT'} and #{tempClient.bankAccount.accountNumber} >0" /> -->
-
-						<!-- 						<h:outputText value="" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
-						<!-- 						<h:outputText value="Date création : " style="color:black" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
-						<!-- 						<h:outputText value="#{tempClient.bankAccount.creationDate}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.creationDate} >0" /> -->
-
-						<!-- 						<h:outputText value="" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
-						<!-- 						<h:outputText value="Solde : " style="color:black" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
-						<!-- 						<h:outputText value="#{tempClient.bankAccount.balance}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 0 and #{tempClient.bankAccount.balance} >0" /> -->
-
-						<!-- 						<h:outputText value="" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
-						<!-- 						<h:outputText value="Numéro compte épargne : " style="color:black" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
-						<!-- 						<h:outputText value="#{tempClient.savingsAccount.accountNumber}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.accountNumber} >0" /> -->
-
-						<!-- 						<h:outputText value="" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
-						<!-- 						<h:outputText value="Date création : " style="color:black" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
-						<!-- 						<h:outputText value="#{tempClient.savingsAccount.creationDate}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.creationDate} >0" /> -->
-
-						<!-- 						<h:outputText value="" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
-						<!-- 						<h:outputText value="Solde : " style="color:black" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
-						<!-- 						<h:outputText value="#{tempClient.savingsAccount.balance}" -->
-						<!-- 							rendered="#{tempClient.bankAccount.accountType} == 1 and #{tempClient.bankAccount.balance} >0" /> -->
 					</p:panelGrid>
+
+					<p:dataTable value="#{tempClient.bankAccounts}" var="account"
+						id="accounts" emptyMessage="Ce client n'a pas de compte"
+						style="width:600px">
+
+						<p:column headerText="Numéro compte"
+							sortBy="#{account.accountNumber}">
+							<h:outputText value="#{account.accountNumber}" />
+						</p:column>
+						<p:column headerText="Type compte">
+							<c:choose>
+								<c:when test="#{account.accountType} =='CURRENT_ACCOUNT'">
+									<h:outputText value="Compte Courant"></h:outputText>
+								</c:when>
+								<c:otherwise>
+									<h:outputText value="Compte Epargne"></h:outputText>
+								</c:otherwise>
+							</c:choose>
+						</p:column>
+						<p:column headerText="Solde" sortBy="#{account.balance}">
+							<h:outputText value="#{account.balance}" />
+						</p:column>
+					</p:dataTable>
+
+
+
 				</p:rowExpansion>
 
 			</p:dataTable>
@@ -246,16 +216,33 @@
 					<p:inputText id="city"
 						value="#{clientController.selectedClient.address.city}"
 						label="city" />
-			
-					<p:dataTable value="#{clientController.selectedClient.bankAccounts}" var="account">
-						<p:column>
-							<h:link value="#{account.accountNumber}" outcome="account">
-								<f:param name="date" value="#{account.dateLastModification}" />
-							</h:link>
-						</p:column>
-					</p:dataTable>
-					
 				</h:panelGrid>
+
+
+				<p:dataTable value="#{clientController.selectedClient.bankAccounts}"
+					var="account" id="accounts"
+					emptyMessage="Ce client n'a pas de compte" style="width:600px">
+
+					<p:column headerText="Numéro compte"
+						sortBy="#{account.accountNumber}">
+						<h:outputText value="#{account.accountNumber}" />
+					</p:column>
+					<p:column headerText="Type compte">
+						<c:choose>
+							<c:when test="#{account.accountType} =='CURRENT_ACCOUNT'">
+								<h:outputText value="Compte Courant"></h:outputText>
+							</c:when>
+							<c:otherwise>
+								<h:outputText value="Compte Epargne"></h:outputText>
+							</c:otherwise>
+						</c:choose>
+					</p:column>
+					<p:column headerText="Solde" sortBy="#{account.balance}">
+						<h:outputText value="#{account.balance}" />
+					</p:column>
+				</p:dataTable>
+
+
 
 				<p:outputPanel layout="block" style="text-align:center">
 					<br />
@@ -269,10 +256,6 @@
 				</p:outputPanel>
 
 			</p:dialog>
-
-
-
-
 		</h:form>
 
 

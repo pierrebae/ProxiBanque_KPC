@@ -13,42 +13,85 @@
 			<h:form>
 				<fieldset id="fieldset">
 					<legend>Données personnelles</legend>
-					<h:panelGrid columns="2" cellpadding="5">
+
+					<h:panelGrid columns="3" cellpadding="5">
+
 						<p:outputLabel value="Nom" for="nom" />
-						<p:inputText id="nom" value="#{clientController.client.lastName}" />
+						<p:inputText id="nom" value="#{clientController.client.lastName}"
+							required="true">
+							<f:validateRegex pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
+						</p:inputText>
+						<p:message for="nom" />
 
 						<p:outputLabel value="Prénom" for="prenom" />
 						<p:inputText id="prenom"
-							value="#{clientController.client.firstName}" />
+							value="#{clientController.client.firstName}" required="true">
+							<f:validateRegex pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
+						</p:inputText>
+						<p:message for="prenom" />
+					</h:panelGrid>
 
-						<p:outputLabel value="streetNumber" for="streetNumber" />
+					<label id="label">Addresse</label>
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel value="Numéro" for="streetNumber" />
 						<p:inputText id="streetNumber"
-							value="#{clientController.client.address.streetNumber}" />
+							value="#{clientController.client.address.streetNumber}">
+							<f:validateRegex pattern="[0-9]{1,5}" />
+						</p:inputText>
+						<p:message for="streetNumber" />
 
-
-						<p:outputLabel value="streetName" for="streetName" />
+						<p:outputLabel value="Rue" for="streetName" />
 						<p:inputText id="streetName"
-							value="#{clientController.client.address.streetName}" />
+							value="#{clientController.client.address.streetName}">
+							<f:validateRegex
+								pattern="^[a-zA-Z0-9'áàâçéèêëñóòôúùûüýÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝ._\s-]{5,60}$" />
+<!-- 							 /^\s*\S+(?:\s+\S+){2} -->
+<!-- 							<f:validateRegex pattern="\s+\w+" /> -->
+						</p:inputText>
+						<p:message for="streetName" />
 
-						<p:outputLabel value="postalCode" for="postalCode" />
+						<p:outputLabel value="Code postal" for="postalCode" />
 						<p:inputText id="postalCode"
-							value="#{clientController.client.address.postalCode}" />
+							value="#{clientController.client.address.postalCode}" size="5">
+							<f:validateRegex
+								pattern="^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$" />
+						</p:inputText>
+						<p:message for="postalCode" />
 
-						<p:outputLabel value="city" for="city" />
+						<p:outputLabel value="Ville" for="city" />
 						<p:inputText id="city"
-							value="#{clientController.client.address.city}" />
+							value="#{clientController.client.address.city}">
+							<f:validateRegex pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝÆ._\s-]{5,60}$" />
+						</p:inputText>
+						<p:message for="city" />
+					</h:panelGrid>
+
+					<label id="label">Coordonnées</label>
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel value="N° téléphone" for="telephone" />
+						<p:inputText id="telephone"
+							value="#{clientController.client.telephone}">
+							<f:validateRegex pattern="^[0-9]{10,10}$" />
+						</p:inputText>
+						<p:message for="telephone" />
+						<p:outputLabel value="Email" for="email" />
+						<p:inputText id="email" value="#{clientController.client.email}">
+							<f:validateRegex
+								pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+						</p:inputText>
+						<p:message for="email" />
 					</h:panelGrid>
 				</fieldset>
 
 				<fieldset id="fieldset">
 					<legend>Compte Bancaire</legend>
 					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel for="soldeInput" value="Solde : * " />
+						<h:outputLabel for="soldeInput" value="Solde" />
 						<p:inputText id="soldeInput"
 							value="#{clientController.bankAccount.balance}"
 							label="soldeInput" required="true" />
 
-						<p:outputLabel for="selectType" value="Type : * " />
+						<p:outputLabel for="selectType" value="Type" />
 						<p:selectOneMenu id="selectType"
 							value="#{clientController.bankAccount.accountType}">
 							<f:selectItem itemLabel="Compte Courant"
@@ -59,9 +102,10 @@
 					</h:panelGrid>
 				</fieldset>
 				<p:commandButton value="Submit"
-					action="#{clientController.saveClientAndAccount}" />
+					action="#{clientController.saveClientAndAccount}"
+					validateClient="true" />
 
-			
+
 
 
 			</h:form>

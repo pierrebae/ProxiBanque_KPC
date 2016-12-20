@@ -158,9 +158,9 @@ public class ClientController implements Serializable {
 		try {
 			clientService.merge(this.selectedClient);
 			refreshList();
-			notificationSuccess("update order");
+			notificationSuccess("mise à jour client");
 		} catch (Exception e) {
-			notificationError(e, "update order");
+			notificationError(e, "mise à jour client");
 		}
 
 	}
@@ -168,7 +168,7 @@ public class ClientController implements Serializable {
 	public void notificationSuccess(String operation) {
 		Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Operation " + operation + " success");
 		FacesMessage msg = null;
-		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Success");
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Notification", "Opération réussie");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
