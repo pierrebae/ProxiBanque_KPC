@@ -122,7 +122,7 @@
 							style="color:black;  font-weight: bold;" />
 						<h:outputText value="#{tempClient.email}" />
 						<h:outputText value="" />
-						<h:outputText value="Adresse : "
+						<h:outputText value="Adresse "
 							style="color:black;  font-weight: bold;" />
 						<h:outputText value="" />
 						<h:outputText value="" />
@@ -136,7 +136,7 @@
 						<h:outputText value="" />
 						<h:outputText value="Ville : " style="color:black" />
 						<h:outputText value="#{tempClient.address.city}" />
-						<h:outputText value="Comptes : "
+						<h:outputText value="Comptes  "
 							style="color:black;  font-weight: bold;" />
 						<h:outputText value="" />
 						<h:outputText value="" />
@@ -194,33 +194,77 @@
 
 			<!-- popup update -->
 
-			<p:dialog header="Update" widgetVar="detailsDlg" resizable="false"
-				width="750" height="400" showEffect="clip" hideEffect="clip"
-				modal="true">
+			<p:dialog header="Mise à jour informations client"
+				widgetVar="detailsDlg" resizable="false" width="750" height="400"
+				showEffect="clip" hideEffect="clip" modal="true">
 
 				<h:panelGrid id="display" columns="2" cellpadding="4"
 					style="margin:0 auto;">
-					<h:outputText value="Last Name" for="lastName"
+					<h:outputText value="Nom" for="lastName"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="lastName"
 						value="#{clientController.selectedClient.lastName}"
 						label="lastName" />
 
-					<h:outputText value="First Name" for="firstName"
+					<h:outputText value="Prénom" for="firstName"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="firstName"
 						value="#{clientController.selectedClient.firstName}"
 						label="firstName" />
+
+					<h:outputText value="Téléphone" for="telephone"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="telephone"
+						value="#{clientController.selectedClient.telephone}"
+						label="telephone" />
+
+					<h:outputText value="E-mail" for="email"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="email"
+						value="#{clientController.selectedClient.email}" label="email" />
+
+					<h:outputText value="N° de voie" for="streetNumber"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="streetNumber"
+						value="#{clientController.selectedClient.address.streetNumber}"
+						label="streetNumber" />
+
+					<h:outputText value="streetName" for="streetName"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="streetName"
+						value="#{clientController.selectedClient.address.streetName}"
+						label="streetName" />
+
+					<h:outputText value="Code postal" for="postalCode"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="postalCode"
+						value="#{clientController.selectedClient.address.postalCode}"
+						label="postalCode" />
+
+					<h:outputText value="Ville" for="city"
+						style="padding-left: 30px; padding-right: 30px;" />
+					<p:inputText id="city"
+						value="#{clientController.selectedClient.address.city}"
+						label="city" />
+			
+					<p:dataTable value="#{clientController.selectedClient.bankAccounts}" var="account">
+						<p:column>
+							<h:link value="#{account.accountNumber}" outcome="account">
+								<f:param name="date" value="#{account.dateLastModification}" />
+							</h:link>
+						</p:column>
+					</p:dataTable>
+					
 				</h:panelGrid>
 
 				<p:outputPanel layout="block" style="text-align:center">
 					<br />
 					<br />
-					<p:commandButton value="Update"
+					<p:commandButton value="Mettre à jour"
 						update=":formClients:tempClients, :formClients:messages"
 						actionListener="#{clientController.updateClient}"
 						oncomplete="PF('detailsDlg').hide()" />
-					<p:commandButton value="Cancel" onclick="PF('detailsDlg').hide()"
+					<p:commandButton value="Annuler" onclick="PF('detailsDlg').hide()"
 						type="button" />
 				</p:outputPanel>
 
