@@ -50,48 +50,63 @@ public class ClientController implements Serializable {
 	private ServiceClient clientService;
 
 	private Client client;
+	private Client clientSender;
+	private Client clientReciever;
+	
 	private BankAccount bankAccount;
+
+	private BankAccount bankAccountSender;
 	private List<Client> clients;
 	private List<Client> selectedClients;
 	private Client selectedClient;
 	private long idCli;
-
+	
+	
+	private List<Client> clientsSourceSender;
+	private List<Client> clientsTargetSender;
+	private List<Client> clientsSourceReciever;
+	private List<Client> clientsTargetReciever;
 	private DualListModel<Client> clientsForDualReciever;
 	private DualListModel<Client> clientsForDualSender;
 	private String simpleDate;
-
+	private Client clientTemp;
 
 	@PostConstruct
 	public void init() throws Exception {
 		refreshList();
-		List<Client> clientsSourceSender = new ArrayList<Client>();
-        List<Client> clientsTargetSender = new ArrayList<Client>();
-        List<Client> clientsSourceReciever = new ArrayList<Client>();
-        List<Client> clientsTargetReciever = new ArrayList<Client>();
-		clientsSourceSender.addAll(clientService.findAll());
-		clientsSourceReciever.addAll(clientService.findAll());
-		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
-		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
 
 	}
 
 	public void refreshList() {
-		
+
+		this.clientSender=new Client();
+		this.clientReciever=new Client();
+		this.clientsSourceSender = new ArrayList<Client>();
+		this. clientsTargetSender = new ArrayList<Client>();
+		this.clientsSourceReciever = new ArrayList<Client>();
+		this.clientsTargetReciever = new ArrayList<Client>();
+		this.clientTemp = new Client();
 		this.client = new Client();
 		this.selectedClient = new Client();
-		this.bankAccount=new BankAccount();
-
+		this.bankAccount = new BankAccount();
+		this.bankAccountSender = new BankAccount();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
 			this.clients.addAll(clientService.findAll());
 			this.selectedClients.addAll(clients);
+			clientsSourceSender.addAll(clientService.findAll());
+			clientsSourceReciever.addAll(clientService.findAll());
+			clientsForDualSender = new DualListModel<Client>(clientsSourceSender, clientsTargetSender);
+			clientsForDualReciever = new DualListModel<Client>(clientsSourceReciever, clientsTargetReciever);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
+	
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();
@@ -100,13 +115,14 @@ public class ClientController implements Serializable {
 
 	public void loadClient(Client client) throws Exception {
 
-//		Client clientMemory = clientService.findById(client.getId());
-//		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-//
-//		Map<String, Object> requestMap = externalContext.getRequestMap();
-//		requestMap.put("client", clientMemory);
-//
-//		return "listClient";
+		// Client clientMemory = clientService.findById(client.getId());
+		// ExternalContext externalContext =
+		// FacesContext.getCurrentInstance().getExternalContext();
+		//
+		// Map<String, Object> requestMap = externalContext.getRequestMap();
+		// requestMap.put("client", clientMemory);
+		//
+		// return "listClient";
 	}
 
 	public String saveClient() throws Exception {
@@ -117,7 +133,7 @@ public class ClientController implements Serializable {
 	}
 
 	public String saveClient(BankAccount account) throws Exception {
-		clientService.persist(this.client,account);
+		clientService.persist(this.client, account);
 
 		refreshList();
 		return "listClients";
@@ -126,11 +142,11 @@ public class ClientController implements Serializable {
 	public String saveClientAndAccount() throws Exception {
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
-		clientService.persist(this.client,this.bankAccount);	
+		clientService.persist(this.client, this.bankAccount);
 		refreshList();
 		return "listClients";
 	}
-	
+
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
@@ -187,8 +203,8 @@ public class ClientController implements Serializable {
 			return "";
 		}
 	}
-	
-	public String date(){
+
+	public String date() {
 		Date creationDate = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		simpleDate = dateFormat.format(creationDate);
@@ -269,8 +285,38 @@ public class ClientController implements Serializable {
 		this.clientsForDualSender = clientsForDualSender;
 	}
 
+	public BankAccount getBankAccountSender() {
+		return bankAccountSender;
+	}
 
+	public void setBankAccountSender(BankAccount bankAccountSender) {
+		this.bankAccountSender = bankAccountSender;
+	}
 
+	public Client getClientTemp() {
+		return clientTemp;
+	}
+
+	public void setClientTemp(Client clientTemp) {
+		this.clientTemp = clientTemp;
+	}
+
+	public Client getClientSender() {
+		return clientSender;
+	}
+
+	public void setClientSender(Client clientSender) {
+		this.clientSender = clientSender;
+	}
+
+	public Client getClientReciever() {
+		return clientReciever;
+	}
+
+	public void setClientReciever(Client clientReciever) {
+		this.clientReciever = clientReciever;
+	}
+	
 	
 
 }
