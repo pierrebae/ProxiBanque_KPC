@@ -51,7 +51,14 @@ public class ClientController implements Serializable {
 	private ServiceClient clientService;
 
 	private Client client;
+	private Client clientSender;
+	private Client clientReciever;
 	private BankAccount bankAccount;
+	private BankAccount accountSender;
+	private BankAccount accountReciever;
+	private List<BankAccount> accountsSender;
+	private List<BankAccount> accountsReciever;
+
 	private List<Client> clients;
 	private List<Client> selectedClients;
 	private Client selectedClient;
@@ -70,6 +77,7 @@ public class ClientController implements Serializable {
         List<Client> clientsTargetSender = new ArrayList<Client>();
         List<Client> clientsSourceReciever = new ArrayList<Client>();
         List<Client> clientsTargetReciever = new ArrayList<Client>();
+        
 		clientsSourceSender.addAll(clientService.findAll());
 		clientsSourceReciever.addAll(clientService.findAll());
 		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
@@ -78,11 +86,16 @@ public class ClientController implements Serializable {
 	}
 
 	public void refreshList() {
-		
+		this.accountSender= new BankAccount();
+		this.accountReciever=new BankAccount();
+		this.clientSender=new Client();
+		this.clientReciever=new Client();
 		this.client = new Client();
 		this.selectedClient = new Client();
 		this.bankAccount=new BankAccount();
 
+		this.accountsReciever=new ArrayList<BankAccount>();
+		this.accountsReciever=new ArrayList<BankAccount>();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -94,6 +107,15 @@ public class ClientController implements Serializable {
 		}
 	}
 
+	  public void onClientChange() {
+	        if(clientSender !=null && !client.equals("")) {
+	          accountsSender=clientSender.getBankAccounts();
+	        }
+	        else {
+	        	accountsSender = new ArrayList<BankAccount>();
+	        }
+	    }
+	
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();
@@ -272,6 +294,54 @@ public class ClientController implements Serializable {
 
 	public void setClientsForDualSender(DualListModel<Client> clientsForDualSender) {
 		this.clientsForDualSender = clientsForDualSender;
+	}
+
+	public Client getClientSender() {
+		return clientSender;
+	}
+
+	public void setClientSender(Client clientSender) {
+		this.clientSender = clientSender;
+	}
+
+	public Client getClientReciever() {
+		return clientReciever;
+	}
+
+	public void setClientReciever(Client clientReciever) {
+		this.clientReciever = clientReciever;
+	}
+
+	public List<BankAccount> getAccountsSender() {
+		return accountsSender;
+	}
+
+	public void setAccountsSender(List<BankAccount> accountsSender) {
+		this.accountsSender = accountsSender;
+	}
+
+	public List<BankAccount> getAccountsReciever() {
+		return accountsReciever;
+	}
+
+	public void setAccountsReciever(List<BankAccount> accountsReciever) {
+		this.accountsReciever = accountsReciever;
+	}
+
+	public BankAccount getAccountSender() {
+		return accountSender;
+	}
+
+	public void setAccountSender(BankAccount accountSender) {
+		this.accountSender = accountSender;
+	}
+
+	public BankAccount getAccountReciever() {
+		return accountReciever;
+	}
+
+	public void setAccountReciever(BankAccount accountReciever) {
+		this.accountReciever = accountReciever;
 	}
 
 

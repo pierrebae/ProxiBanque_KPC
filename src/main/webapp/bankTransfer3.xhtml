@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="content">
+
+		<h:form id="form1">
+
+
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+				<p:outputLabel for="clientSender" value="Client emetteur: *" />
+				<p:selectOneMenu id="clientSender"
+					value="#{clientController.clientSender}" panelStyle="width:180px"
+					effect="fade" style="width:250px" filter="true"
+					filterMatchMode="startsWith">
+					<f:selectItems value="#{clientController.clients}" var="client"
+						itemLabel="#{client.toString()}" itemValue="#{client}" />
+				</p:selectOneMenu>
+
+				<!-- 				<p:outputLabel for="clientReciever" value="Client bénéficiaire *" /> -->
+				<!-- 				<h:selectOneMenu id="clientReciever" -->
+				<!-- 					value="#{clientController.clientReciever}" panelStyle="width:180px" -->
+				<!-- 					effect="fade" style="width:250px" filter="true" -->
+				<!-- 					filterMatchMode="startsWith"> -->
+				<!-- 					<f:selectItems value="#{clientController.clients}" var="client" -->
+				<!-- 						itemLabel="#{client.toString()}" itemValue="#{client}" /> -->
+				<!-- 				</h:selectOneMenu> -->
+
+				<!-- 				<p:commandButton value="Submit" update="display" -->
+				<!-- 					oncomplete="PF('Dlg').show()" icon="ui-icon-check" /> -->
+
+
+				<p:commandButton update=":form1:display" oncomplete="PF('Dlg').show()"
+					image="ui-icon ui-icon-close" title="Submit">
+					<f:setPropertyActionListener value="#{clientController.clientSender}"
+						target="#{client}" />
+
+				</p:commandButton>>
+
+			</h:panelGrid>
+
+
+
+
+
+			<p:dialog header="Choix des Comptes émetteur et bénéficiaire"
+				widgetVar="Dlg" resizable="false" width="750" height="400"
+				showEffect="clip" hideEffect="clip" modal="true">
+
+				<h:panelGrid id="display" columns="2" cellpadding="5"
+					columnClasses="label,value">
+
+					<!-- 					<h:outputText value="#{clientController.clientReciever}" /> -->
+					<h:outputText value="#{clientController.clientSender}" />
+dssddssd
+				</h:panelGrid>
+
+				<p:commandButton value="Mettre à jour"
+					oncomplete="PF('detailsDlg').hide()" />
+			</p:dialog>
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>
