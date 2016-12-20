@@ -19,3 +19,15 @@
 	width: 300px;
 	border-radius: 5px;
 }
+
+label {
+	margin-top: 10px;
+	margin-right: 10px;
+	display: block;
+	width: 85px;
+}
+
+#label {
+	text-decoration: underline;
+}
+
