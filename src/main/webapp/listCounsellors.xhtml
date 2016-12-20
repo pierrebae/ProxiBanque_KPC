@@ -4,22 +4,70 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	template="/template/template.xhtml">
 
 	<ui:define name="content">
 
-		<h:form id="form1">
+		<h:form id="formClients">
+
 			<p:growl id="messages" showDetail="true" life="3000" />
-			<p:dataTable id="objects" var="object" value="#{orderMB.list}"
-				styleClass="et_datatable" emptyMessage="Empty..." editable="true"
-				paginator="true" rows="10"
+			<p:dataTable id="tempCounsellors" var="tempCounsellor"
+				value="#{counsellorController.counsellors}" styleClass="et_datatable"
+				editable="true" paginator="true" rows="10"
+				currentPageReportTemplate=" {startRecord}-{endRecord} "
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15" selectionMode="single"
-				rowKey="#{object.id}"
-				filteredValue="#{counsellorController.counsellors}">
-			</p:dataTable>
+				rowKey="#{tempCounsellor.id}"
+				emptyMessage="Il n'existe pas de conseiller avec ce nom-là"
+				filteredValue="#{counsellorController.selectedCounsellors}">
 
-	
+				<!-- colonnes affichage -->
+
+				<p:column style="width:32px">
+					<p:rowToggler />
+				</p:column>
+
+				<p:column headerText="Nom" sortBy="#{tempCounsellor.lastName}"
+					filterBy="#{tempCounsellor.lastName}" filterMatchMode="contains">>
+					<h:outputText value="#{tempCounsellor.lastName}" />
+				</p:column>
+
+				<p:column headerText="Prénom" sortBy="#{tempCounsellor.firstName}">
+					<h:outputText value="#{tempCounsellor.firstName}" />
+				</p:column>
+				
+				<p:column headerText="Nombre de clients" >
+					<h:outputText value="#{tempCounsellor.clients.size()}" />
+				</p:column>
+
+<p:rowExpansion>
+					
+
+					<p:dataTable value="#{tempCounesllor.clients}" var="cli"
+						id="accounts" emptyMessage="Ce conseiller n'a pas de clients"
+						style="width:600px">
+
+						<p:column headerText="Nom client"
+							sortBy="#{cli.lastName}">
+							<h:outputText value="#{cli.lastName}" />
+						</p:column>
+						
+						<p:column headerText="Prénom client" sortBy="#{cli.firstName}">
+							<h:outputText value="#{cli.firstName}" />
+						</p:column>
+						
+						<p:column headerText="Numéro téléphone" sortBy="#{cli.telephone}">
+							<h:outputText value="#{cli.telephone}" />
+						</p:column>
+					</p:dataTable>
+
+
+
+				</p:rowExpansion>
+			</p:dataTable>
 
 		</h:form>
 	</ui:define>

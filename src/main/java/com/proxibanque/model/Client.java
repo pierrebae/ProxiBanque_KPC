@@ -25,21 +25,11 @@ public class Client extends Person implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name = "counsellor_id")
 	private Counsellor counsellor;
 	
-//	@OneToOne(cascade = { CascadeType.ALL })
-//	@JoinColumn(name = "CurrentAccount_id", unique = true)
-//	private CurrentAccount currentAccount;
-//	
-//	@OneToOne(cascade = { CascadeType.ALL })
-//	@JoinColumn(name = "SavingsAccount_id", unique = true)
-//	private SavingsAccount savingsAccount;
 
-//	@ManyToOne (mappedBy="client")
-	
-//	@Cascade({CascadeType.ALL})
 	@OneToMany (mappedBy="client", fetch = FetchType.EAGER)
 	@Cascade({CascadeType.ALL})
 	private List<BankAccount> bankAccounts =new ArrayList<BankAccount>();
@@ -130,22 +120,6 @@ public class Client extends Person implements Serializable {
 	}
 
 	
-	
-//	public CurrentAccount getCurrentAccount() {
-//		return currentAccount;
-//	}
-//
-//	public void setCurrentAccount(CurrentAccount currentAccount) {
-//		this.currentAccount = currentAccount;
-//	}
-//
-//	public SavingsAccount getSavingsAccount() {
-//		return savingsAccount;
-//	}
-//
-//	public void setSavingsAccount(SavingsAccount savingsAccount) {
-//		this.savingsAccount = savingsAccount;
-//	}
 	
 
 }

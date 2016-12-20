@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.proxibanque.dao.IDaoCounsellor;
+import com.proxibanque.model.BankAccount;
+import com.proxibanque.model.Client;
 import com.proxibanque.model.Counsellor;
 
 @Component
@@ -39,4 +41,13 @@ public class ServiceCounsellor implements IServiceCounsellor {
 		return daoCounsellor.findAll();
 	}
 
+	@Override
+	public void persist(Counsellor counsellor, Client client) throws Exception {
+
+		List<Client> clients = counsellor.getClients();
+		clients.add(client);
+		client.setCounsellor(counsellor);
+		daoCounsellor.persist(counsellor);
+
+	}
 }
