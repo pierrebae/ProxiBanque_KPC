@@ -8,50 +8,53 @@
 
 	<ui:define name="content">
 
-test
+		<h:form id="form1">
 
-<h:form>
 
-		<p:pickList id="pickListSender" value="#{clientController.clientsForDualSender}" 
-			var="client" itemLabel="#{client.toString()}" itemValue="#{client}" showSourceFilter="true" filterMatchMode="contains"/>
 
-		<p:commandButton id="clientSenderSubmit" value="Submit"
-			update="displayClientSender" style="margin-top:5px" />
-			
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
-		<h:panelGrid id="displayClientSender" columns="2">
-			
-			<ui:repeat value="#{clientController.clientsForDualSender.source}" var="item">
+				<p:outputLabel for="clientSender" value="Client emetteur: *" />
+				<p:selectOneMenu id="clientSender"
+					value="#{clientController.clientSender}" panelStyle="width:180px"
+					effect="fade" style="width:250px" filter="true"
+					filterMatchMode="startsWith">
+					<f:selectItems value="#{clientController.clients}" var="client"
+						itemLabel="#{client.toString()}" itemValue="#{client}" />
+				</p:selectOneMenu>
 
-			</ui:repeat>
+				<p:outputLabel for="clientReciever" value="Client bénéficiaire *" />
+				<h:selectOneMenu id="clientReciever"
+					value="#{clientController.clientReciever}" panelStyle="width:180px"
+					effect="fade" style="width:250px" filter="true"
+					filterMatchMode="startsWith">
+					<f:selectItems value="#{clientController.clients}" var="client"
+						itemLabel="#{client.toString()}" itemValue="#{client}" />
+				</h:selectOneMenu>
 
-			<ui:repeat value="#{clientController.clientsForDualSender.target}" var="item">
-				<h:outputText value="#{item}" />
-			</ui:repeat>
-		</h:panelGrid>
-		
-		
-			<p:pickList id="pickListReceiver" value="#{clientController.clientsForDualReciever}" 
-			var="client" itemLabel="#{client.toString()}" itemValue="#{client}" showSourceFilter="true" filterMatchMode="contains"/>
+				<p:commandButton value="Submit" update="display"
+					oncomplete="PF('Dlg').show()" icon="ui-icon-check" />
+			</h:panelGrid>
 
-		<p:commandButton id="clientRecieverSubmit" value="Submit"
-			update="displayClientReciever" style="margin-top:5px" />
-			
 
-		<h:panelGrid id="displayClientReciever" columns="2">
-			
-			<ui:repeat value="#{clientController.clientsForDualReciever.source}" var="item">
 
-			</ui:repeat>
+			<p:dialog header="Choix des Comptes émetteur et bénéficiaire"
+				widgetVar="Dlg" resizable="false" width="750" height="400"
+				showEffect="clip" hideEffect="clip" modal="true" >
 
-			<ui:repeat value="#{clientController.clientsForDualReciever.target}" var="item">
-				<h:outputText value="#{item}" />
-			</ui:repeat>
-		</h:panelGrid>
-		
-		
+				<h:panelGrid id="display" columns="2" cellpadding="5" columnClasses="label,value">
 
-</h:form>
+					<h:outputText value="#{clientController.clientReciever}" />
+					<h:outputText value="#{clientController.clientSender}" />
+
+				</h:panelGrid>
+
+				<p:commandButton value="Mettre à jour"
+					oncomplete="PF('detailsDlg').hide()" />
+			</p:dialog>
+		</h:form>
+
+
 
 	</ui:define>
 </ui:composition>

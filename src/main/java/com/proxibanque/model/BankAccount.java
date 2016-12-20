@@ -94,6 +94,11 @@ public class BankAccount implements Serializable {
 		this.client = client;
 	}
 
+	@Override
+	public String toString() {
+		return " Commte numéro " +  accountNumber + "Solde : " + balance + " Euros" ;
+	}
+
 	
 	
 }
