@@ -23,7 +23,7 @@ public class ServiceClient implements IServiceClient,Serializable {
 
 	@Override
 	public void persist(Client client) throws Exception {
-
+System.out.println("save client");
 		daoClient.persist(client);
 	}
 

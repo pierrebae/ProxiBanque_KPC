@@ -61,8 +61,8 @@ public class ClientController implements Serializable {
 	public void refreshList() {
 
 		this.client = new Client();
-		this.bankAccount = new BankAccount();
 		this.selectedClient = new Client();
+		this.bankAccount=new BankAccount();
 
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
@@ -99,20 +99,22 @@ public class ClientController implements Serializable {
 		return "listClients";
 	}
 
-	public String saveClient2() throws Exception {
-		clientService.persist(this.client, this.bankAccount);
-//		listAccount.add(bankAccount);
-//		client.setBankAccount(listAccount);
-
+	public String saveClient(BankAccount account) throws Exception {
+		clientService.persist(this.client,account);
 
 		refreshList();
 		return "listClients";
 	}
 
+	public String saveClientAndAccount() throws Exception {
+		clientService.persist(this.client,this.bankAccount);	
+		refreshList();
+		return "listClients";
+	}
+	
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
-
 		refreshList();
 		return "listClients";
 	}
@@ -224,5 +226,6 @@ public class ClientController implements Serializable {
 	public void setBankAccount(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
 	}
+
 
 }
