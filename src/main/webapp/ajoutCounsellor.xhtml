@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title>
-</h:head>
-<h:body>
-	<h:form>
-		<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel value="Nom" for="nom" />
-			<p:inputText id="nom"
-				value="#{counsellorController.counsellor.lastName}" />
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-			<p:outputLabel value="Prénom" for="prenom" />
-			<p:inputText id="prenom"
-				value="#{counsellorController.counsellor.firstName}" />
 
-			<p:outputLabel value="Login" for="login" />
-			<p:inputText id="login"
-				value="#{counsellorController.counsellor.login}" />
 
-			<p:outputLabel value="Password" for="password" />
-			<p:inputText id="password"
-				value="#{counsellorController.counsellor.password}" />
 
-			<h:commandButton value="Submit"
-				action="#{counsellorController.saveCounsellor}" />
-		</h:panelGrid>
-	</h:form>
-</h:body>
-</html>
+
+	<ui:define name="content">
+		<div class="addCounsellor">
+			<h:form>
+				<fieldset id="fieldset">
+					<legend>Création Conseiller</legend>
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="Nom" for="nom" />
+						<p:inputText id="nom"
+							value="#{counsellorController.counsellor.lastName}" />
+
+						<p:outputLabel value="Prénom" for="prenom" />
+						<p:inputText id="prenom"
+							value="#{counsellorController.counsellor.firstName}" />
+
+						<p:outputLabel value="Identifiant" for="login" />
+						<p:inputText id="login"
+							value="#{counsellorController.counsellor.login}" />
+
+
+						<p:outputLabel value="Mot de passe" for="password" />
+						<p:inputText id="password"
+							value="#{counsellorController.counsellor.password}"
+							type="password" />
+
+					</h:panelGrid>
+				</fieldset>
+				<p:commandButton value="Submit"
+					action="#{counsellorController.saveCounsellor}" />
+
+			</h:form>
+		</div>
+	</ui:define>
+
+
+</ui:composition>
