@@ -12,7 +12,7 @@
 		<div class="addClient">
 			<h:form>
 				<fieldset id="fieldset">
-				<legend>Données personnelles</legend>
+					<legend>Données personnelles</legend>
 					<h:panelGrid columns="2" cellpadding="5">
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}" />
@@ -60,16 +60,13 @@
 				</fieldset>
 				<p:commandButton value="Submit"
 					action="#{clientController.saveClientAndAccount}" />
-<<<<<<< HEAD
-			</h:panelGrid>
 
-		</h:form>
-=======
-
-
->>>>>>> origin/master
+			
 
 			</h:form>
+
+
+
 		</div>
 	</ui:define>
 

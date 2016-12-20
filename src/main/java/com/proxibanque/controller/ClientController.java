@@ -55,13 +55,11 @@ public class ClientController implements Serializable {
 	private List<Client> selectedClients;
 	private Client selectedClient;
 	private long idCli;
-<<<<<<< HEAD
-	
+
 	private DualListModel<Client> clientsForDualReciever;
 	private DualListModel<Client> clientsForDualSender;
-=======
 	private String simpleDate;
->>>>>>> origin/master
+
 
 	@PostConstruct
 	public void init() throws Exception {
