@@ -9,6 +9,12 @@ import com.proxibanque.model.Client;
 import com.proxibanque.service.IServiceClient;
 import com.proxibanque.service.ServiceClient;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see petite classe de tests transitoire
+ *
+ */
 public class MainTest {
 
 	public static void main(String[] args) throws Exception {

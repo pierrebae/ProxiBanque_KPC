@@ -15,6 +15,16 @@ import com.proxibanque.dao.IDaoClient;
 import com.proxibanque.model.Address;
 import com.proxibanque.model.Client;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see Classe de tests unitaires. On va utiliser mockito pour tester si on peut
+ *      persister des clients en base de données en leur associant une adresse.
+ *      On va aussi tester si on peut récuperer un client sauvegardé en base de
+ *      données
+ * 
+ *
+ */
 @ContextConfiguration
 @RunWith(MockitoJUnitRunner.class)
 public class persistenceTests {
@@ -39,21 +49,21 @@ public class persistenceTests {
 		assertNotNull(client.getAddress());
 	}
 
+
 	@Test
 	public void testSaveAndFind() throws Exception {
 		client = new Client();
 		address = new Address("52", "streetName", "postalCode", "Londres");
 		client.setAddress(address);
 		Client recupClient = null;
-		long id =1;
-		
+		long id = 1;
+
 		entityManager.persist(client);
 		entityManager.flush();
-		
-		doReturn(recupClient=client).when(daoClient).findById(id);
-		assertNotNull(recupClient);
-		
-	}
 
+		doReturn(recupClient = client).when(daoClient).findById(id);
+		assertNotNull(recupClient);
+
+	}
 
 }

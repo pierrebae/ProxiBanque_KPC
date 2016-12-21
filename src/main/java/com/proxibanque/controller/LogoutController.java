@@ -14,25 +14,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see C'est un petit controlleur transitoire qui controle le logout en
+ *      invalidant la session. Le login est geré par le container
+ * 
+ *
+ */
 @Component("logoutController")
 @ViewScoped
 public class LogoutController {
-
-
 
 	public String logout() throws IOException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		externalContext.invalidateSession();
-		//externalContext.setResponseStatus(401);
-		//externalContext.getResponseOutputWriter()
-		//		.write("<html><head><meta http-equiv='refresh' content='0; url=http://localhost:8080/ProxiBanque_KPC/listClients.xhtml'></head></html>");
-		//externalContext.redirect("http://localhost:8080/ProxiBanque_KPC/listClients.xhtml");
+		// externalContext.setResponseStatus(401);
+		// externalContext.getResponseOutputWriter()
+		// .write("<html><head><meta http-equiv='refresh' content='0;
+		// url=http://localhost:8080/ProxiBanque_KPC/listClients.xhtml'></head></html>");
+		// externalContext.redirect("http://localhost:8080/ProxiBanque_KPC/listClients.xhtml");
 		facesContext.responseComplete();
 		return "/listClients?faces-redirect=true";
-		
-		
-		
+
 	}
 
 }
