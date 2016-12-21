@@ -10,9 +10,9 @@
 	<!-- 	<p:graphicImage id="logo" value="resources/images/Logomakr_3ZX3Hj.png" height="80px" width="100%" /> -->
 	<!-- 	<p:resizable for="logo" animate="true" ghost="true"></p:resizable> -->
 
-	<!-- role management -->
-	<!-- https://cagataycivici.wordpress.com/2010/03/18/primefaces-el-extensions-for-ui-authorization/ -->
-	<!-- http://forum.primefaces.org/viewtopic.php?f=3&t=7755 -->
+<!-- role management -->
+<!-- https://cagataycivici.wordpress.com/2010/03/18/primefaces-el-extensions-for-ui-authorization/ -->
+<!-- http://forum.primefaces.org/viewtopic.php?f=3&t=7755 -->
 
 
 
@@ -21,8 +21,7 @@
 
 		<p:panelMenu>
 
-			<p:submenu expanded="true" label="Conseiller"
-				rendered="#{p:ifGranted('gerant')}">
+			<p:submenu expanded="true" label="Conseiller" rendered="#{p:ifGranted('gerant')}">
 				<p:menuitem value="Liste Conseillers" action="listCounsellors"
 					icon="fa fa-group fa-fw" />
 				<p:menuitem value="Ajouter Conseiller" action="ajoutCounsellor"
@@ -48,29 +47,20 @@
 					icon="fa fa-user-plus fa-fw" />
 				<p:menuitem value="Virement" action="bankTransfer"
 					icon="fa fa-credit-card fa-fw" />
-
-				<p:menuitem value="Historique des virements" action="listTransfers"
-					icon="fa fa-history fa-fw" />
-
-
 			</p:submenu>
-
-
-
 
 			<p:separator />
 
 			<p:submenu label="Audit" rendered="#{p:ifGranted('gerant')}">
-				<p:menuitem value="Statistiques" action="Statistics"
-					icon="fa fa-line-chart fa-fw" />
+			<p:menuitem value="Statistiques"
+				action="Statistics" icon="fa fa-line-chart fa-fw" />
 			</p:submenu>
-
+			
 			<p:separator />
 
 			<p:submenu expanded="true" label="Déconnexion">
 				<p:menuitem value="Se déconnecter"
-					action="#{logoutController.logout}" icon="fa fa-sign-out fa-fw"
-					ajax="false" />
+					action="#{logoutController.logout}" icon="fa fa-sign-out fa-fw" ajax="false"/>
 			</p:submenu>
 
 

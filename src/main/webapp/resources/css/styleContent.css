@@ -4,12 +4,18 @@
 	margin-left: 40%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	display: flex;
+	align-items: center;
 }
 
+}
 .addClient, .addCounsellor {
 	margin-left: 40%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+
+	/* 	display: flex; */
+	/* 	align-items: center; */
 }
 
 #fieldset {
@@ -31,7 +37,7 @@
 	background-color: #c0c0c0;
 	width: 500px;
 	border-radius: 5px;
-	/* 	margin: auto; */
+	margin: auto;
 }
 
 label {
@@ -53,3 +59,8 @@ label {
 	color: white;
 }
 
+.bouton {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 455px;
+}

@@ -41,9 +41,10 @@
 		<div class="addCounsellor">
 			<h:form>
 				<fieldset id="field">
-					<h:outputText id="requis" value="* champs requis" style="font-size:75%;" />
+					<h:outputText id="requis" value="* champs requis"
+						style="font-size:75%;" />
 					<legend>Création Conseiller</legend>
-					
+
 					<h:panelGrid columns="3" cellpadding="5">
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom"
@@ -81,9 +82,10 @@
 					</h:panelGrid>
 
 				</fieldset>
-				<p:commandButton value="Valider"
-					action="#{counsellorController.saveCounsellor}" />
-
+				<div class="bouton">
+					<p:commandButton id="button" value="Valider"
+						action="#{counsellorController.saveCounsellor}" />
+				</div>
 			</h:form>
 		</div>
 	</ui:define>
