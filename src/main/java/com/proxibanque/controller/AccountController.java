@@ -17,15 +17,13 @@ import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceAccount;
 
-
 /**
- * AccountController permet la redirection des pages et l'utilisation de méthodes du service pour toutes pages .xhtml 
- * portant sur les opérations bancaires
+ * AccountController permet la redirection des pages et l'utilisation de
+ * méthodes du service pour toutes pages .xhtml portant sur les opérations
+ * bancaires
  * 
  *
  */
-
-
 
 @Component("accountController")
 @ViewScoped
@@ -38,19 +36,19 @@ public class AccountController implements Serializable {
 
 	@Autowired
 	private ServiceAccount serviceAccount;
-	
+
 	private BankAccount bankAccount;
 	private List<BankAccount> bankAccounts;
 	private List<BankAccount> selectedBankAccounts;
 	private String simpleDate;
 	private Client selectedClient;
 	private List<Client> selectedClients;
-	
+
 	@PostConstruct
 	public void init() {
 		refreshList();
 	}
-	
+
 	public void refreshList() {
 		this.bankAccount = new BankAccount();
 		this.bankAccounts = new ArrayList<BankAccount>();
@@ -63,23 +61,31 @@ public class AccountController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void loadAccount() throws Exception {
 		bankAccounts = serviceAccount.findAll();
 	}
-	
+
 	public String saveAccount() throws Exception {
-		 
+
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
-		
+
 		selectedClient.addAccount(bankAccount);
-		
+
 		serviceAccount.persist(bankAccount);
 		refreshList();
 		return "listAccount";
 	}
-	
+
+	public String removeAccount(BankAccount bankAccount) throws Exception {
+
+		serviceAccount.remove(bankAccount.getAccountNumber());
+		refreshList();
+		return "listAccount";
+
+	}
+
 	public BankAccount getBankAccount() {
 		return bankAccount;
 	}
@@ -87,9 +93,8 @@ public class AccountController implements Serializable {
 	public void setBankAccount(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
 	}
-	
 
-	public String date(){
+	public String date() {
 		Date creationDate = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		simpleDate = dateFormat.format(creationDate);
@@ -127,7 +132,5 @@ public class AccountController implements Serializable {
 	public void setSelectedClients(List<Client> selectedClients) {
 		this.selectedClients = selectedClients;
 	}
-	
-	
-	
+
 }

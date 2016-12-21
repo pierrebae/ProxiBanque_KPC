@@ -30,8 +30,8 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 	}
 
 	@Override
-	public void remove(long accountNumber) throws Exception {
-		daoAccount.remove(accountNumber);
+	public void remove(long accountNumber) throws Exception {		
+		daoAccount.removeAccount(accountNumber);
 	}
 
 	@Override

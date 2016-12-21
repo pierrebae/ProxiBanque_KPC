@@ -35,11 +35,11 @@
 					<h:outputText value="#{compte.creationDate}" />
 				</p:column>
 
-<!-- 				<p:column headerText="Effacer" style="width:8%"> -->
-<!-- 					<h:commandLink id="a" value="" styleClass="fa fa-trash medium" -->
-<!-- 						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce client?')) return false" -->
-<!-- 						action="#{clientController.removeClient(tempClient)}" /> -->
-<!-- 				</p:column> -->
+				<p:column headerText="Effacer" style="width:8%">
+					<h:commandLink id="a" value="" styleClass="fa fa-trash medium"
+						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce compte?')) return false"
+						action="#{accountController.removeAccount(compte)}" />
+				</p:column>
 			</p:dataTable>
 
 		</h:form>
