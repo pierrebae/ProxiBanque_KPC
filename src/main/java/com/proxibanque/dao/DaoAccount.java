@@ -11,12 +11,5 @@ import com.proxibanque.model.Client;
 @Transactional
 public class DaoAccount extends DaoImpl<BankAccount> implements IDaoAccount{
 
-	@Override
-	public void removeAccount(Object id) throws Exception {
-		BankAccount bankAccount = (BankAccount) getEntityManager().find(getEntityClass(), id);
-		bankAccount.setClient(null);
-		
-		getEntityManager().remove(bankAccount);
-	}
 
 }

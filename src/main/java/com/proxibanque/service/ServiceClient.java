@@ -35,7 +35,9 @@ System.out.println("save client");
 
 	@Override
 	public void remove(long idClient) throws Exception {
-		// TODO Auto-generated method stub
+		Client client = daoClient.findById(idClient);
+		client.setCounsellor(null);
+		daoClient.merge(client);
 		daoClient.remove(idClient);
 	}
 

@@ -118,7 +118,7 @@ public class Client extends Person implements Serializable {
 	public String toString() {
 		return super.toString();
 	}
-
+	
 	
 	public void addAccount(BankAccount bankAccount){
 		bankAccounts.add(bankAccount);

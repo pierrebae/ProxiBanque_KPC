@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.proxibanque.dao.IDaoCounsellor;
-import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 import com.proxibanque.model.Counsellor;
 
