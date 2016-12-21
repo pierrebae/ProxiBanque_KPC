@@ -36,7 +36,9 @@ public class AccountController implements Serializable {
 	@Autowired
 	private ServiceAccount serviceAccount;
 
+
 	private double amount;
+
 	private BankAccount bankAccount;
 	private BankAccount bankAccountSender;
 	private List<BankAccount> bankAccounts;
@@ -88,12 +90,22 @@ public class AccountController implements Serializable {
 		return "listAccount";
 	}
 
+
 	public String transfer() throws Exception {
 		serviceAccount.transfer(numAccountSender, numAccountReciever, amount);
 		return "listAccount";
 	}
 	
 	
+
+	public String removeAccount(BankAccount bankAccount) throws Exception {
+
+		serviceAccount.remove(bankAccount.getAccountNumber());
+		refreshList();
+		return "listAccount";
+
+	}
+
 	public BankAccount getBankAccount() {
 		return bankAccount;
 	}
@@ -140,6 +152,7 @@ public class AccountController implements Serializable {
 	public void setSelectedClients(List<Client> selectedClients) {
 		this.selectedClients = selectedClients;
 	}
+
 
 	public long getNumAccountSender() {
 		return numAccountSender;
@@ -188,7 +201,6 @@ public class AccountController implements Serializable {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
 	
 
 }

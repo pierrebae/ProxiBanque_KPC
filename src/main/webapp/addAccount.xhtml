@@ -37,8 +37,8 @@
 					</h:panelGrid>
 				</fieldset>
 
-				<div class="choixClient">
-					<p:outputLabel value="Choix du Client associé :" for="choixClient" />
+				<fieldset id="fieldset">
+					<legend>Client</legend>
 					<p:dataTable id="choixClient" value="#{clientController.clients}"
 						var="client" sortMode="multiple"
 						selection="#{accountController.selectedClient}"
@@ -50,14 +50,12 @@
 						</p:column>
 
 						<p:column headerText="Prénom" sortBy="#{client.firstName}">
-							<!-- the column header -->
-
-							<!--  the value for each row -->
 							<h:outputText value="#{client.firstName}" />
 						</p:column>
-						<p:column selectionMode="single"></p:column>
+						
+						<p:column selectionMode="single" style="width:40px;"></p:column>
 					</p:dataTable>
-				</div>
+				</fieldset>
 
 				<p:commandButton value="Submit"
 					action="#{accountController.saveAccount}" />
