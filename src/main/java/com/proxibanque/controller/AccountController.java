@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,8 +38,7 @@ public class AccountController implements Serializable {
 	@Autowired
 	private ServiceAccount serviceAccount;
 
-
-	private double amount;
+	private double amount =0L;
 
 	private BankAccount bankAccount;
 	private BankAccount bankAccountSender;
@@ -45,8 +46,8 @@ public class AccountController implements Serializable {
 	private List<BankAccount> selectedBankAccounts;
 	private List<BankAccount> bankAccountsSender;
 	private List<BankAccount> bankAccountsReciever;
-	private long numAccountSender;
-	private long numAccountReciever;
+	private long numAccountSender =0L;
+	private long numAccountReciever  =0L;
 	private String simpleDate;
 	private Client selectedClient;
 	private List<Client> selectedClients;
@@ -59,7 +60,7 @@ public class AccountController implements Serializable {
 	public void refreshList() {
 
 		this.bankAccount = new BankAccount();
-		this.bankAccountSender=new BankAccount();
+		this.bankAccountSender = new BankAccount();
 		this.bankAccountsSender = new ArrayList<BankAccount>();
 		this.bankAccountsReciever = new ArrayList<BankAccount>();
 		this.bankAccounts = new ArrayList<BankAccount>();
@@ -90,13 +91,10 @@ public class AccountController implements Serializable {
 		return "listAccount";
 	}
 
-
 	public String transfer() throws Exception {
 		serviceAccount.transfer(numAccountSender, numAccountReciever, amount);
 		return "listAccount";
 	}
-	
-	
 
 	public String removeAccount(BankAccount bankAccount) throws Exception {
 
@@ -120,6 +118,17 @@ public class AccountController implements Serializable {
 		simpleDate = dateFormat.format(creationDate);
 		return simpleDate;
 	}
+
+	public void displayLocation() {
+	       
+		 FacesMessage msg;
+	        if(numAccountSender!= 0L && numAccountReciever!=0L && amount!=0L )
+	            msg = new FacesMessage("Ca marche");
+	        else
+	            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected."); 
+	             
+	        FacesContext.getCurrentInstance().addMessage(null, msg);  
+	    }
 
 	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;
@@ -152,7 +161,6 @@ public class AccountController implements Serializable {
 	public void setSelectedClients(List<Client> selectedClients) {
 		this.selectedClients = selectedClients;
 	}
-
 
 	public long getNumAccountSender() {
 		return numAccountSender;
@@ -201,6 +209,5 @@ public class AccountController implements Serializable {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
 
 }
