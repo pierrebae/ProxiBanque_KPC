@@ -30,8 +30,8 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 	}
 
 	@Override
-	public void remove(long accountNumber) throws Exception {
-		daoAccount.remove(accountNumber);
+	public void remove(long accountNumber) throws Exception {		
+		daoAccount.removeAccount(accountNumber);
 	}
 
 	@Override
@@ -46,11 +46,11 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 	}
 
 	@Override
-	public void transfer(BankAccount senderAccount, BankAccount recieverAccount, double amount) throws Exception {
-		BankAccount sender = daoAccount.findById(senderAccount.getAccountNumber());
+	public void transfer(long numAccountSender, long numAccountReciever, double amount) throws Exception {
+		BankAccount sender = daoAccount.findById(numAccountSender);
 		sender.setBalance(sender.getBalance()-amount);
 		
-		BankAccount reciever = daoAccount.findById(recieverAccount.getAccountNumber());
+		BankAccount reciever = daoAccount.findById(numAccountReciever);
 		reciever.setBalance(reciever.getBalance()+amount);
 		
 		daoAccount.merge(sender);

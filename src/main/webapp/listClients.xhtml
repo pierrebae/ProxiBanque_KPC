@@ -52,14 +52,14 @@
 
 
 
-				<p:column headerText="Date Création" sortBy="">
+				<p:column headerText="Date Création" sortBy="" style="text-align:center;">
 					<h:outputText value="" />
 				</p:column>
 
 				<!-- boutons -->
 
 
-				<p:column headerText="Mise à jour" style="width:8%">
+				<p:column headerText="Mise à jour" style="width:8%;text-align:center">
 					<p:commandLink update=":formClients:display"
 						oncomplete="PF('detailsDlg').show()"
 						image="ui-icon ui-icon-search" title="Details">
@@ -69,15 +69,7 @@
 					</p:commandLink>
 				</p:column>
 
-
-				<!-- 								<p:column headerText="Mise à jour"> -->
-
-				<!-- 									<h:commandLink id="i" value="" styleClass="fa fa-edit medium" -->
-				<!-- 										action="#{clientController.loadClient(tempClient)}" /> -->
-
-				<!-- 								</p:column> -->
-
-				<p:column headerText="Effacer" style="width:8%">
+				<p:column headerText="Effacer" style="width:8%;text-align:center">
 
 					<h:commandLink id="a" value="" styleClass="fa fa-trash medium"
 						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce client?')) return false"

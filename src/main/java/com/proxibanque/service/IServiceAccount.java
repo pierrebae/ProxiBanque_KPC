@@ -18,7 +18,7 @@ public interface IServiceAccount {
 
 	List<BankAccount> findAll() throws Exception;
 	
-	void transfer(BankAccount senderAccount, BankAccount recieverAccount, double amount) throws Exception;
+	void transfer(long senderAccount, long recieverAccount, double amount) throws Exception;
 	
 	
 }
