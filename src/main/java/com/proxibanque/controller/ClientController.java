@@ -241,17 +241,17 @@ public class ClientController implements Serializable {
         	List<BankAccount> listAccounts = client.getBankAccounts();
 			for (BankAccount bankAccount : listAccounts) {
 				sommeCompte	+= bankAccount.getBalance();
-				if (sommeCompte < 0) {
-		    		nombreClient0.add(client);
-		    	} else if (sommeCompte < 500 && sommeCompte >= 0) {
-		    		nombreClient500.add(client);
-		    	} else if (sommeCompte < 5000 && sommeCompte >=500){
-		    		nombreClient5000.add(client);
-		    	} else {
-		    		nombreClientSup.add(client);
-		    	}
-				System.out.println(sommeCompte);
 			}
+			if (sommeCompte < 0) {
+				nombreClient0.add(client);
+			} else if (sommeCompte < 500 && sommeCompte >= 0) {
+				nombreClient500.add(client);
+			} else if (sommeCompte < 5000 && sommeCompte >=500){
+				nombreClient5000.add(client);
+			} else {
+				nombreClientSup.add(client);
+			}
+			System.out.println(sommeCompte);
 			System.out.println(listAccounts);
 		}
         
@@ -260,7 +260,7 @@ public class ClientController implements Serializable {
         pieModel.set("Solde des Comptes entre 500 et 5000", nombreClient5000.size());
         pieModel.set("Solde des Comptes > 5000", nombreClientSup.size());
          
-        pieModel.setTitle("Nombre de Clients par Tranche de revenus");
+        pieModel.setTitle("Nombre de Clients par Richesse");
         pieModel.setLegendPosition("w");
     }
 	
