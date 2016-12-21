@@ -2,10 +2,15 @@ package com.proxibanque.model;
 
 import javax.persistence.Embeddable;
 
-
 import org.springframework.stereotype.Component;
 
-
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see L'adresse est un objet qui contient les éléments d'une adresse de client
+ *      afin de ne pas encombrer le client outre mesure
+ *
+ */
 @Embeddable
 public class Address {
 
@@ -64,5 +69,4 @@ public class Address {
 				+ ", city=" + city + "]";
 	}
 
-	
 }

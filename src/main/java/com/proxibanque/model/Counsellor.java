@@ -11,19 +11,22 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-
-
-
-
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see cette classe étend Person et a un login et password, ainsi qu'une liste
+ *      de clients
+ *
+ */
 @Entity
 public class Counsellor extends Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String login;
 	private String password;
-	
-	@OneToMany(mappedBy="counsellor", fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "counsellor", fetch = FetchType.EAGER)
 	@Cascade({ CascadeType.PERSIST })
 	private List<Client> clients;
 
@@ -42,13 +45,11 @@ public class Counsellor extends Person implements Serializable {
 	public Counsellor() {
 		super();
 	}
-	
-	public void addClient(Client client){
+
+	public void addClient(Client client) {
 		clients.add(client);
 		client.setCounsellor(this);
 	}
-
-	
 
 	public List<Client> getClients() {
 		return clients;

@@ -13,15 +13,18 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see objet unique compte, ayant un type et un solde. Le compte a une date de dernière
+ *      modification pour un suivi des opérations. Tout compte bancaire a un objet client propriétaire.
+ * 
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BankAccount implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +33,9 @@ public class BankAccount implements Serializable {
 	private String creationDate;
 	private Date dateLastModification = new Date();
 	private AccountType accountType;
-	
-	@ManyToOne (fetch = FetchType.EAGER)
-	@JoinColumn (name="client_id")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "client_id")
 	private Client client;
 
 	public BankAccount() {
@@ -96,10 +99,8 @@ public class BankAccount implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BankAccount accountNumber=" + accountNumber + ", balance=" + balance;
+		return "Compte bancaire: type compte " + accountType + " numéro de compte " + accountNumber + ", solde "
+				+ balance;
 	}
 
-	
-	
-	
 }

@@ -9,6 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see cette classe sert au virement entre comptes. Elle stocke les numéros des
+ *      comptes concernés, ainsi que le montant et la date. Le vierment a un
+ *      identifiant unique qui sert dans les historiques de virement
+ *
+ */
 @Entity
 public class Transfer implements Serializable {
 
@@ -23,7 +31,6 @@ public class Transfer implements Serializable {
 	private double amount;
 	private long numAccountSender;
 	private long numAccountReciever;
-
 
 	public Transfer() {
 		super();
@@ -64,8 +71,6 @@ public class Transfer implements Serializable {
 		this.amount = amount;
 	}
 
-
-
 	public long getNumAccountSender() {
 		return numAccountSender;
 	}
@@ -82,5 +87,4 @@ public class Transfer implements Serializable {
 		this.numAccountReciever = numAccountReciever;
 	}
 
-	
 }

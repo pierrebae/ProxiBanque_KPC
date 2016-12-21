@@ -18,21 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @ViewScoped
 public class LogoutController {
 
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String logout(HttpSession session) {
-	// session.invalidate();
-	// return "redirect:/login";
-	// }
 
-//	public void logout() throws IOException {
-//		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-//				.getRequest();
-//		try {
-//			request.logout();
-//		} catch (ServletException ex) {
-//			throw new IOException(ex);
-//		}
-//	}
 
 	public String logout() throws IOException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();

@@ -14,9 +14,13 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-
-
-
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see cette classe étend Person. il a une adresse et des informations
+ *      personnelles, une liste de comptes bancaires et un conseiller
+ *
+ */
 @Entity
 public class Client extends Person implements Serializable {
 
@@ -25,22 +29,20 @@ public class Client extends Person implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne (fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "counsellor_id")
 	private Counsellor counsellor;
-	
 
-	@OneToMany (mappedBy="client", fetch = FetchType.EAGER)
-	@Cascade({CascadeType.ALL})
-	private List<BankAccount> bankAccounts =new ArrayList<BankAccount>();
-	
+	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+	@Cascade({ CascadeType.ALL })
+	private List<BankAccount> bankAccounts = new ArrayList<BankAccount>();
+
 	@Embedded
-	private Address address=new Address();
-	
+	private Address address = new Address();
+
 	private String telephone;
 	private String email;
 
-	
 	public Client() {
 		super();
 	}
@@ -56,13 +58,12 @@ public class Client extends Person implements Serializable {
 		this.address = address;
 		this.counsellor = counsellor;
 	}
+
 	public Client(String firstName, String lastName, String email, Address address) {
 		super(firstName, lastName);
 		this.email = email;
 		this.address = address;
 	}
-	
-	
 
 	public Client(String email, String telephone, Address address) {
 		super();
@@ -104,11 +105,9 @@ public class Client extends Person implements Serializable {
 		this.counsellor = counsellor;
 	}
 
-
 	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;
 	}
-
 
 	public void setBankAccounts(List<BankAccount> bankAccount) {
 		this.bankAccounts = bankAccount;
@@ -118,9 +117,8 @@ public class Client extends Person implements Serializable {
 	public String toString() {
 		return super.toString();
 	}
-	
-	
-	public void addAccount(BankAccount bankAccount){
+
+	public void addAccount(BankAccount bankAccount) {
 		bankAccounts.add(bankAccount);
 		bankAccount.setClient(this);
 	}
