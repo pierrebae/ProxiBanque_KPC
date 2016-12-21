@@ -3,7 +3,6 @@ package com.proxibanque.service;
 import java.util.List;
 
 import com.proxibanque.model.BankAccount;
-import com.proxibanque.model.Client;
 
 public interface IServiceAccount {
 

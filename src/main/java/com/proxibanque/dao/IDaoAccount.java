@@ -4,6 +4,5 @@ import com.proxibanque.model.BankAccount;
 
 public interface IDaoAccount extends IDao<BankAccount> {
 
-	void removeAccount(Object id) throws Exception;
 	
 }

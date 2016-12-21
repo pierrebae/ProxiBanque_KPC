@@ -16,6 +16,7 @@ import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.proxibanque.model.Client;
 import com.proxibanque.model.Counsellor;
 import com.proxibanque.service.ServiceCounsellor;
 
@@ -33,22 +34,22 @@ public class CounsellorController implements Serializable {
 	private List<Counsellor> selectedCounsellors;
 	private Counsellor selectedCounsellor;
 	private long idCounsellor;
-	
+	private Client client;
+
 	private String login;
 	private String password;
 
-	
 	@PostConstruct
-    public void init() {
+	public void init() {
 		refreshList();
-       
-    }
-	
-	
+
+	}
+
 	public void refreshList() {
 
 		this.counsellor = new Counsellor();
 		this.selectedCounsellor = new Counsellor();
+		this.client = new Client();
 
 		this.counsellors = new ArrayList<Counsellor>();
 		this.selectedCounsellors = new ArrayList<Counsellor>();
@@ -72,9 +73,6 @@ public class CounsellorController implements Serializable {
 		refreshList();
 		return "listCounsellors";
 	}
-	
-
-	
 
 	public String removeCounsellor(Counsellor counsellor) throws Exception {
 
@@ -187,6 +185,14 @@ public class CounsellorController implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 }
