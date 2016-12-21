@@ -51,13 +51,7 @@ public class CounsellorController implements Serializable {
 	private Client client;
 
 	private BarChartModel barModel;
-<<<<<<< HEAD
-	// private BarChartModel model;
-	// private ChartSeries nombreClient;
 
-=======
-	
->>>>>>> origin/master
 	private String login;
 	private String password;
 
@@ -162,7 +156,7 @@ public class CounsellorController implements Serializable {
 			int nombre = counsellor.getClients().size();
 			nombreClients.set(counsellor.getLastName(), nombre);
 		}
-<<<<<<< HEAD
+
 
 		model.addSeries(nombreClients);
 
@@ -187,32 +181,7 @@ public class CounsellorController implements Serializable {
 		yAxis.setMin(0);
 		yAxis.setMax(10);
 	}
-=======
-        model.addSeries(nombreClients);
-        return model;
-    }
-     
-    private void createBarModels() {
-        createBarModel();
-    }
-	
-	private void createBarModel() {
-        barModel = initBarModel();
-         
-        barModel.setTitle("Nombre de Clients par Conseillers");
-        barModel.setLegendPosition("ne");
-         
-        Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Conseillers");
-         
-        Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Nombre de Clients");
-        yAxis.setMin(0);
-        yAxis.setMax(10);
-    }
-	
-	
->>>>>>> origin/master
+
 
 	public List<Counsellor> getSelectedCounsellors() {
 		return selectedCounsellors;

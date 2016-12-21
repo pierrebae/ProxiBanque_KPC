@@ -72,32 +72,18 @@ public class ClientController implements Serializable {
 	private Counsellor counsellor;
 	private Counsellor selectedCounsellor;
 	private List<Counsellor> selectedCounsellors;
-<<<<<<< HEAD
-=======
+
 	
 	private PieChartModel pieModel;
 	
->>>>>>> origin/master
+
 
 	@PostConstruct
 	public void init() throws Exception {
 		refreshList();
 		createPieModels();
-		List<Client> clientsSourceSender = new ArrayList<Client>();
-		List<Client> clientsTargetSender = new ArrayList<Client>();
-		List<Client> clientsSourceReciever = new ArrayList<Client>();
-		List<Client> clientsTargetReciever = new ArrayList<Client>();
+		
 
-		clientsSourceSender.addAll(clientService.findAll());
-		clientsSourceReciever.addAll(clientService.findAll());
-<<<<<<< HEAD
-		clientsForDualSender = new DualListModel<Client>(clientsSourceSender, clientsTargetSender);
-		clientsForDualReciever = new DualListModel<Client>(clientsSourceSender, clientsTargetSender);
-
-=======
-		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
-		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
->>>>>>> origin/master
 	}
 
 	/**
@@ -234,11 +220,7 @@ public class ClientController implements Serializable {
 			return "";
 		}
 	}
-<<<<<<< HEAD
 
-	public String date() {
-=======
-	
 	
 	
 	private void createPieModels() {
@@ -284,7 +266,7 @@ public class ClientController implements Serializable {
 	
 	
 	public String date(){
->>>>>>> origin/master
+
 		Date creationDate = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		simpleDate = dateFormat.format(creationDate);
@@ -446,12 +428,8 @@ public class ClientController implements Serializable {
 		this.selectedCounsellors = selectedCounsellors;
 	}
 
-<<<<<<< HEAD
-=======
 	public PieChartModel getPieModel() {
 		return pieModel;
 	}
-	
-	
->>>>>>> origin/master
+
 }

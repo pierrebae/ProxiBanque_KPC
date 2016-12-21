@@ -34,7 +34,7 @@ public class BankAccount implements Serializable {
 	private String creationDate;
 	private Date dateLastModification = new Date();
 	private AccountType accountType;
-	private String CURRENT_ACCOUNT;
+	
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
