@@ -7,15 +7,12 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 	<ui:define name="content">
-		<f:metadata>
-			<f:event type="preRenderView"
-				listener="#{accountController.loadAccount()}" />
-		</f:metadata>
+		
 
 		<h:form>
 
 			<p:dataTable value="#{transferHistoryController.transfers}" var="transfer"
-				sortMode="multiple">
+				sortMode="multiple" rowKey="#{transfer.idTransfer}">
 
 				<p:column headerText="Date du Virement"
 					sortBy="#{transfer.transferDate}" style="text-align:center;">
@@ -26,12 +23,12 @@
 					<h:outputText value="#{transfer.amount}" />
 				</p:column>
 
-				<p:column headerText="N° Compte émetteur" sortBy="#{compte.accountType}" style="text-align:center;">
-					<h:outputText value="#{compte.accountType}" />
+				<p:column headerText="N° Compte émetteur" sortBy="#{transfer.numAccountSender}" style="text-align:center;">
+					<h:outputText value="#{transfer.numAccountSender}" />
 				</p:column>
 
-				<p:column headerText="N° Compte bénéficiaire" sortBy="#{compte.balance}" style="text-align:right;">
-					<h:outputText value="#{compte.balance}" />
+				<p:column headerText="N° Compte bénéficiaire" sortBy="#{transfer.numAccountReciever}"  style="text-align:right;">
+					<h:outputText value="#{transfer.numAccountReciever}" />
 				</p:column>
 
 			

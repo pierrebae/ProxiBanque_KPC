@@ -1,5 +1,6 @@
 package com.proxibanque.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,17 +10,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Transfer {
+public class Transfer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idTranfer;
+	private long idTransfer;
 	private String transferDate;
 	private double amount;
 	private long numAccountSender;
 	private long numAccountReciever;
-	private String clientName;
-	private String clientFirstName;
+
 
 	public Transfer() {
 		super();
@@ -45,11 +49,11 @@ public class Transfer {
 	}
 
 	public long getIdTranfer() {
-		return idTranfer;
+		return idTransfer;
 	}
 
 	public void setIdTranfer(long idTranfer) {
-		this.idTranfer = idTranfer;
+		this.idTransfer = idTranfer;
 	}
 
 	public double getAmount() {
@@ -60,20 +64,23 @@ public class Transfer {
 		this.amount = amount;
 	}
 
-	public String getClientName() {
-		return clientName;
+
+
+	public long getNumAccountSender() {
+		return numAccountSender;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setNumAccountSender(long numAccountSender) {
+		this.numAccountSender = numAccountSender;
 	}
 
-	public String getClientFirstName() {
-		return clientFirstName;
+	public long getNumAccountReciever() {
+		return numAccountReciever;
 	}
 
-	public void setClientFirstName(String clientFirstName) {
-		this.clientFirstName = clientFirstName;
+	public void setNumAccountReciever(long numAccountReciever) {
+		this.numAccountReciever = numAccountReciever;
 	}
 
+	
 }

@@ -20,7 +20,8 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IDaoAccount daoAccount;
-	
+	@Autowired
+	private IDaoTransfer daoTransfer;
 
 
 	@Override
@@ -65,8 +66,8 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 		
 		ServiceTransfer serviceTransfer= new ServiceTransfer();
 		Transfer transfer=new Transfer(numAccountSender,numAccountReciever,amount);
-		serviceTransfer.persist(transfer);
-		
+//		serviceTransfer.persist(transfer);
+		daoTransfer.persist(transfer);
 
 		
 	}
