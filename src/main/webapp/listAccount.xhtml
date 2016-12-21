@@ -18,24 +18,28 @@
 				sortMode="multiple">
 
 				<p:column headerText="Numéro de compte"
-					sortBy="#{compte.accountNumber}">
+					sortBy="#{compte.accountNumber}" style="text-align:center;">
 					<h:outputText value="#{compte.accountNumber}" />
 				</p:column>
 
-				<p:column headerText="Type de compte" sortBy="#{compte.accountType}">
+				<p:column headerText="Client" sortBy="#{compte.client}">
+					<h:outputText value="#{compte.client}" />
+				</p:column>
+
+				<p:column headerText="Type de compte" sortBy="#{compte.accountType}" style="text-align:center;">
 					<h:outputText value="#{compte.accountType}" />
 				</p:column>
 
-				<p:column headerText="Solde" sortBy="#{compte.balance}">
+				<p:column headerText="Solde" sortBy="#{compte.balance}" style="text-align:right;">
 					<h:outputText value="#{compte.balance}" />
 				</p:column>
 
 				<p:column headerText="Date de Création"
-					sortBy="#{compte.creationDate}">
+					sortBy="#{compte.creationDate}" style="text-align:center;">
 					<h:outputText value="#{compte.creationDate}" />
 				</p:column>
 
-				<p:column headerText="Effacer" style="width:8%">
+				<p:column headerText="Effacer" style="width:8%;text-align:center">
 					<h:commandLink id="a" value="" styleClass="fa fa-trash medium"
 						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce compte?')) return false"
 						action="#{accountController.removeAccount(compte)}" />
