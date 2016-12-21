@@ -251,8 +251,6 @@ public class ClientController implements Serializable {
 			} else {
 				nombreClientSup.add(client);
 			}
-			System.out.println(sommeCompte);
-			System.out.println(listAccounts);
 		}
         
         pieModel.set("Solde des Comptes < 0", nombreClient0.size());
