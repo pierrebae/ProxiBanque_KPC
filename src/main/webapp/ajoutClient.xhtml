@@ -9,17 +9,46 @@
 
 
 	<ui:define name="content">
+
+
+		<div class="container">
+			<div class="col-md-12 col-lg-offset-2">
+				<div class="login-signup">
+					<div class="row">
+						<div class="col-md-8 nav-tab-holder"></div>
+					</div>
+
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="home">
+							<div class="row">
+
+								<div class="col-md-8 mobile-pull">
+									<article role="login">
+									<h3 class="text-center">
+										<i class="fa fa-plus"></i>Ajouter un client
+									</h3>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="addClient">
 			<h:form>
-
-
-				<fieldset id="fieldset">
-					<legend>Conseiller</legend>
+				<fieldset id="field">
+					<legend>Choisissez un conseiller</legend>
 					<p:dataTable id="choixConseiller"
 						value="#{counsellorController.counsellors}" var="counsellor"
-						sortMode="multiple"
+						sortMode="multiple" styleClass="et_datatable"
 						selection="#{clientController.selectedCounsellor}"
-						rowKey="#{counsellor.id}">
+						paginator="true" rows="10"
+						currentPageReportTemplate=" {startRecord}-{endRecord} "
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" rowKey="#{counsellor.id}"
+						emptyMessage="Il n'existe pas de conseiller avec ce critère de tri">
 
 						<p:column headerText="Nom" sortBy="#{counsellor.lastName}"
 							filterBy="#{counsellor.lastName}">
@@ -38,45 +67,53 @@
 
 
 
-				<fieldset id="fieldset">
-					<legend>Données personnelles</legend>
+				<fieldset id="field">
+					<h:outputText id="requis" value="* champs requis"
+						style="font-size:75%;" />
+					<legend>Données personnelles du client</legend>
 
 					<h:panelGrid columns="3" cellpadding="5">
 
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}"
-							required="true">
-							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
+							required="true" validatorMessage="Nom non valable"
+							requiredMessage="Ce champ est obligatoire">
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{2,32}$" />
 						</p:inputText>
 						<p:message for="nom" />
 
 						<p:outputLabel value="Prénom" for="prenom" />
 						<p:inputText id="prenom"
-							value="#{clientController.client.firstName}" required="true">
-							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
+							value="#{clientController.client.firstName}" required="true"
+							validatorMessage="Prénom non valable"
+							requiredMessage="Ce champ est obligatoire">
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{2,32}$" />
 						</p:inputText>
 						<p:message for="prenom" />
 					</h:panelGrid>
 
-					<label id="label">Addresse</label>
+					<label id="label">Adresse</label>
 					<h:panelGrid columns="3" cellpadding="5">
 						<p:outputLabel value="Numéro" for="streetNumber" />
 						<p:inputText id="streetNumber"
-							value="#{clientController.client.address.streetNumber}">
+							value="#{clientController.client.address.streetNumber}"
+							validatorMessage="Merci de rentrer un numéro de voie valable">
 							<f:validateRegex pattern="^[0-9]{1,10}$" />
 						</p:inputText>
 						<p:message for="streetNumber" />
 
 						<p:outputLabel value="Rue" for="streetName" />
 						<p:inputText id="streetName"
-							value="#{clientController.client.address.streetName}">
+							value="#{clientController.client.address.streetName}"
+							validatorMessage="Nom de voie non valable">
 							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="streetName" />
 
 						<p:outputLabel value="Code postal" for="postalCode" />
 						<p:inputText id="postalCode"
-							value="#{clientController.client.address.postalCode}" size="5">
+							value="#{clientController.client.address.postalCode}" size="5"
+							validatorMessage="Merci de rentrer un code postal français">
 							<f:validateRegex
 								pattern="^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$" />
 						</p:inputText>
@@ -84,7 +121,8 @@
 
 						<p:outputLabel value="Ville" for="city" />
 						<p:inputText id="city"
-							value="#{clientController.client.address.city}">
+							value="#{clientController.client.address.city}"
+							validatorMessage="Nom de ville non valable">
 							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="city" />
@@ -94,12 +132,14 @@
 					<h:panelGrid columns="3" cellpadding="5">
 						<p:outputLabel value="N° téléphone" for="telephone" />
 						<p:inputText id="telephone"
-							value="#{clientController.client.telephone}">
+							value="#{clientController.client.telephone}"
+							validatorMessage="Merci de rentrer un numéro de téléphone à 10 chiffres">
 							<f:validateRegex pattern="^[0-9]{10,10}$" />
 						</p:inputText>
 						<p:message for="telephone" />
 						<p:outputLabel value="Email" for="email" />
-						<p:inputText id="email" value="#{clientController.client.email}">
+						<p:inputText id="email" value="#{clientController.client.email}"
+							validatorMessage="Adresse e-mail non valable">
 							<f:validateRegex
 								pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
 						</p:inputText>
@@ -107,8 +147,8 @@
 					</h:panelGrid>
 				</fieldset>
 
-				<fieldset id="fieldset">
-					<legend>Compte Bancaire</legend>
+				<fieldset id="field">
+					<legend>Création d'un compte bancaire</legend>
 					<h:panelGrid columns="2" cellpadding="5">
 						<h:outputLabel for="soldeInput" value="Solde" />
 						<p:inputText id="soldeInput"
@@ -125,7 +165,7 @@
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</fieldset>
-				<p:commandButton value="Submit"
+				<p:commandButton value="Valider"
 					action="#{clientController.saveClientAndAccount}"
 					validateClient="true" />
 
@@ -137,5 +177,4 @@
 
 		</div>
 	</ui:define>
-
 </ui:composition>

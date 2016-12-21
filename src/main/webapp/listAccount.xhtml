@@ -7,18 +7,54 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 	<ui:define name="content">
+
+		<div class="container">
+			<div class="col-md-12 col-lg-offset-2">
+				<div class="login-signup">
+					<div class="row">
+						<div class="col-md-8 nav-tab-holder"></div>
+					</div>
+
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="home">
+							<div class="row">
+
+								<div class="col-md-8 mobile-pull">
+									<article role="login">
+									<h3 class="text-center">
+										<i class="fa fa-list"></i>Liste des comptes bancaires
+									</h3>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<f:metadata>
 			<f:event type="preRenderView"
 				listener="#{accountController.loadAccount()}" />
 		</f:metadata>
 
-		<h:form>
+		<h:form if="formAccounts">
 
-			<p:dataTable value="#{accountController.bankAccounts}" var="compte"
-				sortMode="multiple">
+			<p:growl id="messages" showDetail="true" life="3000" />
+			<p:dataTable id="tempAccounts"
+				value="#{accountController.bankAccounts}" var="compte"
+				styleClass="et_datatable" editable="true" paginator="true" rows="10"
+				currentPageReportTemplate=" {startRecord}-{endRecord} "
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single"
+				rowKey="#{compte.accountNumber}"
+				emptyMessage="Ce compte n'existe pas">
+				<!-- 				filteredValue="#{accountController.selectedAccount}"> -->
 
 				<p:column headerText="Numéro de compte"
-					sortBy="#{compte.accountNumber}" style="text-align:center;">
+					sortBy="#{compte.accountNumber}" style="text-align:center;"
+					filterBy="#{compte.accountNumber}" filterMatchMode="contains">
 					<h:outputText value="#{compte.accountNumber}" />
 				</p:column>
 
@@ -26,11 +62,17 @@
 					<h:outputText value="#{compte.client}" />
 				</p:column>
 
-				<p:column headerText="Type de compte" sortBy="#{compte.accountType}" style="text-align:center;">
-					<h:outputText value="#{compte.accountType}" />
+				<p:column headerText="Type de compte" sortBy="#{compte.accountType}"
+					style="text-align:center;">
+					<h:outputText value="Compte Courant"
+						rendered="#{compte.accountType == 'CURRENT_ACCOUNT'}" />
+					<h:outputText value="Compte Epargne"
+						rendered="#{compte.accountType == 'SAVINGS_ACCOUNT'}" />
 				</p:column>
 
-				<p:column headerText="Solde" sortBy="#{compte.balance}" style="text-align:right;">
+
+				<p:column headerText="Solde" sortBy="#{compte.balance}"
+					style="text-align:right;">
 					<h:outputText value="#{compte.balance}" />
 				</p:column>
 

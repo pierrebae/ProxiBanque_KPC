@@ -13,6 +13,34 @@
 
 	<ui:define name="content">
 
+
+		<div class="container">
+			<div class="col-md-12 col-lg-offset-2">
+				<div class="login-signup">
+					<div class="row">
+						<div class="col-md-8 nav-tab-holder"></div>
+					</div>
+
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="home">
+							<div class="row">
+
+								<div class="col-md-8 mobile-pull">
+									<article role="login">
+									<h3 class="text-center">
+										<i class="fa fa-list"></i>Liste des clients
+									</h3>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 		<h:form id="formClients">
 
 			<p:growl id="messages" showDetail="true" life="3000" />
@@ -33,7 +61,7 @@
 				</p:column>
 
 				<p:column headerText="Nom" sortBy="#{tempClient.lastName}"
-					filterBy="#{tempClient.lastName}" filterMatchMode="contains">>
+					filterBy="#{tempClient.lastName}" filterMatchMode="contains">
 					<h:outputText value="#{tempClient.lastName}" />
 				</p:column>
 
@@ -51,15 +79,11 @@
 				</p:column>
 
 
-
-				<p:column headerText="Date Création" sortBy="" style="text-align:center;">
-					<h:outputText value="" />
-				</p:column>
-
 				<!-- boutons -->
 
 
-				<p:column headerText="Mise à jour" style="width:8%;text-align:center">
+				<p:column headerText="Mise à jour"
+					style="width:8%;text-align:center">
 					<p:commandLink update=":formClients:display"
 						oncomplete="PF('detailsDlg').show()"
 						image="ui-icon ui-icon-search" title="Details">
@@ -105,13 +129,13 @@
 						<h:outputText value="#{tempClient.email}" />
 						<h:outputText value="" />
 						<h:outputText value="Adresse "
-							style="color:black;  font-weight: bold;" />
+							style="color:black;  font-weight: bold; text-decoration: underline;" />
 						<h:outputText value="" />
 						<h:outputText value="" />
 						<h:outputText value="" />
 						<h:outputText value="Voie : " style="color:black" />
 						<h:outputText
-							value="#{tempClient.address.streetNumber}, #{tempClient.address.streetName}" />
+							value="#{tempClient.address.streetNumber} #{tempClient.address.streetName}" />
 						<h:outputText value="" />
 						<h:outputText value="Code Postal : " style="color:black" />
 						<h:outputText value="#{tempClient.address.postalCode}" />
@@ -119,7 +143,7 @@
 						<h:outputText value="Ville : " style="color:black" />
 						<h:outputText value="#{tempClient.address.city}" />
 						<h:outputText value="Comptes  "
-							style="color:black;  font-weight: bold;" />
+							style="color:black;  font-weight: bold; text-decoration: underline; " />
 						<h:outputText value="" />
 						<h:outputText value="" />
 					</p:panelGrid>
@@ -129,22 +153,18 @@
 						style="width:600px">
 
 						<p:column headerText="Numéro compte"
-							sortBy="#{account.accountNumber}">
+							sortBy="#{account.accountNumber}" style="text-align:center;">
 							<h:outputText value="#{account.accountNumber}" />
 						</p:column>
-						<p:column headerText="Type compte">
-							<!-- 							<c:choose> -->
-							<!-- 								<c:when test="#{account.accountType} eq 'CURRENT_ACCOUNT'"> -->
+
+						<p:column headerText="Type de compte" style="text-align:center;">
 							<h:outputText value="Compte Courant"
 								rendered="#{account.accountType == 'CURRENT_ACCOUNT'}"></h:outputText>
-							<!-- 								</c:when> -->
-							<!-- 								<c:otherwise> -->
 							<h:outputText value="Compte Epargne"
 								rendered="#{account.accountType == 'SAVINGS_ACCOUNT'}"></h:outputText>
-							<!-- 								</c:otherwise> -->
-<!-- 							</c:choose> -->
 						</p:column>
-						<p:column headerText="Solde" sortBy="#{account.balance}">
+
+						<p:column headerText="Solde" sortBy="#{account.balance}" style="text-align:right;">
 							<h:outputText value="#{account.balance}" />
 						</p:column>
 					</p:dataTable>
@@ -162,54 +182,85 @@
 				widgetVar="detailsDlg" resizable="false" width="750" height="400"
 				showEffect="clip" hideEffect="clip" modal="true">
 
-				<h:panelGrid id="display" columns="2" cellpadding="4"
+				<h:panelGrid id="display" columns="3" cellpadding="5"
 					style="margin:0 auto;">
 					<h:outputText value="Nom" for="lastName"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="lastName"
 						value="#{clientController.selectedClient.lastName}"
-						label="lastName" />
+						label="lastName" validatorMessage="Nom non valable">
+						<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
+					</p:inputText>
+					<p:message for="lastName" />
 
 					<h:outputText value="Prénom" for="firstName"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="firstName"
 						value="#{clientController.selectedClient.firstName}"
-						label="firstName" />
+						label="firstName" validatorMessage="Prénom non valable">
+						<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
+					</p:inputText>
+					<p:message for="firstName" />
 
 					<h:outputText value="Téléphone" for="telephone"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="telephone"
 						value="#{clientController.selectedClient.telephone}"
-						label="telephone" />
+						label="telephone"
+						validatorMessage="Merci de rentrer un numéro de téléphone à 10 chiffres">
+						<f:validateRegex pattern="^[0-9]{10,10}$" />
+					</p:inputText>
+					<p:message for="telephone" />
 
 					<h:outputText value="E-mail" for="email"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="email"
-						value="#{clientController.selectedClient.email}" label="email" />
+						value="#{clientController.selectedClient.email}" label="email"
+						validatorMessage="Adresse e-mail non valable">
+						<f:validateRegex
+							pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+					</p:inputText>
+					<p:message for="email" />
 
 					<h:outputText value="N° de voie" for="streetNumber"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="streetNumber"
 						value="#{clientController.selectedClient.address.streetNumber}"
-						label="streetNumber" />
+						label="streetNumber"
+						validatorMessage="Merci de rentrer un numéro de voie valable">
+						<f:validateRegex pattern="^[0-9]{1,10}$" />
+					</p:inputText>
+					<p:message for="streetNumber" />
 
-					<h:outputText value="streetName" for="streetName"
+					<h:outputText value="Nom de voie" for="streetName"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="streetName"
 						value="#{clientController.selectedClient.address.streetName}"
-						label="streetName" />
+						label="streetName" validatorMessage="Nom de voie non valable">
+						<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{5,60}$" />
+					</p:inputText>
+					<p:message for="streetName" />
 
 					<h:outputText value="Code postal" for="postalCode"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="postalCode"
 						value="#{clientController.selectedClient.address.postalCode}"
-						label="postalCode" />
+						label="postalCode"
+						validatorMessage="Merci de rentrer un code postal français">
+						<f:validateRegex
+							pattern="^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$" />
+					</p:inputText>
+					<p:message for="postalCode" />
 
 					<h:outputText value="Ville" for="city"
 						style="padding-left: 30px; padding-right: 30px;" />
 					<p:inputText id="city"
 						value="#{clientController.selectedClient.address.city}"
-						label="city" />
+						label="city">
+						<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,60}$"
+							validatorMessage="Nom de ville non valable" />
+					</p:inputText>
+					<p:message for="city" />
 				</h:panelGrid>
 
 

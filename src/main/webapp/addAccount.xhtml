@@ -9,19 +9,72 @@
 
 	<ui:define name="content">
 
+		<div class="container">
+			<div class="col-md-12 col-lg-offset-2">
+				<div class="login-signup">
+					<div class="row">
+						<div class="col-md-8 nav-tab-holder"></div>
+					</div>
+
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="home">
+							<div class="row">
+
+								<div class="col-md-8 mobile-pull">
+									<article role="login">
+									<h3 class="text-center">
+										<i class="fa fa-plus"></i>Ajouter un compte
+									</h3>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- <div class="container-fluid"> -->
 		<div class="addAccount">
 			<h:form>
 
 
+
+
 				<fieldset id="fieldset">
-					<legend>Compte Bancaire</legend>
+					<legend>Choisissez un client</legend>
+
+					<p:dataTable id="choixClient" value="#{clientController.clients}"
+						var="client" sortMode="multiple" styleClass="et_datatable"
+						selection="#{accountController.selectedClient}" paginator="true"
+						rows="10" currentPageReportTemplate=" {startRecord}-{endRecord} "
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" rowKey="#{client.id}"
+						emptyMessage="Il n'existe pas de client avec ce nom-là">
+
+						<p:column headerText="Nom" sortBy="#{client.lastName}"
+							filterBy="#{client.lastName}">
+							<h:outputText value="#{client.lastName}" />
+						</p:column>
+
+						<p:column headerText="Prénom" sortBy="#{client.firstName}">
+							<h:outputText value="#{client.firstName}" />
+						</p:column>
+
+						<p:column selectionMode="single" style="width:40px;"></p:column>
+					</p:dataTable>
+				</fieldset>
+				
+				<fieldset id="fieldset">
+					<legend>Informations du compte</legend>
 					<h:panelGrid columns="3" cellpadding="5">
 
-						<p:outputLabel value="Solde : " for="balance" />
+						<p:outputLabel value="Solde (&euro;) : " for="balance" />
 						<p:inputText id="balance"
-							value="#{accountController.bankAccount.balance}" label="currency">
-							<f:convertNumber type="currency" />
+							value="#{accountController.bankAccount.balance}">
+							<!-- 							 label="currency"> -->
+							<!-- 							<f:convertNumber type="currency" /> -->
 						</p:inputText>
 						<p:message for="balance"></p:message>
 
@@ -33,31 +86,10 @@
 							<f:selectItem itemLabel="Compte Courant"
 								itemValue="CURRENT_ACCOUNT" />
 						</p:selectOneMenu>
-
 					</h:panelGrid>
 				</fieldset>
 
-				<fieldset id="fieldset">
-					<legend>Client</legend>
-					<p:dataTable id="choixClient" value="#{clientController.clients}"
-						var="client" sortMode="multiple"
-						selection="#{accountController.selectedClient}"
-						rowKey="#{client.id}">
-
-						<p:column headerText="Nom" sortBy="#{client.lastName}"
-							filterBy="#{client.lastName}">
-							<h:outputText value="#{client.lastName}" />
-						</p:column>
-
-						<p:column headerText="Prénom" sortBy="#{client.firstName}">
-							<h:outputText value="#{client.firstName}" />
-						</p:column>
-						
-						<p:column selectionMode="single" style="width:40px;"></p:column>
-					</p:dataTable>
-				</fieldset>
-
-				<p:commandButton value="Submit"
+				<p:commandButton value="Valider"
 					action="#{accountController.saveAccount}" />
 			</h:form>
 		</div>
