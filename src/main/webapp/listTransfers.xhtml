@@ -7,31 +7,41 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 	<ui:define name="content">
-		
+	<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{transferHistoryController.refreshList()}" />
+		</f:metadata>
 
 		<h:form>
 
-			<p:dataTable value="#{transferHistoryController.transfers}" var="transfer"
-				sortMode="multiple" rowKey="#{transfer.idTransfer}">
+			<p:dataTable value="#{transferHistoryController.transfers}"
+				var="transfer" sortMode="multiple" paginator="true" rows="10"
+				currentPageReportTemplate=" {startRecord}-{endRecord} "
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" 
+				rowKey="#{transfer.idTransfer}">
 
 				<p:column headerText="Date du Virement"
 					sortBy="#{transfer.transferDate}" style="text-align:center;">
 					<h:outputText value="#{transfer.transferDate}" />
 				</p:column>
 
-				<p:column headerText="Montant du virement" sortBy="#{transfer.amount}">
+				<p:column headerText="Montant du virement"
+					sortBy="#{transfer.amount}">
 					<h:outputText value="#{transfer.amount}" />
 				</p:column>
 
-				<p:column headerText="N° Compte émetteur" sortBy="#{transfer.numAccountSender}" style="text-align:center;">
+				<p:column headerText="N° Compte émetteur"
+					sortBy="#{transfer.numAccountSender}" style="text-align:center;">
 					<h:outputText value="#{transfer.numAccountSender}" />
 				</p:column>
 
-				<p:column headerText="N° Compte bénéficiaire" sortBy="#{transfer.numAccountReciever}"  style="text-align:right;">
+				<p:column headerText="N° Compte bénéficiaire"
+					sortBy="#{transfer.numAccountReciever}" style="text-align:right;">
 					<h:outputText value="#{transfer.numAccountReciever}" />
 				</p:column>
 
-			
+
 			</p:dataTable>
 
 		</h:form>

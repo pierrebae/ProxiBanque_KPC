@@ -1,5 +1,6 @@
 package com.proxibanque.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,16 @@ import com.proxibanque.service.ServiceTransfer;
 
 @Component("transferHistoryController")
 @ViewScoped
-public class TransferHistoryController {
+public class TransferHistoryController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ServiceTransfer serviceTransfer;
-
+	
 	private List<Transfer> transfers;
 
 	@PostConstruct
