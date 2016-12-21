@@ -39,7 +39,6 @@ public class AccountController implements Serializable {
 	private ServiceAccount serviceAccount;
 
 	private double amount =0L;
-
 	private BankAccount bankAccount;
 	private BankAccount bankAccountSender;
 	private List<BankAccount> bankAccounts;
@@ -119,16 +118,7 @@ public class AccountController implements Serializable {
 		return simpleDate;
 	}
 
-	public void displayLocation() {
-	       
-		 FacesMessage msg;
-	        if(numAccountSender!= 0L && numAccountReciever!=0L && amount!=0L )
-	            msg = new FacesMessage("Ca marche");
-	        else
-	            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected."); 
-	             
-	        FacesContext.getCurrentInstance().addMessage(null, msg);  
-	    }
+
 
 	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;

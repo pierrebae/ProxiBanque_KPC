@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.proxibanque.dao.IDaoAccount;
+import com.proxibanque.dao.IDaoTransfer;
 import com.proxibanque.model.BankAccount;
+import com.proxibanque.model.Transfer;
 
 @Component
 public class ServiceAccount implements IServiceAccount , Serializable{
@@ -18,6 +20,8 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IDaoAccount daoAccount;
+	
+
 
 	@Override
 	public void persist(BankAccount account) throws Exception {
@@ -55,6 +59,11 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 		
 		daoAccount.merge(sender);
 		daoAccount.merge(reciever);
+		
+		ServiceTransfer serviceTransfer= new ServiceTransfer();
+		Transfer transfer=new Transfer(numAccountSender,numAccountReciever,amount);
+		serviceTransfer.persist(transfer);
+		
 
 	}
 
