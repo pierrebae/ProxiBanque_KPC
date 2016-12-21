@@ -63,9 +63,9 @@ public class ServiceAccount implements IServiceAccount , Serializable{
 		daoAccount.merge(sender);
 		daoAccount.merge(reciever);
 		
-		ServiceTransfer serviceTransfer= new ServiceTransfer();
-		Transfer transfer=new Transfer(numAccountSender,numAccountReciever,amount);
-		serviceTransfer.persist(transfer);
+//		ServiceTransfer serviceTransfer= new ServiceTransfer();
+//		Transfer transfer=new Transfer(numAccountSender,numAccountReciever,amount);
+//		serviceTransfer.persist(transfer);
 		
 
 		

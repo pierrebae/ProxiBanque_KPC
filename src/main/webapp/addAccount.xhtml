@@ -40,11 +40,8 @@
 			<h:form>
 
 
-
-
 				<fieldset id="fieldset">
 					<legend>Choisissez un client</legend>
-
 					<p:dataTable id="choixClient" value="#{clientController.clients}"
 						var="client" sortMode="multiple" styleClass="et_datatable"
 						selection="#{accountController.selectedClient}" paginator="true"
@@ -89,7 +86,7 @@
 					</h:panelGrid>
 				</fieldset>
 
-				<p:commandButton value="Valider"
+				<p:commandButton id="button" value="Valider"
 					action="#{accountController.saveAccount}" />
 			</h:form>
 		</div>

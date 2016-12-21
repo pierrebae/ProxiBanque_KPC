@@ -10,7 +10,6 @@
 
 	<ui:define name="content">
 
-
 		<div class="container">
 			<div class="col-md-12 col-lg-offset-2">
 				<div class="login-signup">
@@ -106,7 +105,7 @@
 						<p:inputText id="streetName"
 							value="#{clientController.client.address.streetName}"
 							validatorMessage="Nom de voie non valable">
-							<f:validateRegex pattern="^[a-zA-Z0-9'איטש._\s-]{5,60}$" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'איטש.\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="streetName" />
 
@@ -123,7 +122,7 @@
 						<p:inputText id="city"
 							value="#{clientController.client.address.city}"
 							validatorMessage="Nom de ville non valable">
-							<f:validateRegex pattern="^[a-zA-Z0-9'איטש._\s-]{5,60}$" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'איטש._\s-]{3,60}$" />
 						</p:inputText>
 						<p:message for="city" />
 					</h:panelGrid>
@@ -165,10 +164,11 @@
 						</p:selectOneMenu>
 					</h:panelGrid>
 				</fieldset>
-				<p:commandButton value="Valider"
-					action="#{clientController.saveClientAndAccount}"
-					validateClient="true" />
-
+				<div class="bouton">
+					<p:commandButton id="button" value="Valider"
+						action="#{clientController.saveClientAndAccount}"
+						validateClient="true" />
+				</div>
 
 
 			</h:form>
