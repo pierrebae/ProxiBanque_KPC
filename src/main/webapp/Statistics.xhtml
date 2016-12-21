@@ -10,10 +10,15 @@
 
 	<ui:define name="content">
 		<div class="stats">
+			<fieldset id="field">
+				<p:chart type="bar" model="#{counsellorController.barModel}"></p:chart>
+			</fieldset>
 			
-			<p:chart type="bar" model="#{counsellorController.barModel}"></p:chart>
+			<br/>
 			
-			
+			<fieldset id="field">
+				<p:chart type="pie" model="#{clientController.pieModel}"></p:chart>
+			</fieldset>
 		</div>
 	</ui:define>
 
