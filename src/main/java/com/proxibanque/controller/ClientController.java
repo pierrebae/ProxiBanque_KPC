@@ -22,6 +22,7 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.chart.PieChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -70,11 +71,14 @@ public class ClientController implements Serializable {
 	private Counsellor counsellor;
 	private Counsellor selectedCounsellor;
 	private List<Counsellor> selectedCounsellors;
-
+	
+	private PieChartModel pieModel;
+	
 
 	@PostConstruct
 	public void init() throws Exception {
 		refreshList();
+		createPieModels();
 		List<Client> clientsSourceSender = new ArrayList<Client>();
         List<Client> clientsTargetSender = new ArrayList<Client>();
         List<Client> clientsSourceReciever = new ArrayList<Client>();
@@ -84,7 +88,6 @@ public class ClientController implements Serializable {
 		clientsSourceReciever.addAll(clientService.findAll());
 		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
 		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
-
 	}
 
 	public void refreshList() {
@@ -218,6 +221,52 @@ public class ClientController implements Serializable {
 			return "";
 		}
 	}
+	
+	
+	
+	private void createPieModels() {
+		createPieModel();
+	}
+	
+	private void createPieModel() {
+        pieModel = new PieChartModel();
+        
+        double sommeCompte = 0;
+    	List<Client> nombreClient0 = new ArrayList<>();
+    	List<Client> nombreClient500= new ArrayList<>();
+    	List<Client> nombreClient5000= new ArrayList<>();
+    	List<Client> nombreClientSup= new ArrayList<>();
+
+        for (Client client : clients) {
+        	List<BankAccount> listAccounts = client.getBankAccounts();
+			for (BankAccount bankAccount : listAccounts) {
+				sommeCompte	+= bankAccount.getBalance();
+				if (sommeCompte < 0) {
+		    		nombreClient0.add(client);
+		    	} else if (sommeCompte < 500 && sommeCompte >= 0) {
+		    		nombreClient500.add(client);
+		    	} else if (sommeCompte < 5000 && sommeCompte >=500){
+		    		nombreClient5000.add(client);
+		    	} else {
+		    		nombreClientSup.add(client);
+		    	}
+				System.out.println(sommeCompte);
+			}
+			System.out.println(listAccounts);
+		}
+        
+        pieModel.set("Solde des Comptes < 0", nombreClient0.size());
+        pieModel.set("Solde des Comptes entre 0 et 500", nombreClient500.size());
+        pieModel.set("Solde des Comptes entre 500 et 5000", nombreClient5000.size());
+        pieModel.set("Solde des Comptes > 5000", nombreClientSup.size());
+         
+        pieModel.setTitle("Nombre de Clients par Tranche de revenus");
+        pieModel.setLegendPosition("w");
+    }
+	
+	
+	
+	
 	
 	public String date(){
 		Date creationDate = new Date();
@@ -380,11 +429,10 @@ public class ClientController implements Serializable {
 	public void setSelectedCounsellors(List<Counsellor> selectedCounsellors) {
 		this.selectedCounsellors = selectedCounsellors;
 	}
+
+	public PieChartModel getPieModel() {
+		return pieModel;
+	}
 	
 	
-
-
-
-	
-
 }

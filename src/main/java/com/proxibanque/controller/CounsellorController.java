@@ -17,6 +17,7 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.PieChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +43,6 @@ public class CounsellorController implements Serializable {
 	private Client client;
 
 	private BarChartModel barModel;
-//	private BarChartModel model;
-//	private ChartSeries nombreClient;
 	
 	private String login;
 	private String password;
@@ -149,9 +148,7 @@ public class CounsellorController implements Serializable {
 			int nombre = counsellor.getClients().size();
 			nombreClients.set(counsellor.getLastName(), nombre);
 		}
-
         model.addSeries(nombreClients);
-         
         return model;
     }
      
@@ -159,7 +156,7 @@ public class CounsellorController implements Serializable {
         createBarModel();
     }
 	
-	public void createBarModel() {
+	private void createBarModel() {
         barModel = initBarModel();
          
         barModel.setTitle("Nombre de Clients par Conseillers");
@@ -173,7 +170,6 @@ public class CounsellorController implements Serializable {
         yAxis.setMin(0);
         yAxis.setMax(10);
     }
-	
 	
 	
 
