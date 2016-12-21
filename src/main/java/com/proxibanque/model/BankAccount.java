@@ -96,9 +96,10 @@ public class BankAccount implements Serializable {
 
 	@Override
 	public String toString() {
-		return " Commte numéro " +  accountNumber + "Solde : " + balance + " Euros" ;
+		return "BankAccount accountNumber=" + accountNumber + ", balance=" + balance ;
 	}
 
+	
 	
 	
 }
