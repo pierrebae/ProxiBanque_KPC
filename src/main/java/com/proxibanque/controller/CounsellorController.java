@@ -17,6 +17,7 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.PieChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,15 @@ import com.proxibanque.model.Client;
 import com.proxibanque.model.Counsellor;
 import com.proxibanque.service.ServiceCounsellor;
 
+/**
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see CounsellorController permet la redirection des pages et l'utilisation de
+ *      méthodes du service conseiller pour toutes les pages .xhtml portant sur
+ *      les opérations sur les conseillers. Notamment, on va pouvoir visionner
+ *      les listes des conseillers et créer des conseillers
+ * 
+ *
+ */
 @Component("counsellorController")
 @ViewScoped
 public class CounsellorController implements Serializable {
@@ -32,7 +42,6 @@ public class CounsellorController implements Serializable {
 
 	@Autowired
 	private ServiceCounsellor counsellorService;
-	
 
 	private Counsellor counsellor;
 	private List<Counsellor> counsellors;
@@ -42,9 +51,13 @@ public class CounsellorController implements Serializable {
 	private Client client;
 
 	private BarChartModel barModel;
-//	private BarChartModel model;
-//	private ChartSeries nombreClient;
+<<<<<<< HEAD
+	// private BarChartModel model;
+	// private ChartSeries nombreClient;
+
+=======
 	
+>>>>>>> origin/master
 	private String login;
 	private String password;
 
@@ -139,19 +152,43 @@ public class CounsellorController implements Serializable {
 			return "";
 		}
 	}
-	
+
 	private BarChartModel initBarModel() {
-        BarChartModel model = new BarChartModel();
- 
-        ChartSeries nombreClients = new ChartSeries();
-        nombreClients.setLabel("nombre de Clients");
-        for (Counsellor counsellor : counsellors) {
+		BarChartModel model = new BarChartModel();
+
+		ChartSeries nombreClients = new ChartSeries();
+		nombreClients.setLabel("nombre de Clients");
+		for (Counsellor counsellor : counsellors) {
 			int nombre = counsellor.getClients().size();
 			nombreClients.set(counsellor.getLastName(), nombre);
 		}
+<<<<<<< HEAD
 
+		model.addSeries(nombreClients);
+
+		return model;
+	}
+
+	private void createBarModels() {
+		createBarModel();
+	}
+
+	public void createBarModel() {
+		barModel = initBarModel();
+
+		barModel.setTitle("Nombre de Clients par Conseillers");
+		barModel.setLegendPosition("ne");
+
+		Axis xAxis = barModel.getAxis(AxisType.X);
+		xAxis.setLabel("Conseillers");
+
+		Axis yAxis = barModel.getAxis(AxisType.Y);
+		yAxis.setLabel("Nombre de Clients");
+		yAxis.setMin(0);
+		yAxis.setMax(10);
+	}
+=======
         model.addSeries(nombreClients);
-         
         return model;
     }
      
@@ -159,7 +196,7 @@ public class CounsellorController implements Serializable {
         createBarModel();
     }
 	
-	public void createBarModel() {
+	private void createBarModel() {
         barModel = initBarModel();
          
         barModel.setTitle("Nombre de Clients par Conseillers");
@@ -175,7 +212,7 @@ public class CounsellorController implements Serializable {
     }
 	
 	
-	
+>>>>>>> origin/master
 
 	public List<Counsellor> getSelectedCounsellors() {
 		return selectedCounsellors;

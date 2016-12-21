@@ -6,13 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 import com.proxibanque.dao.IDaoClient;
 import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see c'est le service relatif aux clients. Il communique avec la dao client
+ *
+ */
 @Component
-public class ServiceClient implements IServiceClient,Serializable {
+public class ServiceClient implements IServiceClient, Serializable {
 
 	/**
 	 * 
@@ -23,7 +28,7 @@ public class ServiceClient implements IServiceClient,Serializable {
 
 	@Override
 	public void persist(Client client) throws Exception {
-System.out.println("save client");
+		System.out.println("save client");
 		daoClient.persist(client);
 	}
 
@@ -56,13 +61,12 @@ System.out.println("save client");
 	@Override
 	public void persist(Client client, BankAccount bankAccount) throws Exception {
 
-		List <BankAccount> bankAccounts=client.getBankAccounts();
+		List<BankAccount> bankAccounts = client.getBankAccounts();
 		bankAccounts.add(bankAccount);
 		bankAccount.setClient(client);
-//		client.setBankAccounts(bankAccounts);
+		// client.setBankAccounts(bankAccounts);
 		daoClient.persist(client);
-		
-		
+
 	}
 
 }

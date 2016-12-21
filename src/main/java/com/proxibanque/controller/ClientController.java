@@ -22,6 +22,7 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.chart.PieChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +32,10 @@ import com.proxibanque.model.Counsellor;
 import com.proxibanque.service.ServiceClient;
 
 /**
- * ClientController permet la redirection des pages et l'utilisation de méthodes
- * du service pour toutes les pages .xhtml portant sur les opérations sur les
- * clients
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see ClientController permet la redirection des pages et l'utilisation de
+ *      méthodes du service client pour toutes les pages .xhtml portant sur les
+ *      opérations sur les clients.
  * 
  *
  */
@@ -70,36 +72,50 @@ public class ClientController implements Serializable {
 	private Counsellor counsellor;
 	private Counsellor selectedCounsellor;
 	private List<Counsellor> selectedCounsellors;
-
+<<<<<<< HEAD
+=======
+	
+	private PieChartModel pieModel;
+	
+>>>>>>> origin/master
 
 	@PostConstruct
 	public void init() throws Exception {
 		refreshList();
+		createPieModels();
 		List<Client> clientsSourceSender = new ArrayList<Client>();
-        List<Client> clientsTargetSender = new ArrayList<Client>();
-        List<Client> clientsSourceReciever = new ArrayList<Client>();
-        List<Client> clientsTargetReciever = new ArrayList<Client>();
-        
+		List<Client> clientsTargetSender = new ArrayList<Client>();
+		List<Client> clientsSourceReciever = new ArrayList<Client>();
+		List<Client> clientsTargetReciever = new ArrayList<Client>();
+
 		clientsSourceSender.addAll(clientService.findAll());
 		clientsSourceReciever.addAll(clientService.findAll());
+<<<<<<< HEAD
+		clientsForDualSender = new DualListModel<Client>(clientsSourceSender, clientsTargetSender);
+		clientsForDualReciever = new DualListModel<Client>(clientsSourceSender, clientsTargetSender);
+
+=======
 		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
 		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
-
+>>>>>>> origin/master
 	}
 
+	/**
+	 * cette methode effectue un rechargement de contexte
+	 */
 	public void refreshList() {
-		this.accountSender= new BankAccount();
-		this.accountReciever=new BankAccount();
-		this.clientSender=new Client();
-		this.clientReciever=new Client();
+		this.accountSender = new BankAccount();
+		this.accountReciever = new BankAccount();
+		this.clientSender = new Client();
+		this.clientReciever = new Client();
 		this.client = new Client();
 		this.selectedClient = new Client();
-		this.bankAccount=new BankAccount();
-		this.counsellor=new Counsellor();
-		this.selectedCounsellor=new Counsellor();
+		this.bankAccount = new BankAccount();
+		this.counsellor = new Counsellor();
+		this.selectedCounsellor = new Counsellor();
 
-		this.accountsReciever=new ArrayList<BankAccount>();
-		this.accountsReciever=new ArrayList<BankAccount>();
+		this.accountsReciever = new ArrayList<BankAccount>();
+		this.accountsReciever = new ArrayList<BankAccount>();
 		this.clients = new ArrayList<Client>();
 		this.selectedClients = new ArrayList<Client>();
 		try {
@@ -111,15 +127,14 @@ public class ClientController implements Serializable {
 		}
 	}
 
-	  public void onClientChange() {
-	        if(clientSender !=null && !client.equals("")) {
-	          accountsSender=clientSender.getBankAccounts();
-	        }
-	        else {
-	        	accountsSender = new ArrayList<BankAccount>();
-	        }
-	    }
-	
+	public void onClientChange() {
+		if (clientSender != null && !client.equals("")) {
+			accountsSender = clientSender.getBankAccounts();
+		} else {
+			accountsSender = new ArrayList<BankAccount>();
+		}
+	}
+
 	public void loadClients() throws Exception {
 
 		clients = clientService.findAll();
@@ -128,13 +143,14 @@ public class ClientController implements Serializable {
 
 	public void loadClient(Client client) throws Exception {
 
-//		Client clientMemory = clientService.findById(client.getId());
-//		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-//
-//		Map<String, Object> requestMap = externalContext.getRequestMap();
-//		requestMap.put("client", clientMemory);
-//
-//		return "listClient";
+		// Client clientMemory = clientService.findById(client.getId());
+		// ExternalContext externalContext =
+		// FacesContext.getCurrentInstance().getExternalContext();
+		//
+		// Map<String, Object> requestMap = externalContext.getRequestMap();
+		// requestMap.put("client", clientMemory);
+		//
+		// return "listClient";
 	}
 
 	public String saveClient() throws Exception {
@@ -152,16 +168,16 @@ public class ClientController implements Serializable {
 	}
 
 	public String saveClientAndAccount() throws Exception {
-		
+
 		selectedCounsellor.addClient(client);
-		
+
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
-		clientService.persist(this.client,this.bankAccount);	
+		clientService.persist(this.client, this.bankAccount);
 		refreshList();
 		return "listClients";
 	}
-	
+
 	public String removeClient(Client client) throws Exception {
 
 		clientService.remove(client.getId());
@@ -218,8 +234,57 @@ public class ClientController implements Serializable {
 			return "";
 		}
 	}
+<<<<<<< HEAD
+
+	public String date() {
+=======
+	
+	
+	
+	private void createPieModels() {
+		createPieModel();
+	}
+	
+	private void createPieModel() {
+        pieModel = new PieChartModel();
+        
+        double sommeCompte = 0;
+    	List<Client> nombreClient0 = new ArrayList<>();
+    	List<Client> nombreClient500= new ArrayList<>();
+    	List<Client> nombreClient5000= new ArrayList<>();
+    	List<Client> nombreClientSup= new ArrayList<>();
+
+        for (Client client : clients) {
+        	List<BankAccount> listAccounts = client.getBankAccounts();
+			for (BankAccount bankAccount : listAccounts) {
+				sommeCompte	+= bankAccount.getBalance();
+			}
+			if (sommeCompte < 0) {
+				nombreClient0.add(client);
+			} else if (sommeCompte < 500 && sommeCompte >= 0) {
+				nombreClient500.add(client);
+			} else if (sommeCompte < 5000 && sommeCompte >=500){
+				nombreClient5000.add(client);
+			} else {
+				nombreClientSup.add(client);
+			}
+		}
+        
+        pieModel.set("Solde des Comptes < 0", nombreClient0.size());
+        pieModel.set("Solde des Comptes entre 0 et 500", nombreClient500.size());
+        pieModel.set("Solde des Comptes entre 500 et 5000", nombreClient5000.size());
+        pieModel.set("Solde des Comptes > 5000", nombreClientSup.size());
+         
+        pieModel.setTitle("Nombre de Clients par Richesse");
+        pieModel.setLegendPosition("w");
+    }
+	
+	
+	
+	
 	
 	public String date(){
+>>>>>>> origin/master
 		Date creationDate = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		simpleDate = dateFormat.format(creationDate);
@@ -380,11 +445,13 @@ public class ClientController implements Serializable {
 	public void setSelectedCounsellors(List<Counsellor> selectedCounsellors) {
 		this.selectedCounsellors = selectedCounsellors;
 	}
+
+<<<<<<< HEAD
+=======
+	public PieChartModel getPieModel() {
+		return pieModel;
+	}
 	
 	
-
-
-
-	
-
+>>>>>>> origin/master
 }

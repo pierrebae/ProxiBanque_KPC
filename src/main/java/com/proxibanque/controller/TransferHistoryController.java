@@ -14,6 +14,12 @@ import com.proxibanque.model.Transfer;
 
 import com.proxibanque.service.ServiceTransfer;
 
+/**
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see TransferHistoryController s'occupe de l'historique des virements
+ * 
+ *
+ */
 @Component("transferHistoryController")
 @ViewScoped
 public class TransferHistoryController implements Serializable {

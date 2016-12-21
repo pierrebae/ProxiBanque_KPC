@@ -9,6 +9,13 @@ import com.proxibanque.dao.IDaoCounsellor;
 import com.proxibanque.model.Client;
 import com.proxibanque.model.Counsellor;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see c'est le service relatif aux conseillers. Il communique avec la dao des
+ *      conseillers
+ *
+ */
 @Component
 public class ServiceCounsellor implements IServiceCounsellor {
 

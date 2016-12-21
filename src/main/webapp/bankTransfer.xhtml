@@ -8,14 +8,86 @@
 
 	<ui:define name="content">
 
+<<<<<<< HEAD
 
+=======
+		<h:form id="formClient1">
+>>>>>>> origin/master
 
 		<f:metadata>
 			<f:event type="preRenderView"
 				listener="#{accountController.refreshList()}" />
 		</f:metadata>
 
+<<<<<<< HEAD
 
+=======
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+				<p:outputLabel for="clientSender"
+					value="Choix du cient et du compte émetteur : *"
+					style="width:300px" />
+				<p:selectOneMenu id="clientSender" required="true"
+					value="#{accountController.numAccountSender}"
+					panelStyle="width:180px" effect="fade" style="width:250px"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem
+						itemLabel="--Rechercher le client émetteur et le compte associé--"
+						itemValue="" />
+					<f:selectItems value="#{accountController.bankAccounts}"
+						var="account" itemValue="#{account.accountNumber}"
+						itemLabel="#{account.client} / #{account}" />
+				</p:selectOneMenu>
+
+
+				<p:outputLabel for="clientReciever"
+					value="Choix du cient et du compte bénéficiaire : *"
+					style="width:300px" />
+				<p:selectOneMenu id="clientReciever"
+					value="#{accountController.numAccountReciever}" required="true"
+					panelStyle="width:180px" effect="fade" style="width:250px"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem
+						itemLabel="--Rechercher le client bénéficiaire et le compte associé--"
+						itemValue="" />
+					<f:selectItems value="#{accountController.bankAccounts}"
+						var="account" itemValue="#{account.accountNumber}"
+						itemLabel="#{account.client} / #{account}'" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="amount" value="Montant du virement : "
+					style="width:250px" />
+				<p:inputText id="amount" value="#{accountController.amount}"
+					converterMessage="Test">
+					<f:validateDoubleRange minimum="0" />
+				</p:inputText>
+				<p:commandButton id="validateTranfer" value="Valider le virement"
+					action="#{accountController.transfer}" />
+
+
+
+				<!-- 				<p:outputLabel for="clientSender" value="Choix du compte émetteur : *" /> -->
+				<!-- 				<p:selectOneMenu id="clientSender" -->
+				<!-- 					value="#{accountController.numAccountSender}" panelStyle="width:180px" -->
+				<!-- 					effect="fade" style="width:250px" filter="true" -->
+				<!-- 					filterMatchMode="startsWith"> -->
+				<!-- 					<f:selectItems value="#{accountController.bankAccountsSender}" var="account" -->
+				<!-- 						itemLabel="#{account.client.toString()} + ' ' + #{account.toString()}" itemValue="#{account}" /> -->
+				<!-- 				</p:selectOneMenu> -->
+				<!-- 				<p:commandButton update=":form1:display" oncomplete="PF('Dlg').show()" -->
+				<!-- 					image="ui-icon ui-icon-close" title="Submit"> -->
+				<!-- 					<f:setPropertyActionListener value="#{clientController.clientSender}" -->
+				<!-- 						target="#{client}" /> -->
+
+				<!-- 				</p:commandButton>> -->
+
+			</h:panelGrid>
+
+
+		</h:form>
+
+=======
+>>>>>>> origin/master
 		<div class="transfer">
 			<h:form id="formClient1">
 

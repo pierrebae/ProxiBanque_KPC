@@ -12,8 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javassist.bytecode.SignatureAttribute.TypeVariable;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see ceci est une implementation de l'interdace générique de DAO qui détaille
+ *      les méthodes transactionnelles utilisées par toutes les autres DAO
+ * @param <E>
+ */
 public class DaoImpl<E> implements IDao<E> {
-	
+
 	@PersistenceContext(unitName = "persistenceUnit")
 	protected EntityManager entityManager;
 
@@ -46,28 +53,33 @@ public class DaoImpl<E> implements IDao<E> {
 		return getEntityManager().createQuery("Select t from " + getEntityClass().getSimpleName() + " t")
 				.getResultList();
 	}
-//
-//	@Transactional(readOnly = true)
-//	@SuppressWarnings("unchecked")
-//	public List<E> findByProperty(String prop, Object val) throws Exception {
-//		return (List<E>) getEntityManager()
-//				.createQuery("select x from " + getEntityClass().getSimpleName() + " x where x." + prop + " = ?1")
-//				.setParameter(1, val).getResultList();
-//	}
-//
-//	@Transactional(readOnly = true)
-//	@SuppressWarnings("unchecked")
-//	public List<E> findInRange(int firstResult, int maxResults) throws Exception {
-//		return getEntityManager().createQuery("Select t from " + getEntityClass().getSimpleName() + " t")
-//				.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-//	}
-//
-//	@Transactional(readOnly = true)
-//	public long count() throws Exception {
-//		return (Long) getEntityManager().createQuery("Select count(t) from " + getEntityClass().getSimpleName() + " t")
-//				.getSingleResult();
-//	}
-//
+
+	//
+	// @Transactional(readOnly = true)
+	// @SuppressWarnings("unchecked")
+	// public List<E> findByProperty(String prop, Object val) throws Exception {
+	// return (List<E>) getEntityManager()
+	// .createQuery("select x from " + getEntityClass().getSimpleName() + " x
+	// where x." + prop + " = ?1")
+	// .setParameter(1, val).getResultList();
+	// }
+	//
+	// @Transactional(readOnly = true)
+	// @SuppressWarnings("unchecked")
+	// public List<E> findInRange(int firstResult, int maxResults) throws
+	// Exception {
+	// return getEntityManager().createQuery("Select t from " +
+	// getEntityClass().getSimpleName() + " t")
+	// .setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+	// }
+	//
+	// @Transactional(readOnly = true)
+	// public long count() throws Exception {
+	// return (Long) getEntityManager().createQuery("Select count(t) from " +
+	// getEntityClass().getSimpleName() + " t")
+	// .getSingleResult();
+	// }
+	//
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
@@ -75,7 +87,8 @@ public class DaoImpl<E> implements IDao<E> {
 	public void setEntityManager(EntityManager entityManager) throws Exception {
 		this.entityManager = entityManager;
 	}
-//
+
+	//
 	@SuppressWarnings("unchecked")
 	public Class<E> getEntityClass() throws Exception {
 		if (entityClass == null) {
@@ -99,4 +112,3 @@ public class DaoImpl<E> implements IDao<E> {
 	}
 
 }
-

@@ -5,6 +5,13 @@ import java.util.List;
 import com.proxibanque.model.BankAccount;
 import com.proxibanque.model.Client;
 
+/**
+ * 
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see cette interface définit les signatures de méthode de la couche service
+ *      relative aux clientsS
+ *
+ */
 public interface IServiceClient {
 
 	void persist(Client client) throws Exception;

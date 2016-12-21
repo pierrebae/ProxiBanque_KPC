@@ -19,9 +19,12 @@ import com.proxibanque.model.Client;
 import com.proxibanque.service.ServiceAccount;
 
 /**
- * AccountController permet la redirection des pages et l'utilisation de
- * méthodes du service pour toutes pages .xhtml portant sur les opérations
- * bancaires
+ * @author Pierre Baele, Clément Lacorte, Katherine Merkulova
+ * @see AccountController permet la redirection des pages et l'utilisation de
+ *      méthodes du service pour toutes pages .xhtml portant sur les opérations
+ *      bancaires, dont les virements. On va pouvoir visionner la liste des
+ *      comptes bancaires, ajouter, ou effacer des comptes et effectuer des
+ *      virements
  * 
  *
  */
@@ -38,15 +41,15 @@ public class AccountController implements Serializable {
 	@Autowired
 	private ServiceAccount serviceAccount;
 
-	private double amount =0L;
+	private double amount = 0L;
 	private BankAccount bankAccount;
 	private BankAccount bankAccountSender;
 	private List<BankAccount> bankAccounts;
 	private List<BankAccount> selectedBankAccounts;
 	private List<BankAccount> bankAccountsSender;
 	private List<BankAccount> bankAccountsReciever;
-	private long numAccountSender =0L;
-	private long numAccountReciever  =0L;
+	private long numAccountSender = 0L;
+	private long numAccountReciever = 0L;
 	private String simpleDate;
 	private Client selectedClient;
 	private List<Client> selectedClients;
@@ -117,8 +120,6 @@ public class AccountController implements Serializable {
 		simpleDate = dateFormat.format(creationDate);
 		return simpleDate;
 	}
-
-
 
 	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;
