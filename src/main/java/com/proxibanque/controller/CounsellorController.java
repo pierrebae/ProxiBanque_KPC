@@ -40,7 +40,8 @@ public class CounsellorController implements Serializable {
 	
 	@PostConstruct
     public void init() {
-        counsellor = new Counsellor();
+		refreshList();
+       
     }
 	
 	

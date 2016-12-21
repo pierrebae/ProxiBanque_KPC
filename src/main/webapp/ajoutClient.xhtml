@@ -9,10 +9,35 @@
 
 
 	<ui:define name="content">
-		<div class="addClient">		
+		<div class="addClient">
 			<h:form>
-			<h:outputText value="id conseiller"></h:outputText>
-			<p:inputText id="counsellor" value="#{clientController.counsellor.id}"/>
+
+
+				<fieldset id="fieldset">
+					<legend>Conseiller</legend>
+					<p:dataTable id="choixConseiller"
+						value="#{counsellorController.counsellors}" var="counsellor"
+						sortMode="multiple"
+						selection="#{clientController.selectedCounsellor}"
+						rowKey="#{counsellor.id}">
+
+						<p:column headerText="Nom" sortBy="#{counsellor.lastName}"
+							filterBy="#{counsellor.lastName}">
+							<h:outputText value="#{counsellor.lastName}" />
+						</p:column>
+
+						<p:column headerText="Prénom" sortBy="#{counsellor.firstName}"
+							filterBy="#{counsellor.firstName}">
+							<h:outputText value="#{counsellor.firstName}" />
+						</p:column>
+
+						<p:column selectionMode="single" style="width:40px;"></p:column>
+					</p:dataTable>
+				</fieldset>
+
+
+
+
 				<fieldset id="fieldset">
 					<legend>Données personnelles</legend>
 
@@ -21,14 +46,14 @@
 						<p:outputLabel value="Nom" for="nom" />
 						<p:inputText id="nom" value="#{clientController.client.lastName}"
 							required="true">
-							<f:validateRegex pattern="[a-zA-Z]{2,50}" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
 						</p:inputText>
 						<p:message for="nom" />
 
 						<p:outputLabel value="Prénom" for="prenom" />
 						<p:inputText id="prenom"
 							value="#{clientController.client.firstName}" required="true">
-							<f:validateRegex pattern="[a-zA-Z]{2,50}" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{3,32}$" />
 						</p:inputText>
 						<p:message for="prenom" />
 					</h:panelGrid>
@@ -38,40 +63,47 @@
 						<p:outputLabel value="Numéro" for="streetNumber" />
 						<p:inputText id="streetNumber"
 							value="#{clientController.client.address.streetNumber}">
-							<f:validateRegex pattern="[0-9]{1,5}" />
+							<f:validateRegex pattern="^[0-9]{1,10}$" />
 						</p:inputText>
 						<p:message for="streetNumber" />
 
 						<p:outputLabel value="Rue" for="streetName" />
 						<p:inputText id="streetName"
 							value="#{clientController.client.address.streetName}">
-							<!-- 							<f:validateRegex pattern="" /> -->
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="streetName" />
 
 						<p:outputLabel value="Code postal" for="postalCode" />
 						<p:inputText id="postalCode"
 							value="#{clientController.client.address.postalCode}" size="5">
-							<f:validateRegex pattern="^[0-9]{5,5}$" />
+							<f:validateRegex
+								pattern="^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$" />
 						</p:inputText>
 						<p:message for="postalCode" />
 
 						<p:outputLabel value="Ville" for="city" />
 						<p:inputText id="city"
 							value="#{clientController.client.address.city}">
-							<f:validateRegex pattern="[a-zA-Z]" />
+							<f:validateRegex pattern="^[a-zA-Z0-9'àéèù._\s-]{5,60}$" />
 						</p:inputText>
 						<p:message for="city" />
 					</h:panelGrid>
 
 					<label id="label">Coordonnées</label>
-					<h:panelGrid columns="2" cellpadding="5">
+					<h:panelGrid columns="3" cellpadding="5">
 						<p:outputLabel value="N° téléphone" for="telephone" />
 						<p:inputText id="telephone"
-							value="#{clientController.client.telephone}" />
-
+							value="#{clientController.client.telephone}">
+							<f:validateRegex pattern="^[0-9]{10,10}$" />
+						</p:inputText>
+						<p:message for="telephone" />
 						<p:outputLabel value="Email" for="email" />
-						<p:inputText id="email" value="#{clientController.client.email}" />
+						<p:inputText id="email" value="#{clientController.client.email}">
+							<f:validateRegex
+								pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" />
+						</p:inputText>
+						<p:message for="email" />
 					</h:panelGrid>
 				</fieldset>
 

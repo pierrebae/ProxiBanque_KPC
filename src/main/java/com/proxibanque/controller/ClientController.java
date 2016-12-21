@@ -68,6 +68,8 @@ public class ClientController implements Serializable {
 	private DualListModel<Client> clientsForDualSender;
 	private String simpleDate;
 	private Counsellor counsellor;
+	private Counsellor selectedCounsellor;
+	private List<Counsellor> selectedCounsellors;
 
 
 	@PostConstruct
@@ -93,6 +95,8 @@ public class ClientController implements Serializable {
 		this.client = new Client();
 		this.selectedClient = new Client();
 		this.bankAccount=new BankAccount();
+		this.counsellor=new Counsellor();
+		this.selectedCounsellor=new Counsellor();
 
 		this.accountsReciever=new ArrayList<BankAccount>();
 		this.accountsReciever=new ArrayList<BankAccount>();
@@ -149,7 +153,7 @@ public class ClientController implements Serializable {
 
 	public String saveClientAndAccount() throws Exception {
 		
-		counsellor.addClient(client);
+		selectedCounsellor.addClient(client);
 		
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
@@ -360,6 +364,24 @@ public class ClientController implements Serializable {
 		this.counsellor = counsellor;
 
 	}
+
+	public Counsellor getSelectedCounsellor() {
+		return selectedCounsellor;
+	}
+
+	public void setSelectedCounsellor(Counsellor selectedCounsellor) {
+		this.selectedCounsellor = selectedCounsellor;
+	}
+
+	public List<Counsellor> getSelectedCounsellors() {
+		return selectedCounsellors;
+	}
+
+	public void setSelectedCounsellors(List<Counsellor> selectedCounsellors) {
+		this.selectedCounsellors = selectedCounsellors;
+	}
+	
+	
 
 
 
