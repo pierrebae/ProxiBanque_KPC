@@ -72,24 +72,7 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-	<!-- SECURITY ROLE -->
-<!-- 	<security-role> -->
-<!-- 		<role-name>gerant</role-name> -->
-<!-- 	</security-role> -->
-	<!-- SECURITY ROLE -->
-<!-- 	<security-role> -->
-<!-- 		<role-name>conseiller</role-name> -->
-<!-- 	</security-role> -->
-
-
-<<<<<<< HEAD
-<!-- 	<security-constraint> -->
-<!-- 		<display-name>Test authentification tomcat</display-name> -->
-<!-- 		liste pages -->
-<!-- 		<web-resource-collection> -->
-<!-- 			<web-resource-name>Appli protégée</web-resource-name> -->
-<!-- 			<url-pattern>/*</url-pattern> -->
-=======
+	
 	<security-constraint>
 		<display-name>appli ouverte</display-name>
 		<!-- liste pages -->
@@ -107,45 +90,6 @@
 		</auth-constraint>
 	</security-constraint>
 	
-<!-- 	<security-constraint> -->
-<!-- 		<display-name>CONSEILLER</display-name> -->
-		<!-- liste pages -->
-<!-- 		<web-resource-collection> -->
-<!-- 			<web-resource-name>Appli protégée</web-resource-name> -->
-<!-- 			<url-pattern>/addAccount.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/ajoutClient.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/bankTransfer.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/error.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/listAccount.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/listClients.xhtml</url-pattern> -->
-<!-- 			<url-pattern>/javax.faces.resource/*</url-pattern> -->
-<!-- 			<url-pattern>/resources/*</url-pattern> -->
->>>>>>> origin/master
-<!-- 			<http-method>GET</http-method> -->
-<!-- 			<http-method>POST</http-method> -->
-<!-- 			<http-method>PUT</http-method> -->
-<!-- 			<http-method>DELETE</http-method> -->
-<!-- 		</web-resource-collection> -->
-<!-- 		<auth-constraint> -->
-<<<<<<< HEAD
-<!-- 			<role-name>gerant</role-name> -->
-<!-- 		</auth-constraint> -->
-<!-- 	</security-constraint> -->
-
-<!-- 	<login-config> -->
-<!-- 		<auth-method>FORM</auth-method> -->
-<!-- 		<form-login-config> -->
-<!-- 			<form-login-page>/login.xhtml</form-login-page> -->
-<!-- 			<form-error-page>/error.xhtml</form-error-page> -->
-<!-- 		</form-login-config> -->
-<!-- 	</login-config> -->
-=======
-<!-- 			<role-name>conseiller</role-name> -->
-<!-- 		</auth-constraint> -->
-<!-- 	</security-constraint> -->
-
-
-
 
 	<login-config>
 		<auth-method>FORM</auth-method>
@@ -154,7 +98,7 @@
 			<form-error-page>/error.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
->>>>>>> origin/master
+
 
 
 

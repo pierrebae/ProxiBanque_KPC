@@ -296,7 +296,6 @@ public class ClientController implements Serializable {
 		this.clientsForDualSender = clientsForDualSender;
 	}
 
-<<<<<<< HEAD
 	public Client getClientSender() {
 		return clientSender;
 	}
@@ -343,7 +342,8 @@ public class ClientController implements Serializable {
 
 	public void setAccountReciever(BankAccount accountReciever) {
 		this.accountReciever = accountReciever;
-=======
+	}
+
 	public String getSimpleDate() {
 		return simpleDate;
 	}
@@ -358,7 +358,7 @@ public class ClientController implements Serializable {
 
 	public void setCounsellor(Counsellor counsellor) {
 		this.counsellor = counsellor;
->>>>>>> origin/master
+
 	}
 
 
