@@ -64,14 +64,26 @@ public class ClientController implements Serializable {
 	private Client selectedClient;
 	private long idCli;
 
-
+	private DualListModel<Client> clientsForDualReciever;
+	private DualListModel<Client> clientsForDualSender;
 	private String simpleDate;
 	private Counsellor counsellor;
+	private Counsellor selectedCounsellor;
+	private List<Counsellor> selectedCounsellors;
 
 
 	@PostConstruct
 	public void init() throws Exception {
-		refreshList();	
+		refreshList();
+		List<Client> clientsSourceSender = new ArrayList<Client>();
+        List<Client> clientsTargetSender = new ArrayList<Client>();
+        List<Client> clientsSourceReciever = new ArrayList<Client>();
+        List<Client> clientsTargetReciever = new ArrayList<Client>();
+        
+		clientsSourceSender.addAll(clientService.findAll());
+		clientsSourceReciever.addAll(clientService.findAll());
+		clientsForDualSender = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
+		clientsForDualReciever = new DualListModel<Client>( clientsSourceSender, clientsTargetSender);
 
 	}
 
@@ -83,6 +95,9 @@ public class ClientController implements Serializable {
 		this.client = new Client();
 		this.selectedClient = new Client();
 		this.bankAccount=new BankAccount();
+		this.counsellor=new Counsellor();
+		this.selectedCounsellor=new Counsellor();
+
 		this.accountsReciever=new ArrayList<BankAccount>();
 		this.accountsReciever=new ArrayList<BankAccount>();
 		this.clients = new ArrayList<Client>();
@@ -138,7 +153,7 @@ public class ClientController implements Serializable {
 
 	public String saveClientAndAccount() throws Exception {
 		
-		counsellor.addClient(client);
+		selectedCounsellor.addClient(client);
 		
 		simpleDate = date();
 		bankAccount.setCreationDate(simpleDate);
@@ -269,7 +284,21 @@ public class ClientController implements Serializable {
 		this.bankAccount = bankAccount;
 	}
 
+	public DualListModel<Client> getClientsForDualReciever() {
+		return clientsForDualReciever;
+	}
 
+	public void setClientsForDualReciever(DualListModel<Client> clientsForDualReciever) {
+		this.clientsForDualReciever = clientsForDualReciever;
+	}
+
+	public DualListModel<Client> getClientsForDualSender() {
+		return clientsForDualSender;
+	}
+
+	public void setClientsForDualSender(DualListModel<Client> clientsForDualSender) {
+		this.clientsForDualSender = clientsForDualSender;
+	}
 
 	public Client getClientSender() {
 		return clientSender;
@@ -335,6 +364,24 @@ public class ClientController implements Serializable {
 		this.counsellor = counsellor;
 
 	}
+
+	public Counsellor getSelectedCounsellor() {
+		return selectedCounsellor;
+	}
+
+	public void setSelectedCounsellor(Counsellor selectedCounsellor) {
+		this.selectedCounsellor = selectedCounsellor;
+	}
+
+	public List<Counsellor> getSelectedCounsellors() {
+		return selectedCounsellors;
+	}
+
+	public void setSelectedCounsellors(List<Counsellor> selectedCounsellors) {
+		this.selectedCounsellors = selectedCounsellors;
+	}
+	
+	
 
 
 
