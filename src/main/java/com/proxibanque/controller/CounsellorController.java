@@ -13,6 +13,10 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +32,7 @@ public class CounsellorController implements Serializable {
 
 	@Autowired
 	private ServiceCounsellor counsellorService;
+	
 
 	private Counsellor counsellor;
 	private List<Counsellor> counsellors;
@@ -36,13 +41,17 @@ public class CounsellorController implements Serializable {
 	private long idCounsellor;
 	private Client client;
 
+	private BarChartModel barModel;
+//	private BarChartModel model;
+//	private ChartSeries nombreClient;
+	
 	private String login;
 	private String password;
 
 	@PostConstruct
 	public void init() {
 		refreshList();
-
+		createBarModels();
 	}
 
 	public void refreshList() {
@@ -130,6 +139,43 @@ public class CounsellorController implements Serializable {
 			return "";
 		}
 	}
+	
+	private BarChartModel initBarModel() {
+        BarChartModel model = new BarChartModel();
+ 
+        ChartSeries nombreClients = new ChartSeries();
+        nombreClients.setLabel("nombre de Clients");
+        for (Counsellor counsellor : counsellors) {
+			int nombre = counsellor.getClients().size();
+			nombreClients.set(counsellor.getLastName(), nombre);
+		}
+
+        model.addSeries(nombreClients);
+         
+        return model;
+    }
+     
+    private void createBarModels() {
+        createBarModel();
+    }
+	
+	public void createBarModel() {
+        barModel = initBarModel();
+         
+        barModel.setTitle("Nombre de Clients par Conseillers");
+        barModel.setLegendPosition("ne");
+         
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Conseillers");
+         
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Nombre de Clients");
+        yAxis.setMin(0);
+        yAxis.setMax(10);
+    }
+	
+	
+	
 
 	public List<Counsellor> getSelectedCounsellors() {
 		return selectedCounsellors;
@@ -193,6 +239,10 @@ public class CounsellorController implements Serializable {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public BarChartModel getBarModel() {
+		return barModel;
 	}
 
 }

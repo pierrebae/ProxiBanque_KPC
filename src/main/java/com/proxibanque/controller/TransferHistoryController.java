@@ -13,7 +13,7 @@ import com.proxibanque.model.Transfer;
 
 import com.proxibanque.service.ServiceTransfer;
 
-@Component("TransferHistoryController")
+@Component("transferHistoryController")
 @ViewScoped
 public class TransferHistoryController {
 
