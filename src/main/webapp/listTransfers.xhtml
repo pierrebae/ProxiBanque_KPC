@@ -22,28 +22,19 @@
 					<h:outputText value="#{transfer.transferDate}" />
 				</p:column>
 
-				<p:column headerText="Client" sortBy="#{compte.client}">
-					<h:outputText value="#{transfer.client}" />
+				<p:column headerText="Montant du virement" sortBy="#{transfer.amount}">
+					<h:outputText value="#{transfer.amount}" />
 				</p:column>
 
-				<p:column headerText="Type de compte" sortBy="#{compte.accountType}" style="text-align:center;">
+				<p:column headerText="N° Compte émetteur" sortBy="#{compte.accountType}" style="text-align:center;">
 					<h:outputText value="#{compte.accountType}" />
 				</p:column>
 
-				<p:column headerText="Solde" sortBy="#{compte.balance}" style="text-align:right;">
+				<p:column headerText="N° Compte bénéficiaire" sortBy="#{compte.balance}" style="text-align:right;">
 					<h:outputText value="#{compte.balance}" />
 				</p:column>
 
-				<p:column headerText="Date de Création"
-					sortBy="#{compte.creationDate}" style="text-align:center;">
-					<h:outputText value="#{compte.creationDate}" />
-				</p:column>
-
-				<p:column headerText="Effacer" style="width:8%;text-align:center">
-					<h:commandLink id="a" value="" styleClass="fa fa-trash medium"
-						onclick="if (!confirm('Vous êtes sûr de vouloir effacer ce compte?')) return false"
-						action="#{accountController.removeAccount(compte)}" />
-				</p:column>
+			
 			</p:dataTable>
 
 		</h:form>
