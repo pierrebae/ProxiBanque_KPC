@@ -16,7 +16,7 @@
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" >
 
 				<p:outputLabel for="clientSender"
-					value="Choix du cient et du compte émetteur : *" />
+					value="Choix du cient et du compte émetteur : *" style="width:300px"/>
 				<p:selectOneMenu id="clientSender" required="true"
 					value="#{accountController.numAccountSender}"
 					panelStyle="width:180px" effect="fade" style="width:250px"
@@ -29,7 +29,7 @@
 
 
 				<p:outputLabel for="clientReciever"
-					value="Choix du cient et du compte bénéficiaire : *" />
+					value="Choix du cient et du compte bénéficiaire : *"  style="width:300px"/>
 				<p:selectOneMenu id="clientReciever"
 					value="#{accountController.numAccountReciever}" required="true"
 					panelStyle="width:180px" effect="fade" style="width:250px"
@@ -40,7 +40,7 @@
 						itemLabel="#{account.client} / #{account}'" />
 				</p:selectOneMenu>
 
-				<p:outputLabel for="amount" value="Montant du virement : " />
+				<p:outputLabel for="amount" value="Montant du virement : " style="width:250px"/>
 				<p:inputText id="amount" value="#{accountController.amount}" converterMessage="Test" >
 				<f:validateDoubleRange  minimum="0"/>
 				</p:inputText>
